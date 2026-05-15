@@ -1,0 +1,28 @@
+name: Redeploy Vercel on GitHub changes
+
+on:
+  # 🔁 Se ejecuta cada vez que creas o modificas un repo en tu cuenta
+  # GitHub no tiene un evento directo para "nuevo repo", pero con estos
+  # eventos de workflow_dispatch + schedule cubrimos ambos casos:
+
+  # ✅ Disparo manual desde GitHub → Actions → "Run workflow"
+  workflow_dispatch:
+
+  # ✅ Automático: revisa cada hora si hay repos nuevos/actualizados
+  # Ajusta el cron si quieres más o menos frecuencia:
+  #   cada 30 min  → '*/30 * * * *'
+  #   cada 6 horas → '0 */6 * * *'
+  #   una vez al día → '0 12 * * *'
+  schedule:
+    - cron: '0 * * * *'  # cada hora, en punto
+
+jobs:
+  trigger-deploy:
+    name: Trigger Vercel Deploy Hook
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call Vercel Deploy Hook
+        run: |
+          curl -s -o /dev/null -w "HTTP status: %{http_code}\n" \
+            -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"

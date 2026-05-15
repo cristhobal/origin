@@ -1,0 +1,128 @@
+---
+import { getTagIcon } from "@/shared/icons";
+
+export interface Tag {
+  name: string;
+  icon?: string; // SVG string
+}
+
+export interface Props {
+  name: string;
+  description: string;
+  logo?: string;
+  href?: string;
+  githubUrl?: string;
+  isPrivate?: boolean;
+  tags?: Tag[];
+}
+
+const {
+  name,
+  description,
+  logo,
+  href,
+  githubUrl,
+  isPrivate = false,
+  tags = [],
+} = Astro.props;
+---
+
+<div
+  class="card group relative rounded-[6px] p-px overflow-hidden border border-neutral-300 dark:border-neutral-800"
+>
+  <!-- Glow background -->
+  <div class="glow absolute inset-0 pointer-events-none"></div>
+
+  <!-- Contenido -->
+  <div class="relative flex flex-col rounded-[5px] bg-white dark:bg-neutral-950 p-4">
+    <div class="flex flex-col space-y-3">
+      <!-- HEADER -->
+      <div class="flex w-full items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+          {
+            logo && (
+              <img src={logo} alt={name} class="h-4 w-auto" />
+            )
+          }
+          {
+            href ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener"
+                class="group/link flex items-center gap-1.5 font-medium relative"
+              >
+                <span class="relative">
+                  {name}
+                  <span class="absolute left-0 bottom-0 h-px w-0 bg-current opacity-30 transition-all duration-200 group-hover/link:w-full"></span>
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="opacity-50 transition-all duration-200 group-hover/link:translate-x-[1.5px] group-hover/link:opacity-100"
+                >
+                  <path d="M7 7h10v10"></path>
+                  <path d="M7 17 17 7"></path>
+                </svg>
+              </a>
+            ) : (
+              <p class="font-medium">{name}</p>
+            )
+          }
+        </div>
+
+        <div class="flex items-center gap-2">
+          {
+            isPrivate && (
+              <span class="cursor-default badge relative overflow-hidden text-[10px] px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+                Private
+              </span>
+            )
+          }
+          <a
+            href={githubUrl || "#"}
+            target="_blank"
+            class:list={[
+              "transition-opacity",
+              !githubUrl ? "pointer-events-none opacity-50 cursor-not-allowed" : "opacity-70 hover:opacity-100",
+            ]}
+          >
+            <svg viewBox="0 0 256 250" fill="currentColor" width="20" height="16">
+              <path
+                d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <p class="truncate text-sm text-neutral-600 dark:text-neutral-400">
+        {description}
+      </p>
+
+      <!-- TAGS -->
+      {
+        tags.length > 0 && (
+          <div class="flex items-center flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="inline-flex items-center gap-2 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-2 py-1 text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
+                {(tag.icon || getTagIcon(tag.name)) && (
+                  <Fragment set:html={tag.icon || getTagIcon(tag.name)} />
+                )}
+                <span>{tag.name}</span>
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>

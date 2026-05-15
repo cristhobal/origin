@@ -1,2 +1,222 @@
+<div align="center">
+
+<img src="https://i.postimg.cc/gc7c8fqM/preview.png" alt="origin preview" width="100%" style="border-radius: 12px;" />
+
+<br/>
+<br/>
+
+[![Visit site](https://img.shields.io/badge/🌐%20origin-Visit%20site-black?style=for-the-badge)](https://www.cristhobal.cl)
+[![Deploy](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+[![Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+
+</div>
+
+---
+
 # origin
-The public-facing interface. Curated. Intentional. Exactly as revealing as I want it to be.
+
+Personal portfolio of **Cristhobal Canales** — Fullstack Developer from Chile.
+Built with Astro 6, React 19 and TypeScript. Deployed on Vercel.
+
+## ✨ Features
+
+- **Auto-synced GitHub projects** — new and updated repositories appear on `/projects` automatically, no redeploy needed
+- **Scheduled auto-redeploy** — GitHub Actions triggers Vercel every hour to keep the home page fresh
+- **Static-first** — most pages are prerendered at build time for instant load speeds
+- **Dark mode** — full dark/light support via CSS variables
+- **SEO ready** — sitemap, dynamically generated Open Graph image, `robots.txt` and JSON-LD schema
+- **Unit testing with Vitest** — test suite with v8 code coverage support
+- **Path aliases** — clean imports using `@/` pointing to `src/`
+
+## 🛠️ Tech Stack
+
+| Layer      | Technology                                                                     |
+| ---------- | ------------------------------------------------------------------------------ |
+| Framework  | [Astro 6](https://astro.build)                                                 |
+| UI         | [React 19](https://react.dev) + [shadcn/ui](https://ui.shadcn.com)             |
+| Animations | [Framer Motion](https://www.framer.com/motion/) / [Motion](https://motion.dev) |
+| Styling    | [Tailwind CSS v4](https://tailwindcss.com) via `@tailwindcss/vite`             |
+| Language   | TypeScript (strict mode)                                                       |
+| Testing    | [Vitest](https://vitest.dev) + v8 coverage                                     |
+| Deployment | [Vercel](https://vercel.com) — `@astrojs/vercel` adapter                       |
+| Data       | GitHub REST API v3                                                             |
+| OG Image   | [`@vercel/og`](https://vercel.com/docs/functions/og-image-generation)          |
+
+## 🏗️ Architecture
+
+The project follows a **Screaming Architecture** (feature-oriented architecture), where the folder structure reflects the business domain rather than technical implementation details. Each _feature_ is self-contained and groups its own components, data, services and types.
+
+```
+/
+├── public/
+│   ├── logos/                          # Repo logos (repo-name.{png,svg,webp})
+│   ├── favicon.ico / .png / .svg
+│   └── robots.txt
+│
+├── src/
+│   ├── assets/                         # Internal static assets (background SVGs, etc.)
+│   │
+│   ├── features/                       # ⭐ Domain modules (feature-based)
+│   │   ├── experience/
+│   │   │   ├── components/
+│   │   │   │   └── ExperienceItem.astro
+│   │   │   ├── data.ts                 # Static work experience data
+│   │   │   └── types.ts                # Experience interface
+│   │   │
+│   │   ├── projects/
+│   │   │   ├── components/
+│   │   │   │   ├── LanguagesBar.astro
+│   │   │   │   └── ProjectCard.astro
+│   │   │   ├── services/
+│   │   │   │   ├── __tests__/
+│   │   │   │   │   └── github.service.test.ts
+│   │   │   │   └── github.service.ts   # GitHub API integration
+│   │   │   ├── data.ts                 # Manually pinned projects
+│   │   │   └── types.ts                # Project, Tag interfaces
+│   │   │
+│   │   └── technologies/
+│   │       ├── data.ts                 # Full technology registry with inline SVGs
+│   │       └── types.ts                # Technology interface
+│   │
+│   ├── layouts/
+│   │   ├── BaseLayout.astro            # Base layout (head, fonts, SEO)
+│   │   └── HomeLayout.astro            # Home layout with sections and animations
+│   │
+│   ├── pages/
+│   │   ├── index.astro                 # Home page (SSG)
+│   │   ├── projects.astro              # Projects — SSR, updates from GitHub at runtime
+│   │   ├── experience.astro            # Work experience (SSG)
+│   │   └── og.png.ts                   # Dynamic Open Graph image generation
+│   │
+│   └── shared/                         # Reusable code across features
+│       ├── components/
+│       │   ├── Header.astro
+│       │   └── Footer.astro
+│       ├── config/
+│       │   └── site.ts                 # Global constants (SITE_URL, GITHUB_USERNAME)
+│       ├── icons/
+│       │   ├── index.ts                # Public re-exports
+│       │   ├── tag-icons.registry.ts   # name → SVG map for project tags
+│       │   └── tag-names.normalizer.ts # Normalizes GitHub topic/language names
+│       ├── ui/                         # Reusable React components
+│       │   ├── blur-fade.tsx
+│       │   ├── button.tsx
+│       │   ├── marquee.tsx
+│       │   └── meteors.tsx
+│       └── utils/
+│           ├── __tests__/
+│           │   └── dates.test.ts
+│           ├── cn.ts                   # clsx + tailwind-merge utility
+│           └── dates.ts                # Date formatting helpers
+│
+├── .github/
+│   └── workflows/
+│       └── redeploy-vercel.yml         # Scheduled auto-redeploy every hour
+│
+├── astro.config.mjs
+├── tsconfig.json                       # Strict mode + @/ → src/ alias
+├── vitest.config.ts
+└── package.json
+```
+
+## ⚙️ Environment Setup
+
+### Prerequisites
+
+- **Node.js ≥ 22.12.0**
+- npm (included with Node.js)
+
+### Environment Variables
+
+Create a `.env` file at the project root:
+
+```env
+# Optional — includes private repos on the site.
+# Requires "Repository → Metadata: Read-only" permission (fine-grained token)
+# or the "repo" scope (classic token).
+# Without a token the site works fine, but only shows public repos.
+GITHUB_TOKEN=github_pat_xxxxxxxxxxxxxxxx
+```
+
+> **Security:** The token is only used at _build time_ (Astro SSG) and in Vercel serverless function runtime — it never reaches the browser. The `.gitignore` excludes `.env` by default.
+
+For the scheduled auto-redeploy from GitHub Actions, add the following secret in your repository (`Settings → Secrets → Actions`):
+
+```
+VERCEL_DEPLOY_HOOK_URL=https://api.vercel.com/v1/integrations/deploy/...
+```
+
+## 🚀 Usage & Development
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Available commands
+
+| Command                 | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `npm run dev`           | Start the dev server at `localhost:4321` |
+| `npm run build`         | Build for production into `dist/`        |
+| `npm run preview`       | Preview the production build locally     |
+| `npm test`              | Run unit tests once (Vitest, CI mode)    |
+| `npm run test:watch`    | Run tests in interactive watch mode      |
+| `npm run test:coverage` | Generate v8 code coverage report         |
+
+## 🔄 Rendering Strategy
+
+The site uses a hybrid rendering strategy configured in `astro.config.mjs`:
+
+- **SSG (Static Site Generation)** — home and experience pages. Prerendered at build time for maximum performance.
+- **SSR (Server-Side Rendering)** — `/projects` page. Enabled with `export const prerender = false` in the frontmatter; queries the GitHub API on each request so new repositories appear without a redeploy.
+
+## 📸 Adding a Logo to a Repository
+
+Drop an image into `public/logos/` named after the repository:
+
+```
+public/logos/my-repo.png    ✅
+public/logos/my-repo.svg    ✅
+public/logos/my-repo.webp   ✅
+```
+
+Supported formats, in priority order: `svg`, `png`, `webp`, `jpg`, `jpeg`. The logo is picked up automatically by the project card — no code changes needed.
+
+To use an external URL instead of a local file, edit the `REPO_LOGOS` map in `src/features/projects/services/github.service.ts`:
+
+```ts
+const REPO_LOGOS: Record<string, string> = {
+  "my-repo": "https://cdn.example.com/logo.png",
+};
+```
+
+## 🔁 Scheduled Auto-Redeploy
+
+The `.github/workflows/redeploy-vercel.yml` workflow triggers a Vercel deploy webhook automatically:
+
+- **Every hour** (cron `0 * * * *`), to pick up new or updated repositories
+- **Manually**, from the GitHub Actions tab (`workflow_dispatch`)
+
+You can adjust the frequency by changing the `cron` field in the workflow file.
+
+## 🧪 Testing
+
+Tests live next to the code they cover, inside `__tests__/` folders:
+
+```
+src/features/projects/services/__tests__/github.service.test.ts
+src/shared/utils/__tests__/dates.test.ts
+```
+
+Coverage is reported over `src/features/**/*.ts` and `src/shared/**/*.ts`, excluding the test files themselves. To generate the report:
+
+```bash
+npm run test:coverage
+```
+
+## 📄 License
+
+MIT © [Cristhobal Canales](https://www.cristhobal.cl)

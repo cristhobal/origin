@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { experiences } from "@/features/experience/data";
+---
+
+<BaseLayout
+  title="Experience"
+  description="Career history of Cristhobal Canales — Fullstack Developer from Chile. 5 roles in public institutions and private companies, building web systems, administrative platforms and FiveM scripts."
+  canonicalPath="/experience"
+>
+
+  <!-- Page header -->
+  <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800">
+    <nav class="flex items-center gap-1.5 text-xs text-neutral-400 dark:text-neutral-600 mb-3 sm:mb-4 font-mono" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors duration-150" aria-label="Home">~</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">experience</span>
+    </nav>
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Experience</h1>
+    <p class="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+      The track record. Every problem I was handed, and what I did with it.
+    </p>
+  </div>
+
+  <!-- Timeline -->
+  <ol>
+    {
+      experiences.map((exp, index) => {
+        const isLast = index === experiences.length - 1;
+        return (
+          <li
+            class="grid gap-x-3"
+            style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
+          >
+            <!-- Dot -->
+            <div class="flex items-center justify-center">
+              <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
+            </div>
+
+            <!-- Date -->
+            <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center">
+              {exp.period}
+            </time>
+
+            <!-- Line -->
+            <div class="flex justify-center">
+              {!isLast && (
+                <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800"></div>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class:list={["mt-2", isLast ? "pb-0" : "pb-7 sm:pb-9"]}>
+              <div class="flex flex-col space-y-1">
+                <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                  {exp.role}
+                </h3>
+
+                {exp.companyUrl ? (
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noopener"
+                    class="group flex w-max items-center text-pretty text-sm font-medium text-neutral-500 transition-colors duration-150 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+                  >
+                    <span>{exp.company}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ml-1 duration-150 group-hover:translate-x-[1.5px]"
+                    >
+                      <path d="M7 7h10v10"></path>
+                      <path d="M7 17 17 7"></path>
+                    </svg>
+                  </a>
+                ) : (
+                  <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">{exp.company}</p>
+                )}
+              </div>
+
+              <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {exp.description}
+              </p>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ol>
+
+  <!-- Footer note -->
+  <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right">
+    {experiences.length} positions in total
+  </p>
+
+</BaseLayout>

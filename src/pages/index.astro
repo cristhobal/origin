@@ -1,0 +1,9 @@
+---
+// 👇 SSR: el fetch de GitHub se ejecuta en cada request (igual que projects.astro)
+//    Así el home siempre refleja los repos actuales sin necesitar un redeploy.
+export const prerender = false;
+
+import Layout from "../layouts/HomeLayout.astro";
+---
+
+<Layout />

@@ -1,0 +1,166 @@
+---
+import "../styles/global.css";
+import { Meteors } from "@/shared/ui/meteors";
+import { BlurFade } from "@/shared/ui/blur-fade";
+import Header from "@/shared/components/Header.astro";
+import Footer from "@/shared/components/Footer.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = "Cristhobal Canales",
+  description = "Cristhobal Canales — Fullstack Web Developer from Chile. Building web systems for public institutions, modern UIs and custom FiveM scripts with Astro, React, TypeScript and Node.js.",
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = "https://www.cristhobal.cl";
+const canonicalURL = new URL(canonicalPath, siteUrl).href;
+const fullTitle =
+  title === "Cristhobal Canales"
+    ? title
+    : `${title} – Cristhobal Canales · Fullstack Dev Chile`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon — un conjunto sin duplicados para todos los contextos -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.png" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta
+      name="theme-color"
+      content="#0a0a0a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Cristhobal Canales" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Keywords -->
+    <meta
+      name="keywords"
+      content="Cristhobal Canales, fullstack developer Chile, web developer Chile, Astro developer, React developer, TypeScript developer, Node.js developer, FiveM scripts, sistemas municipales Chile, portfolio desarrollador Chile"
+    />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Slack, Discord, Telegram…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Cristhobal Canales" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://www.cristhobal.cl/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Cristhobal Canales — Fullstack Web Developer from Chile"
+    />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://www.cristhobal.cl/og.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Cristhobal Canales — Fullstack Web Developer from Chile."
+    />
+  </head>
+
+  <body class="bg-background text-foreground min-h-screen flex flex-col">
+    <div class="fixed inset-0 -z-10 pointer-events-none flex justify-center">
+      <div class="relative w-full max-w-4xl overflow-hidden">
+        <Meteors client:load />
+      </div>
+    </div>
+
+    <div
+      class="max-w-4xl mx-auto flex flex-col flex-1 w-full px-4 sm:px-6 lg:px-4"
+    >
+      <Header />
+      <main class="flex-1 pb-4">
+        <BlurFade
+          client:load
+          inView
+          className="flex flex-col gap-6 sm:gap-8 md:gap-10"
+        >
+          <slot />
+        </BlurFade>
+      </main>
+    </div>
+
+    <Footer />
+  </body>
+
+  <script is:inline>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const isDark = saved
+        ? saved === "dark"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", isDark);
+    })();
+
+    // Reacciona en tiempo real si el usuario cambia el tema del SO
+    // (solo si no eligió manualmente con el botón)
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (!localStorage.getItem("theme")) {
+          document.documentElement.classList.toggle("dark", e.matches);
+        }
+      });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("theme-toggle");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const applyTheme = () => {
+            const isDark = document.documentElement.classList.toggle("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+          };
+          if (document.startViewTransition) {
+            document.startViewTransition(applyTheme);
+          } else {
+            document.documentElement.classList.add("theme-transitioning");
+            applyTheme();
+            setTimeout(() => {
+              document.documentElement.classList.remove("theme-transitioning");
+            }, 400);
+          }
+        });
+      }
+
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty("--x", `${x}px`);
+          card.style.setProperty("--y", `${y}px`);
+        });
+      });
+    });
+  </script>
+</html>
