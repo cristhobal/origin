@@ -1,7 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/onest";
+
+/* === STARK INDUSTRIES // OPERATIVE: CRISTHOBAL CANALES ====================
+   HUD interface stylesheet. Designed against carbon-black with hot-rod red,
+   arc-reactor cyan, and gold accents. Dark-only by design.
+   ==========================================================================*/
 
 @keyframes meteor {
   0% {
@@ -21,8 +26,9 @@
 
 @theme inline {
   --animate-meteor-effect: meteor 5s linear infinite;
-  --font-heading: var(--font-sans);
-  --font-sans: "Onest Variable", sans-serif;
+  --font-heading: "Orbitron", "Rajdhani", sans-serif;
+  --font-sans: "Rajdhani", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -54,6 +60,19 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+
+  /* Stark signature colors */
+  --color-stark-red: #e10d1a;
+  --color-stark-red-deep: #8c0008;
+  --color-stark-gold: #ffb800;
+  --color-stark-gold-soft: #c98f00;
+  --color-arc-cyan: #00e5ff;
+  --color-arc-cyan-soft: #0099aa;
+  --color-titanium: #e8e8e8;
+  --color-carbon: #0a0e14;
+  --color-carbon-deep: #05080c;
+  --color-carbon-soft: #11161f;
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -63,243 +82,331 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --animate-meteor: meteor 5s linear infinite;
   @keyframes meteor {
-  0% {
-    transform: rotate(var(--angle)) translateX(0);
-    opacity: 1;
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
     }
-  70% {
-    opacity: 1;
+    70% {
+      opacity: 1;
     }
-  100% {
-    transform: rotate(var(--angle)) translateX(-500px);
-    opacity: 0;
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
     }
   }
   --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite
-;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
-  }}
-
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  }
 }
 
+/* ============================================================
+   TOKENS — Stark palette only. No light mode. JARVIS is dark.
+   ============================================================ */
+:root,
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #0a0e14;
+  --foreground: #e8e8e8;
+  --card: #0d1219;
+  --card-foreground: #e8e8e8;
+  --popover: #0d1219;
+  --popover-foreground: #e8e8e8;
+
+  /* Primary = hot-rod red. Accent = gold. Ring/Info = arc cyan. */
+  --primary: #e10d1a;
+  --primary-foreground: #f8f8f8;
+  --secondary: #11161f;
+  --secondary-foreground: #e8e8e8;
+  --muted: #11161f;
+  --muted-foreground: #7d8590;
+  --accent: #ffb800;
+  --accent-foreground: #0a0e14;
+  --destructive: #ff3b30;
+
+  --border: rgba(255, 184, 0, 0.18);
+  --input: rgba(0, 229, 255, 0.25);
+  --ring: #00e5ff;
+
+  --chart-1: #e10d1a;
+  --chart-2: #ffb800;
+  --chart-3: #00e5ff;
+  --chart-4: #8c0008;
+  --chart-5: #c98f00;
+
+  --radius: 0.125rem;
+
+  --sidebar: #0d1219;
+  --sidebar-foreground: #e8e8e8;
+  --sidebar-primary: #e10d1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffb800;
+  --sidebar-accent-foreground: #0a0e14;
+  --sidebar-border: rgba(255, 184, 0, 0.2);
+  --sidebar-ring: #00e5ff;
+
+  --selection-bg: #ffb800;
+  --selection-fg: #0a0e14;
+
+  /* HUD-specific tokens */
+  --hud-grid: rgba(0, 229, 255, 0.06);
+  --hud-grid-strong: rgba(0, 229, 255, 0.12);
+  --hud-scanline: rgba(225, 13, 26, 0.04);
+  --hud-glow-red: 0 0 14px rgba(225, 13, 26, 0.45);
+  --hud-glow-gold: 0 0 14px rgba(255, 184, 0, 0.55);
+  --hud-glow-cyan: 0 0 14px rgba(0, 229, 255, 0.5);
 }
 
+/* ============================================================
+   BASE
+   ============================================================ */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
-    @apply font-sans;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-  }
-  body {
-    @apply bg-background text-foreground;
-    line-height: 1.625;
+    background: var(--background);
+    /* Hex-grid + scanlines bake into the page itself so every route inherits the HUD */
+    background-image:
+      /* faint horizontal scanlines */
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 3px,
+        var(--hud-scanline) 3px,
+        var(--hud-scanline) 4px
+      ),
+      /* hex grid (two offset triangle gradients) */
+        linear-gradient(
+          30deg,
+          transparent 49.5%,
+          var(--hud-grid) 49.5%,
+          var(--hud-grid) 50.5%,
+          transparent 50.5%
+        ),
+      linear-gradient(
+        -30deg,
+        transparent 49.5%,
+        var(--hud-grid) 49.5%,
+        var(--hud-grid) 50.5%,
+        transparent 50.5%
+      ),
+      linear-gradient(
+        90deg,
+        transparent 49.5%,
+        var(--hud-grid) 49.5%,
+        var(--hud-grid) 50.5%,
+        transparent 50.5%
+      ),
+      radial-gradient(
+        ellipse at top,
+        rgba(0, 229, 255, 0.04),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at bottom,
+        rgba(225, 13, 26, 0.05),
+        transparent 60%
+      );
+    background-size:
+      100% 4px,
+      36px 62px,
+      36px 62px,
+      36px 62px,
+      100% 100%,
+      100% 100%;
+    background-attachment: fixed;
   }
 
-  /* ── Jerarquía tipográfica base ── */
+  body {
+    color: var(--foreground);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  /* Stark headings: Orbitron, all caps, wide tracking */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
   h1 {
-    @apply text-2xl sm:text-3xl font-bold tracking-tight;
-    line-height: 1.2;
+    @apply text-2xl sm:text-3xl;
+    line-height: 1.1;
+    letter-spacing: 0.1em;
   }
   h2 {
-    @apply text-xl sm:text-2xl font-semibold tracking-tight;
-    line-height: 1.3;
+    @apply text-lg sm:text-xl;
+    line-height: 1.2;
   }
   h3 {
-    @apply text-base sm:text-lg font-semibold tracking-tight;
-    line-height: 1.4;
+    @apply text-base sm:text-lg;
+    font-weight: 600;
+    line-height: 1.3;
   }
   p {
     @apply leading-relaxed;
   }
+
+  a {
+    color: inherit;
+  }
 }
 
-/* ===== Scrollbar limpio sin artefactos ===== */
-
-/* Firefox */
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--color-stark-gold) transparent;
 }
-
-/* WebKit */
 *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 *::-webkit-scrollbar-track {
   background: transparent;
 }
-
 *::-webkit-scrollbar-thumb {
-  border-radius: 9999px;
-
-  /* 👇 CLAVE */
+  border-radius: 0;
   border: 2px solid transparent;
   background-clip: content-box;
-
-  background-color: var(--border);
+  background-color: rgba(255, 184, 0, 0.6);
+  box-shadow: 0 0 6px rgba(255, 184, 0, 0.3);
 }
-
-/* Hover */
 *::-webkit-scrollbar-thumb:hover {
-  background-color: var(--foreground);
+  background-color: var(--color-stark-gold);
+  box-shadow: 0 0 10px rgba(255, 184, 0, 0.7);
 }
 
-/* TAG base */
-.tag {
-  @apply inline-flex items-center rounded border border-neutral-300 dark:border-neutral-800 px-2 py-1 text-xs bg-neutral-200/50 dark:bg-neutral-800/60;
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+  text-shadow: 0 0 6px rgba(255, 184, 0, 0.6);
 }
 
-/* -------------------- */
-/* BORDER SPOTLIGHT */
-/* -------------------- */
+/* ============================================================
+   HUD PRIMITIVES
+   ============================================================ */
+
+/* Beveled angular cut — Stark interfaces never use round corners.
+   The clip path knocks the top-left and bottom-right corners off. */
+.hud-bevel {
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+.hud-bevel-sm {
+  clip-path: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
+}
+
+/* Card shell — hot border + bevel + scanning glow on hover */
+.card {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 18, 25, 0.92) 0%,
+    rgba(10, 14, 20, 0.96) 100%
+  );
+  border: 1px solid rgba(255, 184, 0, 0.22);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-
-  /* Light mode: spotlight oscuro sobre borde claro */
-  background: rgba(0, 0, 0, 0.75);
-  opacity: 0;
-
-  -webkit-mask-image: radial-gradient(
-    140px circle at var(--x, 50%) var(--y, 50%),
-    black 20%,
-    transparent 70%
-  );
-  mask-image: radial-gradient(
-    140px circle at var(--x, 50%) var(--y, 50%),
-    black 20%,
-    transparent 70%
-  );
-
   pointer-events: none;
+  background: radial-gradient(
+    160px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 184, 0, 0.18),
+    transparent 70%
+  );
+  opacity: 0;
   transition: opacity 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 184, 0, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(225, 13, 26, 0.35),
+    0 0 22px rgba(255, 184, 0, 0.18),
+    0 0 30px rgba(225, 13, 26, 0.18);
 }
 
 .card:hover::before {
   opacity: 1;
 }
 
-/* Dark mode: spotlight blanco sobre borde oscuro */
-.dark .card::before {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-/* -------------------- */
-/* BACKGROUND GLOW */
-/* -------------------- */
+/* Background glow halo (kept for backward compat with HomeLayout) */
 .glow {
   opacity: 0;
   transition: opacity 0.25s ease;
-
-  /* Light mode: glow oscuro sutil sobre fondo blanco */
   background: radial-gradient(
     220px circle at var(--x, 50%) var(--y, 50%),
-    rgba(0, 0, 0, 0.06),
+    rgba(0, 229, 255, 0.12),
     transparent 70%
   );
 }
-
 .card:hover .glow {
   opacity: 1;
 }
 
-/* Dark mode: glow blanco sobre fondo oscuro */
-.dark .glow {
-  background: radial-gradient(
-    220px circle at var(--x, 50%) var(--y, 50%),
-    rgba(255, 255, 255, 0.08),
-    transparent 70%
-  );
+/* Telemetry tag */
+.tag {
+  @apply inline-flex items-center px-2 py-1 text-xs font-mono uppercase tracking-wider;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--color-arc-cyan);
+  background: rgba(0, 229, 255, 0.06);
+  border-radius: 0;
 }
 
+/* ============================================================
+   BADGE — gold sweep (Stark warranty seal)
+   ============================================================ */
+.badge {
+  position: relative;
+  overflow: hidden;
+}
 .badge::after {
   content: "";
   position: absolute;
@@ -307,23 +414,18 @@
   left: -100%;
   height: 100%;
   width: 100%;
-
-  /* Light mode: destello oscuro sutil */
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(0, 0, 0, 0.04) 45%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.04) 55%,
+    rgba(255, 184, 0, 0.15) 45%,
+    rgba(255, 184, 0, 0.45) 50%,
+    rgba(255, 184, 0, 0.15) 55%,
     transparent 100%
   );
-
   transform: skewX(-20deg);
   pointer-events: none;
-
   animation: shine 5s ease-in-out infinite;
 }
-
 @keyframes shine {
   0% {
     left: -100%;
@@ -336,24 +438,9 @@
   }
 }
 
-/* Dark mode: destello blanco */
-.dark .badge::after {
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.08) 45%,
-    rgba(255, 255, 255, 0.18) 50%,
-    rgba(255, 255, 255, 0.08) 55%,
-    transparent 100%
-  );
-}
-
-/* -------------------- */
-/* BLUR FADE IN         */
-/* -------------------- */
-/* Entrada elegante: la sección parte con blur + opacidad 0 + leve desplazamiento
-   vertical y se resuelve a nítido. Usa la variable --blur-fade-delay para
-   escalonar la entrada de varias secciones (ej: style="--blur-fade-delay: 150ms"). */
+/* ============================================================
+   BLUR FADE IN (kept — reused by hero/timeline)
+   ============================================================ */
 @keyframes blur-fade-in {
   from {
     opacity: 0;
@@ -366,80 +453,183 @@
     transform: translateY(0);
   }
 }
-
 .blur-fade-in {
   animation: blur-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   animation-delay: var(--blur-fade-delay, 0ms);
-  /* `backwards` mantiene el estado inicial (opacidad 0, blur) durante el delay,
-     evitando un parpadeo antes de que la animación empiece. */
 }
-
-/* Respeta a usuarios que prefieren menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   .blur-fade-in {
     animation: none;
   }
 }
 
-/* ===== Transición suave entre temas ===== */
-
-/* View Transitions API — animación de crossfade al cambiar tema */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.35s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-::view-transition-old(root) {
-  animation-name: theme-fade-out;
-}
-
-::view-transition-new(root) {
-  animation-name: theme-fade-in;
-}
-
-@keyframes theme-fade-out {
-  from {
+/* ============================================================
+   ARC REACTOR PULSE — used by status indicators / footer dot
+   ============================================================ */
+@keyframes arc-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(0, 229, 255, 0.7),
+      0 0 8px 2px rgba(0, 229, 255, 0.5);
     opacity: 1;
   }
-  to {
-    opacity: 0;
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(0, 229, 255, 0),
+      0 0 12px 4px rgba(0, 229, 255, 0.6);
+    opacity: 0.85;
   }
 }
+.arc-pulse {
+  animation: arc-pulse 2.4s ease-in-out infinite;
+}
 
-@keyframes theme-fade-in {
+@keyframes status-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  70%,
+  85% {
+    opacity: 0.25;
+  }
+}
+.status-blink {
+  animation: status-blink 3s linear infinite;
+}
+
+/* ============================================================
+   BOOT SEQUENCE — initial scrim that types out, then fades
+   ============================================================ */
+@keyframes boot-scrim-out {
+  0%,
+  85% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+.boot-scrim {
+  animation: boot-scrim-out 1.6s ease-in 0.2s forwards;
+}
+
+@keyframes boot-line-in {
   from {
     opacity: 0;
+    transform: translateX(-6px);
   }
   to {
     opacity: 1;
+    transform: translateX(0);
   }
 }
-
-/* Fallback CSS para navegadores sin View Transitions API */
-.theme-transitioning,
-.theme-transitioning *,
-.theme-transitioning *::before,
-.theme-transitioning *::after {
-  transition:
-    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    fill 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+.boot-line {
+  opacity: 0;
+  animation: boot-line-in 0.18s ease-out forwards;
 }
 
-:root {
-  --selection-bg: oklch(0.205 0 0);
-  --selection-fg: oklch(0.985 0 0);
+@keyframes hud-sweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.hud-sweep {
+  animation: hud-sweep 6s linear infinite;
 }
 
-.dark {
-  --selection-bg: oklch(0.922 0 0);
-  --selection-fg: oklch(0.145 0 0);
+/* Telemetry bar fill — used in skills */
+@keyframes telemetry-fill {
+  from {
+    width: 0%;
+  }
+}
+.telemetry-fill {
+  animation: telemetry-fill 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  animation-delay: var(--fill-delay, 0ms);
 }
 
-::selection {
-  background: var(--selection-bg);
-  color: var(--selection-fg);
+/* HUD corner brackets — wraps a container with L-shaped brackets at 4 corners */
+.hud-brackets {
+  position: relative;
+}
+.hud-brackets::before,
+.hud-brackets::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-stark-gold);
+  pointer-events: none;
+}
+.hud-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.hud-brackets::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Section label chip — "// SECTION_NAME" */
+.hud-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-arc-cyan);
+}
+.hud-label::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1px;
+  background: var(--color-arc-cyan);
+  box-shadow: 0 0 6px var(--color-arc-cyan);
+}
+
+/* Glowing red text used for headings */
+.text-glow-red {
+  color: #ff3140;
+  text-shadow:
+    0 0 8px rgba(225, 13, 26, 0.6),
+    0 0 22px rgba(225, 13, 26, 0.3);
+}
+.text-glow-gold {
+  color: #ffc733;
+  text-shadow:
+    0 0 6px rgba(255, 184, 0, 0.6),
+    0 0 18px rgba(255, 184, 0, 0.3);
+}
+.text-glow-cyan {
+  color: #6bf2ff;
+  text-shadow:
+    0 0 6px rgba(0, 229, 255, 0.6),
+    0 0 18px rgba(0, 229, 255, 0.35);
+}
+
+/* Diagonal Stark warning stripes (footer accent) */
+.stark-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 184, 0, 0.5),
+    rgba(255, 184, 0, 0.5) 6px,
+    transparent 6px,
+    transparent 14px
+  );
 }

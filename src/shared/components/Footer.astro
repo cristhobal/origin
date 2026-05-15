@@ -1,17 +1,68 @@
 ---
 const year = new Date().getFullYear();
+const buildId = new Date().toISOString().slice(0, 10).replace(/-/g, ".");
 ---
 
 <footer
-  class="mt-12 sm:mt-16 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-4 pb-6 sm:pb-8"
+  class="mt-12 sm:mt-16 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-4 pb-6 sm:pb-8"
   role="contentinfo"
 >
-  <div class="pt-6">
-    <div
-      class="flex flex-col sm:flex-row items-center justify-between gap-1 text-xs sm:text-sm text-muted-foreground"
-    >
-      <p class="tracking-tight font-medium">Build. Break. Improve. Patent.</p>
-      <p class="opacity-60">&copy; {year} Cristhobal Canales.</p>
+  <!-- Diagnostic warning stripes above the footer -->
+  <div class="stark-stripes h-[3px] w-full opacity-50 mb-4"></div>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 items-center font-mono text-[10px] sm:text-[11px] tracking-[0.18em] uppercase"
+  >
+    <!-- Left: build/system tag -->
+    <div class="flex items-center gap-2 text-stark-gold/85">
+      <span
+        class="w-2 h-2 rounded-full bg-arc-cyan arc-pulse inline-block"
+        aria-hidden="true"></span>
+      <span>MARK VII <span class="text-titanium/40">//</span> BUILD {buildId}</span>
+    </div>
+
+    <!-- Center: status nominal -->
+    <div class="text-center text-arc-cyan/80">
+      <span class="status-blink">[ ALL SYSTEMS NOMINAL ]</span>
+    </div>
+
+    <!-- Right: signature / copyright -->
+    <div class="text-right text-titanium/60">
+      &copy; {year} <span class="text-stark-gold">Cristhobal Canales</span>
     </div>
   </div>
+
+  <!-- Tagline on its own line -->
+  <p
+    class="mt-3 text-center font-mono text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-titanium/35"
+  >
+    BUILD <span class="text-stark-red">·</span> BREAK <span class="text-stark-red">·</span> IMPROVE <span class="text-stark-red">·</span> PATENT
+  </p>
 </footer>
+
+<style>
+  .text-stark-gold {
+    color: var(--color-stark-gold);
+  }
+  .text-stark-gold\/85 {
+    color: rgba(255, 184, 0, 0.88);
+  }
+  .text-stark-red {
+    color: var(--color-stark-red);
+  }
+  .text-arc-cyan\/80 {
+    color: rgba(0, 229, 255, 0.85);
+  }
+  .text-titanium\/35 {
+    color: rgba(232, 232, 232, 0.4);
+  }
+  .text-titanium\/40 {
+    color: rgba(232, 232, 232, 0.45);
+  }
+  .text-titanium\/60 {
+    color: rgba(232, 232, 232, 0.65);
+  }
+  .bg-arc-cyan {
+    background-color: var(--color-arc-cyan);
+  }
+</style>
