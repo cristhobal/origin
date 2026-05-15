@@ -36,6 +36,7 @@ interface GitHubRepo {
   stargazers_count: number;
   updated_at: string;
   owner: {
+    login: string;
     avatar_url: string;
   };
 }
@@ -220,10 +221,9 @@ export async function fetchGitHubProjects(
     });
 
   // Obtiene los lenguajes de todos los repos en paralelo
-  const repoOwner = token ? username : username;
   const languagesList = await Promise.all(
     filteredRepos.map((repo) =>
-      fetchRepoLanguages(repoOwner, repo.name, headers),
+      fetchRepoLanguages(repo.owner.login, repo.name, headers),
     ),
   );
 

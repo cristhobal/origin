@@ -15,7 +15,7 @@ function makeRepo(overrides: Record<string, unknown> = {}) {
     language: "TypeScript",
     stargazers_count: 5,
     updated_at: "2024-01-01T00:00:00Z",
-    owner: { avatar_url: "https://avatars.githubusercontent.com/u/1" },
+    owner: { login: "cristhobal", avatar_url: "https://avatars.githubusercontent.com/u/1" },
     ...overrides,
   };
 }
