@@ -1,5 +1,8 @@
 ---
-// LanguagesBar.astro — HUD telemetry strip for repo languages.
+// LanguagesBar.astro
+// Muestra los lenguajes de un repo como badges compactos con SVG icons.
+// Recibe el objeto { "TypeScript": 84123, "Astro": 40221, ... } que devuelve
+// GET /repos/{owner}/{repo}/languages (bytes por lenguaje).
 
 import { getTagIcon } from "@/shared/icons";
 
@@ -22,30 +25,10 @@ const stats = Object.entries(languages)
 ---
 
 <div class="flex items-center flex-wrap gap-1.5">
-  {
-    stats.map((l) => (
-      <span class="inline-flex items-center gap-1.5 border border-stark-gold/30 bg-stark-gold/[0.06] px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-mono uppercase tracking-[0.12em] text-stark-gold/95">
-        {l.icon && (
-          <span class="[&>svg]:h-3 [&>svg]:w-3" set:html={l.icon} />
-        )}
-        <span>{l.name}</span>
-        <span class="text-titanium/55">{l.pct.toFixed(0)}%</span>
-      </span>
-    ))
-  }
+  {stats.map((l) => (
+    <span class="inline-flex items-center gap-1.5 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
+      {l.icon && <Fragment set:html={l.icon} />}
+      <span>{l.name}</span>
+    </span>
+  ))}
 </div>
-
-<style>
-  .text-stark-gold\/95 {
-    color: rgba(255, 184, 0, 0.95);
-  }
-  .text-titanium\/55 {
-    color: rgba(232, 232, 232, 0.6);
-  }
-  .border-stark-gold\/30 {
-    border-color: rgba(255, 184, 0, 0.32);
-  }
-  .bg-stark-gold\/\[0\.06\] {
-    background-color: rgba(255, 184, 0, 0.06);
-  }
-</style>

@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { experiences } from "@/features/experience/data";
-
-const assetId = (n: number) => String(n + 1).padStart(3, "0");
 ---
 
 <BaseLayout
@@ -10,88 +8,84 @@ const assetId = (n: number) => String(n + 1).padStart(3, "0");
   description="Career history of Cristhobal Canales — Fullstack Developer from Chile. 5 roles in public institutions and private companies, building web systems, administrative platforms and FiveM scripts."
   canonicalPath="/experience"
 >
+
   <!-- Page header -->
-  <section
-    class="relative hud-brackets p-5 sm:p-6 hud-bevel"
-    style="background: linear-gradient(180deg, rgba(13,18,25,0.85) 0%, rgba(10,14,20,0.7) 100%); border:1px solid rgba(255,184,0,0.25);"
-  >
-    <nav
-      class="flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase mb-3 text-titanium/45"
-      aria-label="Breadcrumb"
-    >
-      <a
-        href="/"
-        class="text-arc-cyan hover:text-glow-cyan transition-colors"
-        aria-label="Home">~/HOME</a
-      >
+  <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800">
+    <nav class="flex items-center gap-1.5 text-xs text-neutral-400 dark:text-neutral-600 mb-3 sm:mb-4 font-mono" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors duration-150" aria-label="Home">~</a>
       <span aria-hidden="true">/</span>
-      <span aria-current="page" class="text-stark-gold">DEPLOYMENT_LOG</span>
+      <span aria-current="page">experience</span>
     </nav>
-    <p class="hud-label mb-1">// FILE 03 · CHRONOLOGY</p>
-    <h1 class="text-3xl sm:text-4xl text-titanium tracking-[0.08em]">
-      DEPLOYMENT <span class="text-glow-cyan">LOG</span>
-    </h1>
-    <p
-      class="mt-3 text-sm text-titanium/75 leading-relaxed border-l-2 border-stark-red/60 pl-3 max-w-2xl"
-    >
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Experience</h1>
+    <p class="mt-1.5 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
       The track record. Every problem I was handed, and what I did with it.
     </p>
-  </section>
+  </div>
 
   <!-- Timeline -->
-  <ol class="space-y-4">
+  <ol>
     {
       experiences.map((exp, index) => {
-        const isCurrent = exp.period.toLowerCase().includes("present");
+        const isLast = index === experiences.length - 1;
         return (
-          <li class="card hud-bevel-sm relative">
-            <div class="flex items-center justify-between px-3 sm:px-4 py-1.5 border-b border-stark-gold/20 bg-arc-cyan/[0.04] font-mono text-[9px] tracking-[0.22em] uppercase">
-              <span class="text-stark-red flex items-center gap-2">
-                LOG #{assetId(index)}
-              </span>
-              <span class="flex items-center gap-3">
-                {isCurrent && (
-                  <span class="text-arc-cyan flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-arc-cyan arc-pulse inline-block" />
-                    ACTIVE
-                  </span>
-                )}
-                <time class="text-stark-gold/85">{exp.period}</time>
-              </span>
+          <li
+            class="grid gap-x-3"
+            style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
+          >
+            <!-- Dot -->
+            <div class="flex items-center justify-center">
+              <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
             </div>
 
-            <div class="p-4 sm:p-5">
-              <h3 class="text-base sm:text-lg text-titanium tracking-[0.06em]">
-                {exp.role}
-              </h3>
-              {exp.companyUrl ? (
-                <a
-                  href={exp.companyUrl}
-                  target="_blank"
-                  rel="noopener"
-                  class="group/c mt-1 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.18em] text-stark-gold/85 hover:text-stark-gold transition-colors"
-                >
-                  <span>{exp.company}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="11"
-                    height="11"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    class="duration-150 group-hover/c:translate-x-[1.5px]"
-                  >
-                    <path d="M7 7h10v10" />
-                    <path d="M7 17 17 7" />
-                  </svg>
-                </a>
-              ) : (
-                <p class="mt-1 font-mono text-xs uppercase tracking-[0.18em] text-stark-gold/85">
-                  {exp.company}
-                </p>
+            <!-- Date -->
+            <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center">
+              {exp.period}
+            </time>
+
+            <!-- Line -->
+            <div class="flex justify-center">
+              {!isLast && (
+                <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800"></div>
               )}
-              <p class="mt-3 text-sm text-titanium/75 leading-relaxed border-l-2 border-arc-cyan/40 pl-3">
+            </div>
+
+            <!-- Content -->
+            <div class:list={["mt-2", isLast ? "pb-0" : "pb-7 sm:pb-9"]}>
+              <div class="flex flex-col space-y-1">
+                <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                  {exp.role}
+                </h3>
+
+                {exp.companyUrl ? (
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noopener"
+                    class="group flex w-max items-center text-pretty text-sm font-medium text-neutral-500 transition-colors duration-150 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+                  >
+                    <span>{exp.company}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="ml-1 duration-150 group-hover:translate-x-[1.5px]"
+                    >
+                      <path d="M7 7h10v10"></path>
+                      <path d="M7 17 17 7"></path>
+                    </svg>
+                  </a>
+                ) : (
+                  <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">{exp.company}</p>
+                )}
+              </div>
+
+              <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 {exp.description}
               </p>
             </div>
@@ -102,24 +96,8 @@ const assetId = (n: number) => String(n + 1).padStart(3, "0");
   </ol>
 
   <!-- Footer note -->
-  <p
-    class="font-mono text-[10px] tracking-[0.22em] uppercase text-titanium/45 text-right"
-  >
-    <span class="text-stark-gold">●</span>
-    {experiences.length} ENTRIES // ARCHIVE COMPLETE
+  <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right">
+    {experiences.length} positions in total
   </p>
 
-  <style>
-    .text-titanium\/45 { color: rgba(232, 232, 232, 0.5); }
-    .text-titanium\/75 { color: rgba(232, 232, 232, 0.78); }
-    .text-stark-gold { color: var(--color-stark-gold); }
-    .text-stark-gold\/85 { color: rgba(255, 184, 0, 0.88); }
-    .text-stark-red { color: var(--color-stark-red); }
-    .text-arc-cyan { color: var(--color-arc-cyan); }
-    .border-stark-gold\/20 { border-color: rgba(255, 184, 0, 0.22); }
-    .border-stark-red\/60 { border-color: rgba(225, 13, 26, 0.6); }
-    .border-arc-cyan\/40 { border-color: rgba(0, 229, 255, 0.42); }
-    .bg-arc-cyan { background-color: var(--color-arc-cyan); }
-    .bg-arc-cyan\/\[0\.04\] { background-color: rgba(0, 229, 255, 0.04); }
-  </style>
 </BaseLayout>
