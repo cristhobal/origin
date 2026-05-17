@@ -69,6 +69,7 @@ const ALIASES: Record<string, string> = {
   csharp: "C#",
   swift: "Swift",
   kotlin: "Kotlin",
+  powershell: "PowerShell",
 
   // Backend / runtime
   nodejs: "Node.js",
