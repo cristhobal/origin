@@ -70,6 +70,9 @@ const ALIASES: Record<string, string> = {
   swift: "Swift",
   kotlin: "Kotlin",
   powershell: "PowerShell",
+  batchfile: "Batchfile",
+  bat: "Batchfile",
+  cmd: "Batchfile",
 
   // Backend / runtime
   nodejs: "Node.js",
