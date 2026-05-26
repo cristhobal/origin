@@ -64,7 +64,7 @@ const EXCLUDE_REPOS: string[] = [];
 //
 // El repo sigue existiendo en GitHub; simplemente no se muestra en el portafolio.
 // ─────────────────────────────────────────────────────────────────────────────
-export const HIDDEN_REPOS: string[] = ["cristhobal"];
+export const HIDDEN_REPOS: string[] = ["cristhobal", "landing-diagnost"];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DISABLE_HREF_REPOS
