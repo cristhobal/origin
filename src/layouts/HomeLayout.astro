@@ -58,10 +58,12 @@ try {
   console.error("[Layout.astro] No se pudieron cargar los repos de GitHub:", e);
 }
 
-const featuredProjects = [...staticProjects, ...ghProjects]
+const allProjects = [...staticProjects, ...ghProjects]
   .filter((p) => !HIDDEN_REPOS.includes(p.name))
-  .sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0))
-  .slice(0, 6);
+  .sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
+
+const featuredProjects = allProjects.slice(0, 6);
+const hasMoreProjects = allProjects.length > 6;
 
 // Skills marquee: parte el array de tecnologías en dos filas (13 + 13).
 // La primera fila scrollea hacia la izquierda, la segunda hacia la derecha
@@ -192,6 +194,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
           >
             <div class="flex w-full items-center justify-between">
               <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="projects.title">Projects</h2>
+              {hasMoreProjects && (
               <a
                 href="/projects"
                 class="group flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-neutral-500 duration-100 hover:text-black dark:text-neutral-400 dark:hover:text-white"
@@ -213,6 +216,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </a>
+              )}
             </div>
 
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
