@@ -81,7 +81,7 @@ export const HIDDEN_REPOS: string[] = ["cristhobal", "landing-diagnost"];
 // El proyecto seguirá apareciendo en la grilla, pero el nombre se mostrará
 // como texto plano (sin enlace externo) en lugar de un <a href>.
 // ─────────────────────────────────────────────────────────────────────────────
-const DISABLE_HREF_REPOS: string[] = ["cldr"];
+const DISABLE_HREF_REPOS: string[] = ["cldr", "vault"];
 
 // Si quieres que SOLO aparezcan los privados que tengan un topic específico
 // (ej. para evitar que aparezcan drafts o experimentos), pon aquí el topic.
@@ -98,7 +98,7 @@ const REPO_LOGOS: Record<string, string> = {
   "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
   ignite: "https://i.ibb.co/1t9x0qpH/ignite.jpg",
   diagnost: "https://i.ibb.co/0RzmNbJp/diagnost.jpg",
-  vault: "https://i.ibb.co/B58JsrdQ/vault.jpg",
+  vault: "https://i.ibb.co/gbdm1Dc5/vault.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
