@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { projects as staticProjects } from "@/features/projects/data";
 import { GITHUB_USERNAME } from "@/shared/config/site";
 import { fetchGitHubProjects, HIDDEN_REPOS } from "@/features/projects/services/github.service";
-import { getTagIcon } from "@/shared/icons";
+import { getTagIcon, scopeSvg } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 
@@ -185,7 +185,7 @@ const projects = [...staticProjects, ...ghProjects]
                   <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
                     {filteredTags.slice(0, 4).map((tag, tagIdx) => {
                       const iconSvg = getTagIcon(tag.name);
-                      const uniqueSvg = iconSvg ? iconSvg.replace(/(id="[^"]+")/g, `$1-${projectIdx}-${tagIdx}`).replace(/(url\(#[^)]+\))/g, (m) => m.replace("#", `#${projectIdx}-${tagIdx}-`)) : "";
+                      const uniqueSvg = iconSvg ? scopeSvg(iconSvg, `c${projectIdx}-${tagIdx}`) : "";
                       return (
                       <span class="inline-flex items-center gap-1.5 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
                         {iconSvg && (

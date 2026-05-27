@@ -4,7 +4,7 @@
 // Recibe el objeto { "TypeScript": 84123, "Astro": 40221, ... } que devuelve
 // GET /repos/{owner}/{repo}/languages (bytes por lenguaje).
 
-import { getTagIcon } from "@/shared/icons";
+import { getTagIcon, scopeSvg } from "@/shared/icons";
 
 interface Props {
   languages: Record<string, number>;
@@ -14,13 +14,21 @@ const { languages } = Astro.props;
 
 const total = Object.values(languages).reduce((s, b) => s + b, 0);
 
+// Scope único por instancia: evita colisiones de id entre badges de distintas
+// cards. Necesario porque al filtrar (display:none) un gradient en otra card,
+// los `url(#...)` de esta dejarían de resolverse.
+const scope = `lb${Math.random().toString(36).slice(2, 8)}`;
+
 const stats = Object.entries(languages)
-  .map(([name, bytes]) => ({
-    name,
-    bytes,
-    pct: (bytes / total) * 100,
-    icon: getTagIcon(name),
-  }))
+  .map(([name, bytes], i) => {
+    const icon = getTagIcon(name);
+    return {
+      name,
+      bytes,
+      pct: (bytes / total) * 100,
+      icon: icon ? scopeSvg(icon, `${scope}-${i}`) : undefined,
+    };
+  })
   .sort((a, b) => b.bytes - a.bytes);
 ---
 
