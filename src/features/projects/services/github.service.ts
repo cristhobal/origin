@@ -92,11 +92,11 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 // Útil si quieres usar una URL externa en vez de un archivo local.
 // Tiene prioridad sobre los archivos en public/logos/.
 const REPO_LOGOS: Record<string, string> = {
-  origin: "https://i.postimg.cc/8PLzKdxg/origin.png",
-  relay: "https://i.postimg.cc/5N8275Tr/relay.png",
-  chrono: "https://i.postimg.cc/8PLzKdx8/chrono.png",
-  "nora-core": "https://i.postimg.cc/pXKLGQ3H/nora-core.png",
-  ignite: "https://i.postimg.cc/52HwjtCP/ignite.jpg",
+  origin: "https://i.ibb.co/PGnJXjsj/origin.png",
+  relay: "https://i.ibb.co/3mjbVK8B/relay.jpg",
+  chrono: "https://i.ibb.co/Gf6gsmLP/chrono.jpg",
+  "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
+  ignite: "https://i.ibb.co/1t9x0qpH/ignite.jpg",
   diagnost: "https://i.ibb.co/0RzmNbJp/diagnost.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
