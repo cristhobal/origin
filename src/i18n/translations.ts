@@ -108,7 +108,7 @@ const es: Translations = {
   "experience.current": "Presente",
   "skills.title": "Habilidades",
   "footer.tagline": "Construir. Romper. Mejorar. Crear.",
-  "footer.inspired": "Inspirado por",
+  "footer.inspired": "Basado en",
   "header.discord_unavailable": "No disponible",
 };
 
