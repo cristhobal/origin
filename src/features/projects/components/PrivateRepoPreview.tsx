@@ -11,7 +11,7 @@ interface Props {
 
 export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
   const [isHovered, setIsHovered] = useState(false);
-  const [pos, setPos] = useState({ left: 0, top: 0 });
+  const [pos, setPos] = useState({ left: 0, bottom: 0 });
   const ref = useRef<HTMLAnchorElement | HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
       setPos({
         left: r.left + r.width / 2,
         top: r.top - 8,
+        bottom: window.innerHeight - r.top + 8,
       });
     }
   }, [isHovered]);
@@ -46,7 +47,7 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
         {isHovered && (
           <motion.div
             className="fixed pointer-events-none"
-            style={{ zIndex: 9999, left: pos.left, top: pos.top }}
+            style={{ zIndex: 9999, left: pos.left, bottom: pos.bottom }}
             initial={{ opacity: 0, scale: 0.6, y: 4 }}
             animate={{
               opacity: 1,

@@ -104,7 +104,7 @@ const REPO_LOGOS: Record<string, string> = {
 
 // Preview images for private repos (screenshot/preview of the site)
 const REPO_PREVIEWS: Record<string, string> = {
-  vault: "https://i.ibb.co/gbdm1Dc5/vault.jpg",
+  vault: "https://i.ibb.co/BFxJHhH/vault.png",
   "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
 };
