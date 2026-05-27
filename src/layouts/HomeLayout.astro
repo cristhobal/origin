@@ -557,24 +557,12 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
         });
       });
 
-      // Marquee: ralentiza la animación en hover sin saltos visuales.
-      // Usamos Web Animations API (`updatePlaybackRate`) en vez de cambiar
-      // `animation-duration` en CSS, porque el método preserva la posición
-      // actual al cambiar la velocidad. Cambiar la duración en CSS reinterpola
-      // el progreso contra la nueva duración y produce un "salto" visible
-      // (ej: pasar de 25% a 6.25% del recorrido al multiplicar por 4).
-      // Esto se hace en JS vanilla (no en React) para que el Marquee pueda
-      // ser SSR puro y no necesite `client:load`.
-      document
-        .querySelectorAll("[data-pause-on-hover]")
-        .forEach((container) => {
-          const setRate = (rate) => {
-            document.getAnimations().forEach((anim) => {
-              const target = anim.effect && anim.effect.target;
-              if (target && container.contains(target)) {
-                anim.updatePlaybackRate(rate);
-              }
-            });
+      document.addEventListener("contextmenu", (e) => {
+        if (e.target instanceof HTMLImageElement) {
+          e.preventDefault();
+        }
+      });
+    });
           };
           container.addEventListener("mouseenter", () => setRate(0.25));
           container.addEventListener("mouseleave", () => setRate(1));
