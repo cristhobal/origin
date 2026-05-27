@@ -65,8 +65,8 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
                     alt={`${name} preview`}
                     style={{
                       display: "block",
-                      width: 320,
-                      height: 200,
+                      width: 220,
+                      height: 140,
                       objectFit: "cover",
                     }}
                     loading="lazy"
