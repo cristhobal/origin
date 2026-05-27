@@ -105,7 +105,6 @@ const REPO_LOGOS: Record<string, string> = {
 // Preview images for private repos (screenshot/preview of the site)
 const REPO_PREVIEWS: Record<string, string> = {
   vault: "https://i.ibb.co/BFxJHhH/vault.png",
-  diagnost: "https://i.ibb.co/v6BhRdpv/diagnost.png",
   chrono: "https://i.ibb.co/TMSjJbp7/chrono.png",
   ignite: "https://i.ibb.co/TqtTPmjY/ignite-2.jpg",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
