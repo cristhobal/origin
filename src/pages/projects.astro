@@ -84,6 +84,10 @@ const projects = [...staticProjects, ...ghProjects].filter(
     <span class="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] text-neutral-400 dark:text-neutral-600 hidden sm:block" data-i18n="projects.coming_soon">
       coming soon
     </span>
+  </div>
+
+  {projects.length === 0 ? (
+    <div class="flex flex-col items-center justify-center py-16 text-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3 text-neutral-300 dark:text-neutral-700">
         <path d="M3 3h18v18H3z" rx="2"/><path d="M9 9h6M9 13h4"/>
       </svg>
@@ -191,9 +195,9 @@ const projects = [...staticProjects, ...ghProjects].filter(
 
   <!-- Footer note -->
   {projects.length > 0 && (
-    <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right">
-      {projects.length} projects in total
-    </p>
+      <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right" data-i18n="projects.count" data-i18n-vars={JSON.stringify({ count: projects.length })}>
+        {projects.length} projects in total
+      </p>
   )}
 
 </BaseLayout>
