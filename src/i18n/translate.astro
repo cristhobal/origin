@@ -1,0 +1,364 @@
+<script is:inline>
+  (function () {
+    const t = {
+      en: {
+        "nav.home": "cristhobal.cl",
+        "nav.projects": "Projects",
+        "nav.experience": "Experience",
+        "about.title": "About Me",
+        "about.prefix": "I'm ",
+        "about.suffix":
+          ". Fullstack developer based in Chile. Over {years}+ years of experience turning complex challenges into clean, functional systems \u2014 from web platforms and administrative tools to custom FiveM scripts.",
+        "projects.title": "Projects",
+        "projects.subtitle":
+          "A selection of projects I've built and contributed to over the years.",
+        "projects.search": "Search projects...",
+        "projects.coming_soon": "Coming soon",
+        "projects.view_all": "View all projects",
+        "experience.title": "Experience",
+        "experience.subtitle":
+          "A look at my professional journey \u2014 the roles, projects, and challenges that have shaped my approach to development.",
+        "experience.more": "More",
+        "experience.count": "{count} positions in total",
+        "exp.0.period": "Apr. 2025 \u2014 Present",
+        "exp.0.role": "Computer Lab Manager",
+        "exp.0.company": "Escuela B\u00e1sica Queri",
+        "exp.0.desc":
+          "Built a full request management system for the computer lab from scratch \u2014 teachers can book time slots, admins have a complete control panel, and technological resources are allocated efficiently. I also handle hardware maintenance and support.",
+        "exp.1.period": "Aug. 2024 \u2014 Oct. 2024",
+        "exp.1.role": "Full-Stack Developer",
+        "exp.1.company": "DAEM de San Clemente",
+        "exp.1.desc":
+          "Replaced manual administrative processes with a multi-module management system featuring secure authentication, staff tools, scheduling, and department control. Administrative times dropped significantly, making daily operations more efficient for the entire team.",
+        "exp.2.period": "Apr. 2023 \u2014 Jun. 2023",
+        "exp.2.role": "Front-End Developer",
+        "exp.2.company": "Origen Network",
+        "exp.2.desc":
+          "Took over a codebase of FiveM scripts that needed significant improvements. Redesigned, debugged, and optimized the entire system \u2014 resulting in better stability, improved performance, and a smoother experience for users.",
+        "exp.3.period": "Feb. 2022 \u2014 Nov. 2022",
+        "exp.3.role": "IT Support Technician",
+        "exp.3.company": "Ilustre Municipalidad de San Clemente",
+        "exp.3.desc":
+          "Responsible for maintaining networks, printers, and connectivity across the institution. Identified inefficiencies in the SIGEM v2 system and proposed improvements that were implemented, helping prevent issues before they occurred.",
+        "exp.4.period": "Aug. 2021 \u2014 Nov. 2021",
+        "exp.4.role": "Full-Stack Developer",
+        "exp.4.company": "Ilustre Municipalidad de San Clemente",
+        "exp.4.desc":
+          "Built a municipal digital hiring platform with integrated document visualization and digital signature workflows. Contracts went from paper-based chaos to traceable, auditable, and controlled processes \u2014 giving the municipality clear tracking of what was signed and when.",
+        "repo.landing-diagnost.desc": "Landing page for the Diagnost project.",
+        "repo.origin.desc":
+          "Personal portfolio built with Astro, React and TypeScript. Modern, clean and performance-focused.",
+        "repo.relay.desc":
+          "A modern URL shortener. Fast, simple, and easy to use. Built with Node.js.",
+        "repo.nora-core.desc":
+          "Core engine for adaptive AI-powered features. Intelligent, responsive, and efficient.",
+        "repo.cristhobal.desc":
+          "My GitHub profile README. A quick overview of who I am and what I do.",
+        "repo.diagnost.desc":
+          "Diagnostic toolkit for Astro projects. Analyzes configuration, dependencies and performance to help you build better.",
+        "repo.ignite.desc":
+          "Wake-on-LAN tool with a clean interface. Remotely wake or shut down your PC with a single tap.",
+        "repo.chrono.desc":
+          "Time management tool designed to help you stay organized without the overhead.",
+        "skills.title": "Skills & Technologies",
+        "footer.tagline": "Build. Break. Improve. Create.",
+        "footer.inspired": "Inspired by",
+        "header.discord_unavailable": "Unavailable",
+      },
+      es: {
+        "nav.home": "cristhobal.cl",
+        "nav.projects": "Proyectos",
+        "nav.experience": "Experiencia",
+        "about.title": "Sobre m\u00ed",
+        "about.prefix": "Soy ",
+        "about.suffix":
+          ". Desarrollador Fullstack en Chile. M\u00e1s de {years}+ a\u00f1os de experiencia convirtiendo desaf\u00edos complejos en sistemas limpios y funcionales.",
+        "projects.title": "Proyectos",
+        "projects.subtitle":
+          "Una selecci\u00f3n de proyectos que he construido y a los que he contribuido.",
+        "projects.search": "Buscar proyectos...",
+        "projects.coming_soon": "Pr\u00f3ximamente",
+        "projects.view_all": "Ver todos los proyectos",
+        "experience.title": "Experiencia",
+        "experience.subtitle":
+          "Mi trayectoria profesional y lo m\u00e1s destacado de mi carrera.",
+        "experience.more": "M\u00e1s",
+        "experience.count": "{count} cargos en total",
+        "exp.0.period": "Abr. 2025 \u2014 Presente",
+        "exp.0.role": "Encargado de Laboratorio de Computaci\u00f3n",
+        "exp.0.company": "Escuela B\u00e1sica Queri",
+        "exp.0.desc":
+          "Constru\u00ed un sistema completo de gesti\u00f3n de solicitudes para el laboratorio de computaci\u00f3n desde cero \u2014 los profesores pueden reservar horarios, los administradores tienen un panel de control completo y los recursos tecnol\u00f3gicos se asignan eficientemente. Tambi\u00e9n manejo el mantenimiento de hardware y el soporte t\u00e9cnico.",
+        "exp.1.period": "Ago. 2024 \u2014 Oct. 2024",
+        "exp.1.role": "Desarrollador Full-Stack",
+        "exp.1.company": "DAEM de San Clemente",
+        "exp.1.desc":
+          "Reemplac\u00e9 procesos administrativos manuales con un sistema de gesti\u00f3n multim\u00f3dulo con autenticaci\u00f3n segura, herramientas para el personal, programaci\u00f3n y control departamental. Los tiempos administrativos se redujeron significativamente.",
+        "exp.2.period": "Abr. 2023 \u2014 Jun. 2023",
+        "exp.2.role": "Desarrollador Front-End",
+        "exp.2.company": "Origen Network",
+        "exp.2.desc":
+          "Tom\u00e9 una base de c\u00f3digo de scripts FiveM que necesitaba mejoras significativas. Redise\u00f1\u00e9, depur\u00e9 y optimic\u00e9 todo el sistema, logrando una mejor estabilidad y rendimiento.",
+        "exp.3.period": "Feb. 2022 \u2014 Nov. 2022",
+        "exp.3.role": "T\u00e9cnico de Soporte TI",
+        "exp.3.company": "Ilustre Municipalidad de San Clemente",
+        "exp.3.desc":
+          "Responsable del mantenimiento de redes, impresoras y conectividad en toda la instituci\u00f3n. Identifiqu\u00e9 ineficiencias en el sistema SIGEM v2 y propuse mejoras que fueron implementadas.",
+        "exp.4.period": "Ago. 2021 \u2014 Nov. 2021",
+        "exp.4.role": "Desarrollador Full-Stack",
+        "exp.4.company": "Ilustre Municipalidad de San Clemente",
+        "exp.4.desc":
+          "Constru\u00ed una plataforma municipal de contrataci\u00f3n digital con visualizaci\u00f3n integrada de documentos y flujos de trabajo de firma electr\u00f3nica. Los contratos pasaron del caos en papel a procesos trazables y auditables.",
+        "repo.landing-diagnost.desc":
+          "P\u00e1gina de aterrizaje para el proyecto Diagnost.",
+        "repo.origin.desc":
+          "Portafolio personal construido con Astro, React y TypeScript. Moderno, limpio y enfocado en rendimiento.",
+        "repo.relay.desc":
+          "Un acortador de URLs moderno. R\u00e1pido, simple y f\u00e1cil de usar. Construido con Node.js.",
+        "repo.nora-core.desc":
+          "Motor principal para funciones potenciadas por IA adaptativa. Inteligente, receptivo y eficiente.",
+        "repo.cristhobal.desc":
+          "Mi README de perfil de GitHub. Una visi\u00f3n r\u00e1pida de qui\u00e9n soy y qu\u00e9 hago.",
+        "repo.diagnost.desc":
+          "Toolkit de diagn\u00f3stico para proyectos Astro. Analiza configuraci\u00f3n, dependencias y rendimiento para ayudarte a construir mejor.",
+        "repo.ignite.desc":
+          "Herramienta Wake-on-LAN con interfaz limpia. Enciende o apaga tu PC remotamente con un solo toque.",
+        "repo.chrono.desc":
+          "Herramienta de gesti\u00f3n del tiempo dise\u00f1ada para ayudarte a mantenerte organizado sin complicaciones.",
+        "skills.title": "Habilidades",
+        "footer.tagline": "Construir. Romper. Mejorar. Crear.",
+        "footer.inspired": "Inspirado por",
+        "header.discord_unavailable": "No disponible",
+      },
+      fr: {
+        "nav.home": "cristhobal.cl",
+        "nav.projects": "Projets",
+        "nav.experience": "Exp\u00e9rience",
+        "about.title": "\u00c0 propos",
+        "about.prefix": "Je suis ",
+        "about.suffix":
+          ". D\u00e9veloppeur Fullstack au Chili. Plus de {years}+ ans d\u2019exp\u00e9rience \u00e0 transformer des d\u00e9fis complexes en syst\u00e8mes propres et fonctionnels.",
+        "projects.title": "Projets",
+        "projects.subtitle":
+          "Une s\u00e9lection de projets que j'ai cr\u00e9\u00e9s et auxquels j'ai contribu\u00e9.",
+        "projects.search": "Rechercher des projets...",
+        "projects.coming_soon": "Bient\u00f4t disponible",
+        "projects.view_all": "Voir tous les projets",
+        "experience.title": "Exp\u00e9rience",
+        "experience.subtitle":
+          "Mon parcours professionnel et les faits marquants de ma carri\u00e8re.",
+        "experience.more": "Plus",
+        "experience.count": "{count} postes au total",
+        "exp.0.period": "Avr. 2025 \u2014 Pr\u00e9sent",
+        "exp.0.role": "Responsable de Laboratoire Informatique",
+        "exp.0.company": "Escuela B\u00e1sica Queri",
+        "exp.0.desc":
+          "Construit un syst\u00e8me complet de gestion des demandes pour le laboratoire informatique \u00e0 partir de z\u00e9ro \u2014 les enseignants peuvent r\u00e9server des cr\u00e9neaux, les administrateurs ont un panneau de contr\u00f4le complet, et les ressources technologiques sont allou\u00e9es efficacement.",
+        "exp.1.period": "Ao\u00fbt 2024 \u2014 Oct. 2024",
+        "exp.1.role": "D\u00e9veloppeur Full-Stack",
+        "exp.1.company": "DAEM de San Clemente",
+        "exp.1.desc":
+          "Remplac\u00e9 les processus administratifs manuels par un syst\u00e8me de gestion multimodule avec authentification s\u00e9curis\u00e9e, outils pour le personnel, planification et contr\u00f4le d\u00e9partemental.",
+        "exp.2.period": "Avr. 2023 \u2014 Juin 2023",
+        "exp.2.role": "D\u00e9veloppeur Front-End",
+        "exp.2.company": "Origen Network",
+        "exp.2.desc":
+          "Pris en charge une base de code de scripts FiveM qui n\u00e9cessitait des am\u00e9liorations significatives. Redessin\u00e9, d\u00e9bogu\u00e9 et optimis\u00e9 l'ensemble du syst\u00e8me.",
+        "exp.3.period": "F\u00e9vr. 2022 \u2014 Nov. 2022",
+        "exp.3.role": "Technicien Support IT",
+        "exp.3.company": "Ilustre Municipalidad de San Clemente",
+        "exp.3.desc":
+          "Responsable de la maintenance des r\u00e9seaux, imprimantes et connectivit\u00e9 dans toute l'institution. Identifi\u00e9 les inefficacit\u00e9s du syst\u00e8me SIGEM v2.",
+        "exp.4.period": "Ao\u00fbt 2021 \u2014 Nov. 2021",
+        "exp.4.role": "D\u00e9veloppeur Full-Stack",
+        "exp.4.company": "Ilustre Municipalidad de San Clemente",
+        "exp.4.desc":
+          "Construit une plateforme municipale d'embauche num\u00e9rique avec visualisation int\u00e9gr\u00e9e de documents et flux de signature \u00e9lectronique.",
+        "repo.landing-diagnost.desc": "Page d'atterrissage pour le projet Diagnost.",
+        "repo.origin.desc":
+          "Portfolio personnel construit avec Astro, React et TypeScript. Moderne, propre et ax\u00e9 sur la performance.",
+        "repo.relay.desc":
+          "Un raccourcisseur d'URL moderne. Rapide, simple et facile \u00e0 utiliser. Construit avec Node.js.",
+        "repo.nora-core.desc":
+          "Moteur principal pour des fonctionnalit\u00e9s aliment\u00e9es par IA adaptative. Intelligent, r\u00e9actif et efficace.",
+        "repo.cristhobal.desc":
+          "Mon README de profil GitHub. Un aper\u00e7u rapide de qui je suis et de ce que je fais.",
+        "repo.diagnost.desc":
+          "Kit d'outils de diagnostic pour projets Astro. Analyse la configuration, les d\u00e9pendances et les performances.",
+        "repo.ignite.desc":
+          "Outil Wake-on-LAN avec une interface propre. Allumez ou \u00e9teignez votre PC \u00e0 distance en un clic.",
+        "repo.chrono.desc":
+          "Outil de gestion du temps con\u00e7u pour vous aider \u00e0 rester organis\u00e9 sans complication.",
+        "skills.title": "Comp\u00e9tences et Technologies",
+        "footer.tagline": "Construire. Casser. Am\u00e9liorer. Cr\u00e9er.",
+        "footer.inspired": "Inspir\u00e9 par",
+        "header.discord_unavailable": "Indisponible",
+      },
+      zh: {
+        "nav.home": "cristhobal.cl",
+        "nav.projects": "\u9879\u76ee",
+        "nav.experience": "\u7ecf\u5386",
+        "about.title": "\u5173\u4e8e\u6211",
+        "about.prefix": "\u6211\u662f ",
+        "about.suffix":
+          "\uff0c\u667a\u5229\u7684\u5168\u6808\u5f00\u53d1\u8005\u3002\u62e5\u6709 {years}+\u5e74\u7684\u7ecf\u9a8c\uff0c\u5c06\u590d\u6742\u7684\u6311\u6218\u8f6c\u5316\u4e3a\u6e05\u6670\u3001\u529f\u80fd\u5b8c\u5584\u7684\u7cfb\u7edf\u3002",
+        "projects.title": "\u9879\u76ee",
+        "projects.subtitle":
+          "\u6211\u6784\u5efa\u548c\u8d21\u732e\u7684\u4e00\u4e9b\u9879\u76ee\u3002",
+        "projects.search": "\u641c\u7d22\u9879\u76ee...",
+        "projects.coming_soon": "\u5373\u5c06\u63a8\u51fa",
+        "projects.view_all": "\u67e5\u770b\u6240\u6709\u9879\u76ee",
+        "experience.title": "\u7ecf\u5386",
+        "experience.subtitle":
+          "\u6211\u7684\u804c\u4e1a\u751f\u6daf\u548c\u4eae\u70b9\u3002",
+        "experience.more": "\u66f4\u591a",
+        "experience.count": "\u5171 {count} \u4e2a\u804c\u4f4d",
+        "exp.0.period": "2025\u5e744\u6708 \u2014 \u81f3\u4eca",
+        "exp.0.role": "\u8ba1\u7b97\u673a\u5b9e\u9a8c\u5ba4\u7ba1\u7406\u5458",
+        "exp.0.company": "Escuela B\u00e1sica Queri",
+        "exp.0.desc":
+          "\u4ece\u96f6\u5f00\u59cb\u6784\u5efa\u4e86\u4e00\u4e2a\u5b8c\u6574\u7684\u8ba1\u7b97\u673a\u5b9e\u9a8c\u5ba4\u8bf7\u6c42\u7ba1\u7406\u7cfb\u7edf\u2014\u2014\u6559\u5e08\u53ef\u4ee5\u9884\u8ba2\u65f6\u95f4\u6bb5\uff0c\u7ba1\u7406\u5458\u62e5\u6709\u5b8c\u6574\u7684\u63a7\u5236\u9762\u677f\uff0c\u6280\u672f\u8d44\u6e90\u5f97\u5230\u9ad8\u6548\u5206\u914d\u3002",
+        "exp.1.period": "2024\u5e748\u6708 \u2014 2024\u5e7410\u6708",
+        "exp.1.role": "\u5168\u6808\u5f00\u53d1\u8005",
+        "exp.1.company": "DAEM de San Clemente",
+        "exp.1.desc":
+          "\u7528\u591a\u6a21\u5757\u7ba1\u7406\u7cfb\u7edf\u66ff\u4ee3\u4e86\u624b\u52a8\u884c\u653f\u6d41\u7a0b\uff0c\u5177\u6709\u5b89\u5168\u8ba4\u8bc1\u3001\u5458\u5de5\u5de5\u5177\u3001\u6392\u7a0b\u548c\u90e8\u95e8\u63a7\u5236\u529f\u80fd\u3002",
+        "exp.2.period": "2023\u5e744\u6708 \u2014 2023\u5e746\u6708",
+        "exp.2.role": "\u524d\u7aef\u5f00\u53d1\u8005",
+        "exp.2.company": "Origen Network",
+        "exp.2.desc":
+          "\u63a5\u624b\u4e86\u4e00\u4e2a\u9700\u8981\u91cd\u5927\u6539\u8fdb\u7684 FiveM \u811a\u672c\u4ee3\u7801\u5e93\uff0c\u91cd\u65b0\u8bbe\u8ba1\u3001\u8c03\u8bd5\u548c\u4f18\u5316\u4e86\u6574\u4e2a\u7cfb\u7edf\u3002",
+        "exp.3.period": "2022\u5e742\u6708 \u2014 2022\u5e7411\u6708",
+        "exp.3.role": "IT \u652f\u6301\u6280\u672f\u5458",
+        "exp.3.company": "Ilustre Municipalidad de San Clemente",
+        "exp.3.desc":
+          "\u8d1f\u8d23\u7ef4\u62a4\u6574\u4e2a\u673a\u6784\u7684\u7f51\u7edc\u3001\u6253\u5370\u673a\u548c\u8fde\u63a5\u6027\u3002\u8bc6\u522b\u4e86 SIGEM v2 \u7cfb\u7edf\u7684\u6548\u7387\u4f4e\u4e0b\u95ee\u9898\u5e76\u63d0\u51fa\u4e86\u6539\u8fdb\u5efa\u8bae\u3002",
+        "exp.4.period": "2021\u5e748\u6708 \u2014 2021\u5e7411\u6708",
+        "exp.4.role": "\u5168\u6808\u5f00\u53d1\u8005",
+        "exp.4.company": "Ilustre Municipalidad de San Clemente",
+        "exp.4.desc":
+          "\u6784\u5efa\u4e86\u4e00\u4e2a\u5e02\u653f\u6570\u5b57\u5316\u62db\u8058\u5e73\u53f0\uff0c\u96c6\u6210\u4e86\u6587\u6863\u53ef\u89c6\u5316\u548c\u7535\u5b50\u7b7e\u540d\u5de5\u4f5c\u6d41\u3002",
+        "repo.landing-diagnost.desc": "Diagnost \u9879\u76ee\u7684\u76ee\u6807\u9875\u3002",
+        "repo.origin.desc":
+          "\u4e2a\u4eba\u4f5c\u54c1\u96c6\uff0c\u4f7f\u7528 Astro\u3001React \u548c TypeScript \u6784\u5efa\u3002\u73b0\u4ee3\u3001\u5e72\u51c0\u4e14\u6ce8\u91cd\u6027\u80fd\u3002",
+        "repo.relay.desc":
+          "\u73b0\u4ee3\u7f51\u5740\u7f29\u77ed\u5de5\u5177\u3002\u5feb\u901f\u3001\u7b80\u5355\u4e14\u6613\u4e8e\u4f7f\u7528\u3002\u4f7f\u7528 Node.js \u6784\u5efa\u3002",
+        "repo.nora-core.desc":
+          "\u9002\u5e94\u6027 AI \u529f\u80fd\u7684\u6838\u5fc3\u5f15\u64ce\u3002\u667a\u80fd\u3001\u54cd\u5e94\u5feb\u4e14\u9ad8\u6548\u3002",
+        "repo.cristhobal.desc":
+          "\u6211\u7684 GitHub \u4e2a\u4eba\u4ecb\u7ecd\u3002\u5feb\u901f\u4e86\u89e3\u6211\u662f\u8c01\u4ee5\u53ca\u6211\u505a\u4ec0\u4e48\u3002",
+        "repo.diagnost.desc":
+          "Astro \u9879\u76ee\u8bca\u65ad\u5de5\u5177\u5305\u3002\u5206\u6790\u914d\u7f6e\u3001\u4f9d\u8d56\u548c\u6027\u80fd\uff0c\u5e2e\u52a9\u4f60\u6784\u5efa\u66f4\u597d\u7684\u9879\u76ee\u3002",
+        "repo.ignite.desc":
+          "\u62e5\u6709\u6e05\u6d01\u754c\u9762\u7684 Wake-on-LAN \u5de5\u5177\u3002\u4e00\u952e\u8fdc\u7a0b\u5f00\u673a\u6216\u5173\u673a\u3002",
+        "repo.chrono.desc":
+          "\u65f6\u95f4\u7ba1\u7406\u5de5\u5177\uff0c\u5e2e\u52a9\u4f60\u8f7b\u677e\u4fdd\u6301\u7ec4\u7ec7\u6027\uff0c\u65e0\u590d\u6742\u6027\u3002",
+        "skills.title": "\u6280\u80fd\u4e0e\u6280\u672f",
+        "footer.tagline":
+          "\u6784\u5efa\u3002\u7a81\u7834\u3002\u6539\u8fdb\u3002\u521b\u9020\u3002",
+        "footer.inspired": "\u7075\u611f\u6765\u81ea",
+        "header.discord_unavailable": "\u4e0d\u53ef\u7528",
+      },
+      hi: {
+        "nav.home": "cristhobal.cl",
+        "nav.projects":
+          "\u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u090f\u0902",
+        "nav.experience": "\u0905\u0928\u0941\u092d\u0935",
+        "about.title":
+          "\u092e\u0947\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902",
+        "about.prefix": "\u092e\u0948\u0902 ",
+        "about.suffix":
+          " \u0939\u0942\u0902, \u091a\u093f\u0932\u0940 \u092e\u0947\u0902 \u092b\u0941\u0932\u0938\u094d\u091f\u0948\u0915 \u0921\u0947\u0935\u0932\u092a\u0930\u0964 {years}+ \u0935\u0930\u094d\u0937\u094b\u0902 \u0915\u0947 \u0905\u0928\u0941\u092d\u0935 \u0915\u0947 \u0938\u093e\u0925 \u091c\u091f\u093f\u0932 \u091a\u0941\u0928\u094c\u0924\u093f\u092f\u094b\u0902 \u0915\u094b \u0938\u092b\u093c \u0914\u0930 \u0915\u093e\u0930\u094d\u092f\u093e\u0924\u094d\u092e\u0915 \u092a\u094d\u0930\u0923\u093e\u0932\u093f\u092f\u094b\u0902 \u092e\u0947\u0902 \u092c\u0926\u0932\u0928\u093e\u0964",
+        "projects.title":
+          "\u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u090f\u0902",
+        "projects.subtitle":
+          "\u092e\u0947\u0930\u0947 \u0926\u094d\u0935\u093e\u0930\u093e \u092c\u0928\u093e\u0908 \u0914\u0930 \u092f\u094b\u0917\u0926\u093e\u0928 \u0915\u0940 \u0917\u0908 \u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u090f\u0902\u0964",
+        "projects.search":
+          "\u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0916\u094b\u091c\u0947\u0902...",
+        "projects.coming_soon":
+          "\u091c\u0932\u094d\u0926 \u0906 \u0930\u0939\u093e \u0939\u0948",
+        "projects.view_all":
+          "\u0938\u092d\u0940 \u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u090f\u0902 \u0926\u0947\u0916\u0947\u0902",
+        "experience.title": "\u0905\u0928\u0941\u092d\u0935",
+        "experience.subtitle":
+          "\u092e\u0947\u0930\u093e \u092a\u0947\u0936\u0947\u0935\u0930 \u0938\u092b\u0930 \u0914\u0930 \u0915\u0930\u093f\u092f\u0930 \u0915\u0940 \u092e\u0941\u0916\u094d\u092f \u092c\u093e\u0924\u0947\u0902\u0964",
+        "experience.more": "\u0914\u0930",
+        "experience.count": "\u0915\u0941\u0932 {count} \u092a\u0926",
+        "exp.0.period": "\u0905\u092a\u094d\u0930\u093f\u0932 2025 \u2014 \u0935\u0930\u094d\u0924\u092e\u093e\u0928",
+        "exp.0.role": "\u0915\u0902\u092a\u094d\u092f\u0942\u091f\u0930 \u0932\u0948\u092c \u092a\u094d\u0930\u092c\u0902\u0927\u0915",
+        "exp.0.company": "Escuela B\u00e1sica Queri",
+        "exp.0.desc":
+          "\u0936\u0941\u0930\u0942 \u0938\u0947 \u0915\u0902\u092a\u094d\u092f\u0942\u091f\u0930 \u0932\u0948\u092c \u0915\u0947 \u0932\u093f\u090f \u090f\u0915 \u092a\u0942\u0930\u094d\u0923 \u0905\u0928\u0941\u0930\u094b\u0927 \u092a\u094d\u0930\u092c\u0902\u0927\u0928 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u092c\u0928\u093e\u0908 \u2014 \u0936\u093f\u0915\u094d\u0937\u0915 \u0938\u092e\u092f \u0938\u094d\u0932\u0949\u091f \u092c\u0941\u0915 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902, \u092a\u094d\u0930\u0936\u093e\u0938\u0915\u094b\u0902 \u0915\u0947 \u092a\u093e\u0938 \u092a\u0942\u0930\u094d\u0923 \u0928\u093f\u092f\u0902\u0924\u094d\u0930\u0923 \u092a\u0948\u0928\u0932 \u0939\u0948\u0964",
+        "exp.1.period": "\u0905\u0917\u0938\u094d\u0924 2024 \u2014 \u0905\u0915\u094d\u091f\u0942\u092c\u0930 2024",
+        "exp.1.role": "\u092b\u0941\u0932-\u0938\u094d\u091f\u0948\u0915 \u0921\u0947\u0935\u0932\u092a\u0930",
+        "exp.1.company": "DAEM de San Clemente",
+        "exp.1.desc":
+          "\u092e\u0948\u0928\u0941\u0905\u0932 \u092a\u094d\u0930\u0936\u093e\u0938\u0928\u093f\u0915 \u092a\u094d\u0930\u0915\u094d\u0930\u093f\u092f\u093e\u0913\u0902 \u0915\u094b \u090f\u0915 \u092e\u0932\u094d\u091f\u0940-\u092e\u0949\u0921\u094d\u092f\u0942\u0932 \u092a\u094d\u0930\u092c\u0902\u0927\u0928 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u0938\u0947 \u092c\u0926\u0932\u093e \u091c\u093f\u0938\u092e\u0947\u0902 \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u092a\u094d\u0930\u092e\u093e\u0923\u0940\u0915\u0930\u0923, \u0938\u094d\u091f\u093e\u092b \u0909\u092a\u0915\u0930\u0923, \u0936\u0947\u0921\u094d\u092f\u0942\u0932\u093f\u0902\u0917 \u0914\u0930 \u0935\u093f\u092d\u093e\u0917\u0940\u092f \u0928\u093f\u092f\u0902\u0924\u094d\u0930\u0923 \u0936\u093e\u092e\u093f\u0932 \u0939\u0948\u0964",
+        "exp.2.period": "\u0905\u092a\u094d\u0930\u0948\u0932 2023 \u2014 \u091c\u0942\u0928 2023",
+        "exp.2.role": "\u092b\u094d\u0930\u0902\u091f-\u090f\u0902\u0921 \u0921\u0947\u0935\u0932\u092a\u0930",
+        "exp.2.company": "Origen Network",
+        "exp.2.desc":
+          "FiveM \u0938\u094d\u0915\u094d\u0930\u093f\u092a\u094d\u091f\u094d\u0938 \u0915\u0947 \u090f\u0915 \u0915\u094b\u0921\u092c\u0947\u0938 \u0915\u094b \u0938\u0902\u092d\u093e\u0932\u093e \u091c\u093f\u0938\u092e\u0947\u0902 \u092e\u0939\u0924\u094d\u0935\u092a\u0942\u0930\u094d\u0923 \u0938\u0941\u0927\u093e\u0930 \u0915\u0940 \u0906\u0935\u0936\u094d\u092f\u0915\u0924\u093e \u0925\u0940\u0964 \u092a\u0942\u0930\u0947 \u0938\u093f\u0938\u094d\u091f\u092e \u0915\u094b \u0926\u094b\u092c\u093e\u0930\u093e \u0921\u093f\u091c\u093e\u0907\u0928 \u0915\u093f\u092f\u093e, \u0921\u0940\u092c\u0917 \u0915\u093f\u092f\u093e \u0914\u0930 \u0911\u092a\u094d\u091f\u093f\u092e\u093e\u0907\u091c \u0915\u093f\u092f\u093e\u0964",
+        "exp.3.period": "\u092b\u0930\u0935\u0930\u0940 2022 \u2014 \u0928\u0935\u0902\u092c\u0930 2022",
+        "exp.3.role": "IT \u0938\u0939\u093e\u092f\u0924\u093e \u091f\u0947\u0915\u0928\u0940\u0936\u093f\u092f\u0928",
+        "exp.3.company": "Ilustre Municipalidad de San Clemente",
+        "exp.3.desc":
+          "\u092a\u0942\u0930\u0947 \u0938\u0902\u0938\u094d\u0925\u093e\u0928 \u092e\u0947\u0902 \u0928\u0947\u091f\u0935\u0930\u094d\u0915, \u092a\u094d\u0930\u093f\u0902\u091f\u0930 \u0914\u0930 \u0915\u0928\u0947\u0915\u094d\u091f\u093f\u0935\u093f\u091f\u0940 \u0915\u0947 \u0930\u0916\u0930\u0916\u093e\u0935 \u0915\u0947 \u0932\u093f\u090f \u091c\u093f\u092e\u094d\u092e\u0947\u0926\u093e\u0930\u0964 SIGEM v2 \u092a\u094d\u0930\u0923\u093e\u0932\u0940 \u092e\u0947\u0902 \u0905\u0915\u094d\u0937\u092e\u0924\u093e\u0913\u0902 \u0915\u0940 \u092a\u0939\u091a\u093e\u0928 \u0915\u0940 \u0914\u0930 \u0938\u0941\u0927\u093e\u0930 \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935 \u0915\u093f\u090f\u0964",
+        "exp.4.period": "\u0905\u0917\u0938\u094d\u0924 2021 \u2014 \u0928\u0935\u0902\u092c\u0930 2021",
+        "exp.4.role": "\u092b\u0941\u0932-\u0938\u094d\u091f\u0948\u0915 \u0921\u0947\u0935\u0932\u092a\u0930",
+        "exp.4.company": "Ilustre Municipalidad de San Clemente",
+        "exp.4.desc":
+          "\u090f\u0915 \u0928\u0917\u0930 \u0928\u093f\u0917\u092e \u0921\u093f\u091c\u093f\u091f\u0932 \u092d\u0930\u094d\u0924\u0940 \u092a\u094d\u0932\u0947\u091f\u092b\u0949\u0930\u094d\u092e \u092c\u0928\u093e\u092f\u093e \u091c\u093f\u0938\u092e\u0947\u0902 \u0926\u0938\u094d\u0924\u093e\u0935\u0947\u091c\u093c \u0926\u0947\u0916\u0928\u0947 \u0914\u0930 \u0921\u093f\u091c\u093f\u091f\u0932 \u0939\u0938\u094d\u0924\u093e\u0915\u094d\u0937\u0930 \u0915\u093e\u0930\u094d\u092f\u092a\u094d\u0930\u0935\u093e\u0939 \u0936\u093e\u092e\u093f\u0932 \u0939\u0948\u0964",
+        "repo.landing-diagnost.desc": "Diagnost \u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e \u0915\u0947 \u0932\u093f\u090f \u0932\u0948\u0902\u0921\u093f\u0902\u0917 \u092a\u0947\u091c\u0964",
+        "repo.origin.desc":
+          "Astro, React \u0914\u0930 TypeScript \u0938\u0947 \u092c\u0928\u093e \u0935\u094d\u092f\u0915\u094d\u0924\u093f\u0917\u0924 \u092a\u094b\u0930\u094d\u091f\u092b\u093c\u094b\u0932\u093f\u092f\u094b\u0964 \u0906\u0927\u0941\u0928\u093f\u0915, \u0938\u094d\u0935\u091a\u094d\u091b \u0914\u0930 \u092a\u094d\u0930\u0926\u0930\u094d\u0936\u0928-\u0915\u0947\u0902\u0926\u094d\u0930\u093f\u0924\u0964",
+        "repo.relay.desc":
+          "\u090f\u0915 \u0906\u0927\u0941\u0928\u093f\u0915 URL \u091b\u094b\u091f\u093e \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u093e \u0909\u092a\u0915\u0930\u0923\u0964 \u0924\u0947\u091c\u093c, \u0938\u0930\u0932 \u0914\u0930 \u0909\u092a\u092f\u094b\u0917 \u092e\u0947\u0902 \u0906\u0938\u093e\u0928\u0964 Node.js \u0938\u0947 \u092c\u0928\u093e\u092f\u093e \u0917\u092f\u093e\u0964",
+        "repo.nora-core.desc":
+          "\u0905\u0928\u0941\u0915\u0942\u0932\u0928\u0936\u0940\u0932 AI-\u0938\u0902\u091a\u093e\u0932\u093f\u0924 \u0938\u0941\u0935\u093f\u0927\u093e\u0913\u0902 \u0915\u0947 \u0932\u093f\u090f \u0915\u094b\u0930 \u0907\u0902\u091c\u0928\u0964 \u092c\u0941\u0926\u094d\u0927\u093f\u092e\u093e\u0928, \u0909\u0924\u094d\u0924\u0930\u0926\u093e\u092f\u0940 \u0914\u0930 \u0915\u0941\u0936\u0932\u0964",
+        "repo.cristhobal.desc":
+          "\u092e\u0947\u0930\u093e GitHub \u092a\u094d\u0930\u094b\u092b\u093c\u093e\u0907\u0932 README\u0964 \u092e\u0948\u0902 \u0915\u094c\u0928 \u0939\u0942\u0902 \u0914\u0930 \u0915\u094d\u092f\u093e \u0915\u0930\u0924\u093e \u0939\u0942\u0902 \u0907\u0938\u0915\u093e \u090f\u0915 \u0924\u094d\u0935\u0930\u093f\u0924 \u0905\u0935\u0932\u094b\u0915\u0928\u0964",
+        "repo.diagnost.desc":
+          "Astro \u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u0913\u0902 \u0915\u0947 \u0932\u093f\u090f \u0928\u093f\u0926\u093e\u0928 \u091f\u0942\u0932\u0915\u093f\u091f\u0964 \u0915\u0949\u0928\u094d\u092b\u093c\u093f\u0917\u0930\u0947\u0936\u0928, \u0921\u093f\u092a\u0947\u0902\u0921\u0947\u0902\u0938\u093f\u091c \u0914\u0930 \u092a\u094d\u0930\u0926\u0930\u094d\u0936\u0928 \u0915\u093e \u0935\u093f\u0936\u094d\u0932\u0947\u0937\u0923 \u0915\u0930\u0924\u093e \u0939\u0948\u0964",
+        "repo.ignite.desc":
+          "\u0938\u092b\u093c \u0907\u0902\u091f\u0930\u092b\u093c\u0947\u0938 \u0915\u0947 \u0938\u093e\u0925 Wake-on-LAN \u091f\u0942\u0932\u0964 \u090f\u0915 \u0939\u0940 \u0915\u094d\u0932\u093f\u0915 \u0938\u0947 \u0905\u092a\u0928\u0947 PC \u0915\u094b \u0926\u0942\u0930\u0938\u094d\u0925 \u0930\u0942\u092a \u0938\u0947 \u091c\u093e\u0917\u094d\u0930\u0942\u0928 \u092f\u093e \u092c\u0902\u0926 \u0915\u0930\u0947\u0902\u0964",
+        "repo.chrono.desc":
+          "\u0938\u092e\u092f \u092a\u094d\u0930\u092c\u0902\u0927\u0928 \u0909\u092a\u0915\u0930\u0923 \u091c\u094b \u0906\u092a\u0915\u094b \u092c\u093f\u0928\u093e \u0915\u093f\u0938\u0940 \u091d\u0902\u091d\u091f \u0915\u0947 \u0935\u094d\u092f\u0935\u0938\u094d\u0925\u093f\u0924 \u0930\u0939\u0928\u0947 \u092e\u0947\u0902 \u092e\u0926\u0926 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0921\u093f\u091c\u093e\u0907\u0928 \u0915\u093f\u092f\u093e \u0917\u092f\u093e \u0939\u0948\u0964",
+        "skills.title":
+          "\u0915\u094c\u0936\u0932 \u0914\u0930 \u092a\u094d\u0930\u094c\u0926\u094d\u092f\u094b\u0917\u093f\u0915\u0940",
+        "footer.tagline":
+          "\u092c\u0928\u093e\u090f\u0902\u0964 \u0924\u094b\u0921\u093c\u0947\u0902\u0964 \u0938\u0941\u0927\u093e\u0930\u0947\u0902\u0964 \u0930\u091a\u0928\u093e \u0915\u0930\u0947\u0902\u0964",
+        "footer.inspired":
+          "\u0938\u0947 \u092a\u094d\u0930\u0947\u0930\u093f\u0924",
+        "header.discord_unavailable":
+          "\u0905\u0928\u0941\u092a\u0932\u092c\u094d\u0927",
+      },
+    };
+    const saved = localStorage.getItem("portfolio-lang");
+    let lang = saved;
+    if (!lang || !["en", "zh", "hi", "es", "fr"].includes(lang)) {
+      const browser = (navigator.language || "").split("-")[0].toLowerCase();
+      if (["en", "zh", "hi", "es", "fr"].includes(browser)) lang = browser;
+      else lang = "en";
+    }
+    localStorage.setItem("portfolio-lang", lang);
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (!key) return;
+      const varsAttr = el.getAttribute("data-i18n-vars");
+      let vars = {};
+      if (varsAttr) {
+        try {
+          vars = JSON.parse(varsAttr);
+        } catch {}
+      }
+      let text = t[lang]?.[key] || t["en"]?.[key] || key;
+      text = text.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? `{${k}}`);
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        el.setAttribute("placeholder", text);
+      } else {
+        el.textContent = text;
+      }
+    });
+  })();
+</script>

@@ -4,6 +4,7 @@ import { Meteors } from "@/shared/ui/meteors";
 import { BlurFade } from "@/shared/ui/blur-fade";
 import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
+import Translate from "@/i18n/translate.astro";
 
 export interface Props {
   title?: string;
@@ -111,6 +112,7 @@ const fullTitle =
     </div>
 
     <Footer />
+  <Translate />
   </body>
 
   <script is:inline>

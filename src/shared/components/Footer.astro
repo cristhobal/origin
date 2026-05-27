@@ -10,10 +10,10 @@ const year = new Date().getFullYear();
     <div
       class="flex flex-col sm:flex-row items-center justify-between gap-1 text-xs sm:text-sm text-muted-foreground"
     >
-      <p class="tracking-tight font-medium">Build. Break. Improve. Create.</p>
+      <p class="tracking-tight font-medium" data-i18n="footer.tagline">Build. Break. Improve. Create.</p>
       <p class="opacity-60">
         &copy; {year} Cristhobal Canales. |
-        Inspired by
+        <span data-i18n="footer.inspired">Inspired by</span>
         <a
           href="https://pheralb.dev/"
           target="_blank"

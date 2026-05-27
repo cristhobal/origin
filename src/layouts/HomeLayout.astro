@@ -16,6 +16,7 @@ import {
 import { getTagIcon } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { calcularAniosExperiencia } from "@/shared/utils/dates";
+import Translate from "@/i18n/translate.astro";
 
 const MES_INICIO = 9;
 const ANIO_INICIO = 2021;
@@ -173,10 +174,10 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             <p
               class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
             >
-              I'm <span class="font-bold tracking-tight">Cristhobal</span>.
-              Fullstack developer based in Chile. Over {anios}+ years of experience
+              <span data-i18n="about.prefix">I'm </span>
+              <span class="font-bold tracking-tight">Cristhobal</span><span data-i18n="about.suffix" data-i18n-vars={JSON.stringify({ years: anios })}>. Fullstack developer based in Chile. Over {anios}+ years of experience
               turning complex challenges into clean, functional systems — from
-              web platforms and administrative tools to custom FiveM scripts.
+              web platforms and administrative tools to custom FiveM scripts.</span>
             </p>
             <slot />
           </section>
@@ -190,9 +191,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             class="flex flex-col space-y-4 sm:space-y-5"
           >
             <div class="flex w-full items-center justify-between">
-              <h2 class="text-xl sm:text-2xl font-semibold tracking-tight">
-                Projects
-              </h2>
+              <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="projects.title">Projects</h2>
             </div>
 
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -273,7 +272,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             </a>
                           </div>
                         </div>
-                        <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400">
+                        <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400" data-i18n={`repo.${project.name}.desc`}>
                           {project.description}
                         </p>
                         {project.languages &&
@@ -317,14 +316,12 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             class="flex flex-col space-y-4 sm:space-y-5"
           >
             <div class="flex w-full items-center justify-between">
-              <h2 class="text-xl sm:text-2xl font-semibold tracking-tight">
-                Experience
-              </h2>
+              <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="experience.title">Experience</h2>
               <a
                 href="/experience"
                 class="group flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-neutral-500 duration-100 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               >
-                <span>More</span>
+                <span data-i18n="experience.more">More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -343,7 +340,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             </div>
             <ol>
               {
-                featuredExperience.map((exp) => (
+                featuredExperience.map((exp, expIdx) => (
                   <li
                     class="grid gap-x-3"
                     style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
@@ -351,7 +348,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                     <div class="flex items-center justify-center">
                       <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800" />
                     </div>
-                    <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center">
+                    <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center" data-i18n={`exp.${expIdx}.period`}>
                       {exp.period}
                     </time>
                     <div class="flex justify-center">
@@ -359,7 +356,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                     </div>
                     <div class="mt-2 pb-2">
                       <div class="flex flex-col space-y-1">
-                        <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                        <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`exp.${expIdx}.role`}>
                           {exp.role}
                         </h3>
                         {exp.companyUrl ? (
@@ -369,7 +366,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             rel="noopener"
                             class="group/c flex w-max items-center text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
                           >
-                            <span>{exp.company}</span>
+                            <span data-i18n={`exp.${expIdx}.company`}>{exp.company}</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="12"
@@ -387,12 +384,12 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             </svg>
                           </a>
                         ) : (
-                          <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                          <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400" data-i18n={`exp.${expIdx}.company`}>
                             {exp.company}
                           </p>
                         )}
                       </div>
-                      <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                      <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed" data-i18n={`exp.${expIdx}.desc`}>
                         {exp.description}
                       </p>
                     </div>
@@ -410,9 +407,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             aria-label="Technologies and skills"
             class="flex flex-col space-y-4 sm:space-y-5"
           >
-            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight">
-              Skills
-            </h2>
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="skills.title">Skills</h2>
             <!--
             Magic UI Marquee — dos filas opuestas con ralentización en hover.
             Sin `client:load`: el componente es 100% SSR. La animación de scroll
@@ -484,6 +479,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
     </div>
 
     <Footer />
+  <Translate />
   </body>
 
   <script is:inline>
