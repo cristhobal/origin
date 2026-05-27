@@ -112,7 +112,7 @@ const {
       {
         tags.length > 0 && (
           <div class="flex items-center flex-wrap gap-2">
-            {tags.map((tag) => (
+            {tags.slice(0, 4).map((tag) => (
               <span class="inline-flex items-center gap-2 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-2 py-1 text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
                 {(tag.icon || getTagIcon(tag.name)) && (
                   <Fragment set:html={tag.icon || getTagIcon(tag.name)} />
