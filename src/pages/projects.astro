@@ -78,12 +78,9 @@ const projects = [...staticProjects, ...ghProjects].filter(
       type="text"
       placeholder="Search projects…"
       data-i18n="projects.search"
-      disabled
-      class="w-full rounded-[5px] border border-neutral-200 dark:border-neutral-800 bg-transparent pl-9 pr-24 py-2 text-sm placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+      id="project-search"
+      class="w-full rounded-[5px] border border-neutral-200 dark:border-neutral-800 bg-transparent pl-9 pr-4 py-2 text-sm placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors"
     />
-    <span class="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] text-neutral-400 dark:text-neutral-600 hidden sm:block" data-i18n="projects.coming_soon">
-      coming soon
-    </span>
   </div>
 
   {projects.length === 0 ? (
@@ -98,7 +95,11 @@ const projects = [...staticProjects, ...ghProjects].filter(
   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
     {
       projects.map((project) => (
-        <div class="card group relative rounded-[6px] p-px overflow-hidden border border-neutral-300 dark:border-neutral-800">
+        <div class="card group relative rounded-[6px] p-px overflow-hidden border border-neutral-300 dark:border-neutral-800"
+          data-search-name={project.name.toLowerCase()}
+          data-search-desc={(project.description || "").toLowerCase()}
+          data-search-tags={[...(project.languages ? Object.keys(project.languages) : []), ...project.tags.map(t => t.name)].join(" ").toLowerCase()}
+        >
           <div class="glow absolute inset-0 pointer-events-none"></div>
           <div class="relative flex flex-col h-full rounded-[5px] bg-white dark:bg-neutral-950 p-3 sm:p-4">
             <div class="flex flex-col space-y-3 h-full">
@@ -195,7 +196,7 @@ const projects = [...staticProjects, ...ghProjects].filter(
 
   <!-- Footer note -->
   {projects.length > 0 && (
-      <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right" data-i18n="projects.count" data-i18n-vars={JSON.stringify({ count: projects.length })}>
+      <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right" id="project-count" data-i18n="projects.count" data-i18n-vars={JSON.stringify({ count: projects.length })}>
         {projects.length} projects in total
       </p>
   )}
@@ -210,6 +211,35 @@ const projects = [...staticProjects, ...ghProjects].filter(
         card.style.setProperty("--x", `${e.clientX - rect.left}px`);
         card.style.setProperty("--y", `${e.clientY - rect.top}px`);
       });
+    });
+
+    const search = document.getElementById("project-search");
+    if (!search) return;
+    const cards = document.querySelectorAll(".card");
+    const count = document.getElementById("project-count");
+
+    search.addEventListener("input", () => {
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const name = card.querySelector("[data-search-name]")?.getAttribute("data-search-name") || "";
+        const desc = card.querySelector("[data-search-desc]")?.getAttribute("data-search-desc") || "";
+        const tags = card.querySelector("[data-search-tags]")?.getAttribute("data-search-tags") || "";
+        const match = !q || name.includes(q) || desc.includes(q) || tags.includes(q);
+
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        const total = cards.length;
+        if (q) {
+          count.textContent = `${visible} of ${total} projects`;
+        } else {
+          count.textContent = `${total} projects in total`;
+        }
+      }
     });
   });
 </script>
