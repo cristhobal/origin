@@ -173,7 +173,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-y: scroll;
+    /* Reserva el espacio del scrollbar siempre, incluso cuando no hay overflow.
+       Evita el "salto" horizontal al filtrar /projects (cuando pasamos de muchas
+       cards con scrollbar a pocas sin scrollbar). A diferencia de
+       `overflow-y: scroll`, no fuerza una scrollbar visible permanente. */
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground;
