@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     company: "Escuela Básica Queri",
     companyUrl: "https://www.facebook.com/EscuelaBasicaQueri/",
     description:
-      "Built a full request management system for the computer lab from scratch — teachers book time slots, admins have a complete panel, and technological resources actually go where they're needed. Also keep the hardware alive. Not glamorous, but it runs perfectly, which is the point.",
+      "Built a full request management system for the computer lab from scratch — teachers can book time slots, admins have a complete control panel, and technological resources are allocated efficiently. I also handle hardware maintenance and support.",
   },
   {
     period: "Aug. 2024 — Oct. 2024",
@@ -15,7 +15,7 @@ export const experiences: Experience[] = [
     company: "DAEM de San Clemente",
     companyUrl: "https://www.edusanclemente.cl/",
     description:
-      "Replaced manual administrative processes with a multi-module management system: secure authentication, staff tools, scheduling, department control. The kind of thing that makes people wonder how they ever worked without it. Administrative times dropped significantly. You're welcome.",
+      "Replaced manual administrative processes with a multi-module management system featuring secure authentication, staff tools, scheduling, and department control. Administrative times dropped significantly, making daily operations more efficient for the entire team.",
   },
 
   {
@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
     company: "Origen Network",
     companyUrl: "https://origennetwork.com/",
     description:
-      "Inherited broken FiveM scripts and legacy code nobody wanted to touch. Redesigned, debugged and optimized the whole thing. Stability went up. Performance went up. The number of complaints went down. Classic turnaround.",
+      "Took over a codebase of FiveM scripts that needed significant improvements. Redesigned, debugged, and optimized the entire system — resulting in better stability, improved performance, and a smoother experience for users.",
   },
   {
     period: "Feb. 2022 — Nov. 2022",
@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
     company: "Ilustre Municipalidad de San Clemente",
     companyUrl: "https://www.sanclemente.cl",
     description:
-      "Networks, printers, connectivity — fixed what was broken, stabilized what was fragile. Also spotted inefficiencies in the SIGEM v2 system and proposed improvements that actually got implemented. I don't just fix problems. I prevent the next ones.",
+      "Responsible for maintaining networks, printers, and connectivity across the institution. Identified inefficiencies in the SIGEM v2 system and proposed improvements that were implemented, helping prevent issues before they occurred.",
   },
   {
     period: "Aug. 2021 — Nov. 2021",
@@ -40,6 +40,6 @@ export const experiences: Experience[] = [
     company: "Ilustre Municipalidad de San Clemente",
     companyUrl: "https://www.sanclemente.cl",
     description:
-      "Built a municipal digital hiring platform with integrated document visualization and digital signature workflows. Contracts went from paper chaos to traceable, auditable, controlled processes. First time the municipality could actually track what was signed and when. Foundational work. The boring kind that matters most.",
+      "Built a municipal digital hiring platform with integrated document visualization and digital signature workflows. Contracts went from paper-based chaos to traceable, auditable, and controlled processes — giving the municipality clear tracking of what was signed and when.",
   },
 ];
