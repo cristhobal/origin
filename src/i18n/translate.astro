@@ -348,14 +348,19 @@
           "\u0905\u0928\u0941\u092a\u0932\u092c\u094d\u0927",
       },
     };
+    // <html lang> was set by the server (detectServerLang via cookie /
+    // Accept-Language). Trust the user's explicit pick in localStorage
+    // when present, otherwise fall back to whatever the server resolved.
+    const htmlLang = document.documentElement.lang;
     const saved = localStorage.getItem("portfolio-lang");
     let lang = saved;
     if (!lang || !["en", "zh", "hi", "es", "fr"].includes(lang)) {
-      const browser = (navigator.language || "").split("-")[0].toLowerCase();
-      if (["en", "zh", "hi", "es", "fr"].includes(browser)) lang = browser;
-      else lang = "en";
+      lang = ["en", "zh", "hi", "es", "fr"].includes(htmlLang) ? htmlLang : "en";
     }
     localStorage.setItem("portfolio-lang", lang);
+    // Sync the cookie so the next SSR request uses the right language.
+    document.cookie = "portfolio-lang=" + lang + "; path=/; max-age=31536000; samesite=lax";
+    if (document.documentElement.lang !== lang) document.documentElement.lang = lang;
     var titles = {
       en: "Cristhobal Canales | Fullstack Web Developer Chile",
       es: "Cristhobal Canales | Desarrollador Web Fullstack Chile",
@@ -382,5 +387,8 @@
         el.textContent = text;
       }
     });
+
+    // All [data-i18n] nodes are now in the right language — reveal the body.
+    document.documentElement.removeAttribute("data-i18n-loading");
   })();
 </script>

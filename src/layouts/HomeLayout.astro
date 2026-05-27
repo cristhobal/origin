@@ -19,6 +19,9 @@ import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { calcularAniosExperiencia } from "@/shared/utils/dates";
 import Translate from "@/i18n/translate.astro";
 
+// Static build: see BaseLayout.astro for the reason `<html lang>` stays
+// "en" at build and is updated client-side by translate.astro.
+
 const MES_INICIO = 9;
 const ANIO_INICIO = 2021;
 const anios = calcularAniosExperiencia(MES_INICIO, ANIO_INICIO);
@@ -88,10 +91,18 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-i18n-loading>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style is:global>
+      /* Keeps body invisible until translate.astro has run, so the user
+       * never sees the SSR'd English text before it's swapped to their
+       * preferred language. Removed at the end of the inline translate
+       * script. */
+      html[data-i18n-loading] body { visibility: hidden; }
+    </style>
 
     <!-- Favicon — un conjunto sin duplicados para todos los contextos -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
