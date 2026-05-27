@@ -5,6 +5,7 @@ import { GITHUB_USERNAME } from "@/shared/config/site";
 import { fetchGitHubProjects, HIDDEN_REPOS } from "@/features/projects/services/github.service";
 import { getTagIcon } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
+import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 
 // 👇 Cache en el CDN de Vercel: la respuesta se sirve desde edge cache
 //    durante 5 min (s-maxage=300). Despues de ese rato, el primer visitante
@@ -105,7 +106,14 @@ const projects = [...staticProjects, ...ghProjects].filter(
                   {project.logo && (
                     <img src={project.logo} alt={project.name} class="h-4 w-auto flex-shrink-0" />
                   )}
-                  {project.href ? (
+                  {project.isPrivate && project.preview ? (
+                    <PrivateRepoPreview
+                      client:load
+                      name={project.name}
+                      previewUrl={project.preview}
+                      href={project.href}
+                    />
+                  ) : project.href ? (
                     <a
                       href={project.href}
                       target="_blank"

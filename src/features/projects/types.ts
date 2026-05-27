@@ -6,6 +6,7 @@ export interface Project {
   name: string;
   description: string;
   logo?: string;
+  preview?: string;
   href?: string;
   githubUrl?: string;
   isPrivate?: boolean;

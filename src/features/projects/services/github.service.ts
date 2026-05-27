@@ -102,6 +102,13 @@ const REPO_LOGOS: Record<string, string> = {
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
+// Preview images for private repos (screenshot/preview of the site)
+const REPO_PREVIEWS: Record<string, string> = {
+  vault: "https://i.ibb.co/gbdm1Dc5/vault.jpg",
+  "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
+  // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
+};
+
 // Extensiones soportadas para logos en public/logos/, en orden de prioridad
 const LOGO_EXTENSIONS = ["svg", "png", "webp", "jpg", "jpeg"];
 
@@ -251,6 +258,7 @@ export async function fetchGitHubProjects(
       isPrivate: repo.private,
       stars: repo.stargazers_count,
       logo: findRepoLogo(repo.name),
+      preview: REPO_PREVIEWS[repo.name],
       tags,
       languages: languagesList[i],
     };

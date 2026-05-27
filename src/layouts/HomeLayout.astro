@@ -13,6 +13,7 @@ import {
   fetchGitHubProjects,
   HIDDEN_REPOS,
 } from "@/features/projects/services/github.service";
+import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import { getTagIcon } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { calcularAniosExperiencia } from "@/shared/utils/dates";
@@ -235,7 +236,14 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                                 class="h-4 w-auto flex-shrink-0"
                               />
                             )}
-                            {project.href ? (
+                            {project.isPrivate && project.preview ? (
+                              <PrivateRepoPreview
+                                client:load
+                                name={project.name}
+                                previewUrl={project.preview}
+                                href={project.href}
+                              />
+                            ) : project.href ? (
                               <a
                                 href={project.href}
                                 target="_blank"
@@ -262,6 +270,12 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                                   <path d="M7 17 17 7" />
                                 </svg>
                               </a>
+                            ) : project.isPrivate && project.preview ? (
+                              <PrivateRepoPreview
+                                client:load
+                                name={project.name}
+                                previewUrl={project.preview}
+                              />
                             ) : (
                               <p class="font-medium truncate">{project.name}</p>
                             )}
