@@ -220,25 +220,21 @@ const projects = [...staticProjects, ...ghProjects].filter(
 
     search.addEventListener("input", () => {
       const q = search.value.trim().toLowerCase();
-      let visible = 0;
 
       cards.forEach((card) => {
-        const name = card.querySelector("[data-search-name]")?.getAttribute("data-search-name") || "";
-        const desc = card.querySelector("[data-search-desc]")?.getAttribute("data-search-desc") || "";
-        const tags = card.querySelector("[data-search-tags]")?.getAttribute("data-search-tags") || "";
+        const name = card.getAttribute("data-search-name") || "";
+        const desc = card.getAttribute("data-search-desc") || "";
+        const tags = card.getAttribute("data-search-tags") || "";
         const match = !q || name.includes(q) || desc.includes(q) || tags.includes(q);
-
         card.style.display = match ? "" : "none";
-        if (match) visible++;
       });
 
       if (count) {
         const total = cards.length;
-        if (q) {
-          count.textContent = `${visible} of ${total} projects`;
-        } else {
-          count.textContent = `${total} projects in total`;
-        }
+        const visible = Array.from(cards).filter(c => c.style.display !== "none").length;
+        count.textContent = q
+          ? `${visible} of ${total} projects`
+          : `${total} projects in total`;
       }
     });
   });
