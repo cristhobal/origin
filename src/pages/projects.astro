@@ -94,7 +94,7 @@ const projects = [...staticProjects, ...ghProjects].filter(
   ) : (
   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
     {
-      projects.map((project) => (
+      projects.map((project, projectIdx) => (
         <div class="card group relative rounded-[6px] p-px overflow-hidden border border-neutral-300 dark:border-neutral-800"
           data-search-name={project.name.toLowerCase()}
           data-search-desc={(project.description || "").toLowerCase()}
@@ -174,14 +174,18 @@ const projects = [...staticProjects, ...ghProjects].filter(
                 const filteredTags = project.tags.filter((tag) => !langNames.has(tag.name));
                 return filteredTags.length > 0 ? (
                   <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
-                    {filteredTags.slice(0, 4).map((tag) => (
+                    {filteredTags.slice(0, 4).map((tag, tagIdx) => {
+                      const iconSvg = getTagIcon(tag.name);
+                      const uniqueSvg = iconSvg ? iconSvg.replace(/(id="[^"]+")/g, `$1-${projectIdx}-${tagIdx}`).replace(/(url\(#[^)]+\))/g, (m) => m.replace("#", `#${projectIdx}-${tagIdx}-`)) : "";
+                      return (
                       <span class="inline-flex items-center gap-1.5 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
-                        {getTagIcon(tag.name) && (
-                          <Fragment set:html={getTagIcon(tag.name)} />
+                        {iconSvg && (
+                          <Fragment set:html={uniqueSvg} />
                         )}
                         <span>{tag.name}</span>
                       </span>
-                    ))}
+                      );
+                    })}
                   </div>
                 ) : null;
               })()}
