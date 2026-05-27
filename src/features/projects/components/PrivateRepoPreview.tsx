@@ -10,24 +10,12 @@ interface Props {
   href?: string;
 }
 
-const MAX_LANDSCAPE_W = 220;
-const MAX_LANDSCAPE_H = 140;
-const MAX_PORTRAIT_W = 160;
-const MAX_PORTRAIT_H = 240;
+const LANDSCAPE = { width: 220, height: 140 };
+const PORTRAIT = { width: 140, height: 220 };
 
 function computeSize(naturalW: number, naturalH: number) {
-  if (!naturalW || !naturalH) {
-    return { width: MAX_LANDSCAPE_W, height: MAX_LANDSCAPE_H };
-  }
-  const ratio = naturalW / naturalH;
-  if (ratio >= 1) {
-    const width = MAX_LANDSCAPE_W;
-    const height = Math.min(MAX_LANDSCAPE_H, Math.round(width / ratio));
-    return { width, height };
-  }
-  const height = MAX_PORTRAIT_H;
-  const width = Math.min(MAX_PORTRAIT_W, Math.round(height * ratio));
-  return { width, height };
+  if (!naturalW || !naturalH) return LANDSCAPE;
+  return naturalW >= naturalH ? LANDSCAPE : PORTRAIT;
 }
 
 export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
@@ -75,10 +63,7 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
 
   const Tag = (href ? "a" : "span") as "a";
 
-  const { width, height } = size ?? {
-    width: MAX_LANDSCAPE_W,
-    height: MAX_LANDSCAPE_H,
-  };
+  const { width, height } = size ?? LANDSCAPE;
 
   const badge =
     mounted && typeof document !== "undefined"
