@@ -98,6 +98,7 @@ const REPO_LOGOS: Record<string, string> = {
   "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
   ignite: "https://i.ibb.co/1t9x0qpH/ignite.jpg",
   diagnost: "https://i.ibb.co/0RzmNbJp/diagnost.jpg",
+  vault: "https://i.ibb.co/B58JsrdQ/vault.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
