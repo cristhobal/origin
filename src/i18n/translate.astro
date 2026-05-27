@@ -346,6 +346,14 @@
       else lang = "en";
     }
     localStorage.setItem("portfolio-lang", lang);
+    var titles = {
+      en: "Cristhobal Canales | Fullstack Web Developer Chile",
+      es: "Cristhobal Canales | Desarrollador Web Fullstack Chile",
+      fr: "Cristhobal Canales | D\u00e9veloppeur Web Fullstack Chili",
+      zh: "Cristhobal Canales | \u5168\u6808\u7f51\u7edc\u5f00\u53d1\u8005 \u667a\u5229",
+      hi: "Cristhobal Canales | \u092b\u0941\u0932\u0938\u094d\u091f\u0948\u0915 \u0935\u0947\u092c \u0921\u0947\u0935\u0932\u092a\u0930 \u091a\u093f\u0932\u0940",
+    };
+    document.title = titles[lang] || titles.en;
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (!key) return;
