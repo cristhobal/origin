@@ -28,9 +28,15 @@ try {
   console.error("[projects.astro] No se pudieron cargar los repos de GitHub:", e);
 }
 
-const projects = [...staticProjects, ...ghProjects].filter(
-  (p) => !HIDDEN_REPOS.includes(p.name),
-);
+// Ordena por fecha de creación (más nuevos primero). Así la posición no
+// cambia cuando se actualiza un repo — solo cuando se crea uno nuevo.
+const projects = [...staticProjects, ...ghProjects]
+  .filter((p) => !HIDDEN_REPOS.includes(p.name))
+  .sort(
+    (a, b) =>
+      new Date(b.createdAt ?? 0).getTime() -
+      new Date(a.createdAt ?? 0).getTime(),
+  );
 
 ---
 

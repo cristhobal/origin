@@ -59,9 +59,15 @@ try {
   console.error("[Layout.astro] No se pudieron cargar los repos de GitHub:", e);
 }
 
+// Ordena por fecha de creación (más nuevos primero). Repos sin createdAt
+// (estáticos) caen al final.
 const allProjects = [...staticProjects, ...ghProjects]
   .filter((p) => !HIDDEN_REPOS.includes(p.name))
-  .sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
+  .sort(
+    (a, b) =>
+      new Date(b.createdAt ?? 0).getTime() -
+      new Date(a.createdAt ?? 0).getTime(),
+  );
 
 const featuredProjects = allProjects.slice(0, 6);
 const hasMoreProjects = allProjects.length > 6;

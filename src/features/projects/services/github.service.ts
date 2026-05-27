@@ -34,6 +34,7 @@ interface GitHubRepo {
   topics: string[];
   language: string | null;
   stargazers_count: number;
+  created_at: string;
   updated_at: string;
   owner: {
     login: string;
@@ -182,9 +183,12 @@ export async function fetchGitHubProjects(
 
   // Con token: /user/repos -> trae publicos + privados del usuario autenticado.
   // Sin token: /users/:username/repos -> solo publicos.
+  // Ordenamos por `created` (fecha de creación del repo) para que la posición en
+  // el portafolio no cambie cuando hacemos push a un repo existente — solo cambia
+  // cuando se crea un repo nuevo. La API devuelve los más nuevos primero.
   const baseUrl = token
-    ? "https://api.github.com/user/repos?visibility=all&affiliation=owner&sort=updated&per_page=100"
-    : `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`;
+    ? "https://api.github.com/user/repos?visibility=all&affiliation=owner&sort=created&direction=desc&per_page=100"
+    : `https://api.github.com/users/${username}/repos?sort=created&direction=desc&per_page=100`;
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -258,6 +262,7 @@ export async function fetchGitHubProjects(
       githubUrl: repo.private ? undefined : repo.html_url,
       isPrivate: repo.private,
       stars: repo.stargazers_count,
+      createdAt: repo.created_at,
       logo: findRepoLogo(repo.name),
       preview: REPO_PREVIEWS[repo.name],
       tags,
