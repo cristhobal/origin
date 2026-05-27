@@ -1,0 +1,52 @@
+---
+interface Props {
+  images: string[];
+  text: string;
+  href?: string;
+}
+
+const { images, text, href } = Astro.props;
+const maxDisplay = 3;
+const visibleImages = images.slice(0, maxDisplay);
+---
+
+<span class="relative inline-flex items-center group/images-badge">
+  {href ? (
+    <a href={href} target="_blank" rel="noopener" class="relative z-10 text-sm font-medium truncate hover:underline decoration-1 underline-offset-2 decoration-neutral-400 dark:decoration-neutral-600">
+      {text}
+    </a>
+  ) : (
+    <span class="relative z-10 text-sm font-medium truncate">
+      {text}
+    </span>
+  )}
+
+  {visibleImages.length > 0 && (
+    <span class="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full flex items-end gap-1.5 opacity-0 group-hover/images-badge:opacity-100 transition-all duration-200 pointer-events-none"
+      style="transform: translate(-50%, -100%) translateY(4px);"
+    >
+      {visibleImages.map((src, i) => (
+        <img
+          src={src}
+          alt=""
+          class="rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm object-cover transition-all duration-200"
+          style={{
+            width: `${48 - i * 4}px`,
+            height: `${32 - i * 3}px`,
+            transform: `rotate(${(i - (visibleImages.length - 1) / 2) * 8}deg) translateY(${i * 2}px)`,
+          }}
+          loading="lazy"
+        />
+      ))}
+    </span>
+  )}
+</span>
+
+<style>
+  .group\/images-badge:hover .group-hover\/images-badge\\:opacity-100 {
+    opacity: 1;
+  }
+  .group\/images-badge:hover .group-hover\/images-badge\\:opacity-100 {
+    transform: translate(-50%, -100%) translateY(0);
+  }
+</style>
