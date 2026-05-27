@@ -192,6 +192,27 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
           >
             <div class="flex w-full items-center justify-between">
               <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="projects.title">Projects</h2>
+              <a
+                href="/projects"
+                class="group flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-neutral-500 duration-100 hover:text-black dark:text-neutral-400 dark:hover:text-white"
+              >
+                <span data-i18n="experience.more">More</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="transition-transform duration-100 group-hover:translate-x-0.5"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
             </div>
 
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
