@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 
 interface Props {
@@ -11,70 +12,91 @@ interface Props {
 
 export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
   const [isHovered, setIsHovered] = useState(false);
-  const [pos, setPos] = useState({ left: 0, bottom: 0 });
-  const ref = useRef<HTMLAnchorElement | HTMLSpanElement>(null);
+  const [pos, setPos] = useState({ left: 0, top: 0 });
+  const [mounted, setMounted] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (isHovered && ref.current) {
-      const r = ref.current.getBoundingClientRect();
-      setPos({
-        left: r.left + r.width / 2,
-        top: r.top - 8,
-        bottom: window.innerHeight - r.top + 8,
-      });
-    }
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHovered) return;
+    const update = () => {
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setPos({ left: r.left + r.width / 2, top: r.top });
+    };
+    update();
+    window.addEventListener("scroll", update, true);
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update, true);
+      window.removeEventListener("resize", update);
+    };
   }, [isHovered]);
 
-  const Tag = href ? "a" : "span";
+  const Tag = (href ? "a" : "span") as "a";
+
+  const badge =
+    mounted && typeof document !== "undefined"
+      ? createPortal(
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                className="fixed pointer-events-none"
+                style={{
+                  zIndex: 9999,
+                  left: pos.left,
+                  top: pos.top - 12,
+                  x: "-50%",
+                  y: "-100%",
+                  transformOrigin: "bottom center",
+                }}
+                initial={{ opacity: 0, scale: 0.6, rotate: -6 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.6, rotate: -6 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              >
+                <div className="rounded-xl overflow-hidden border-2 border-white dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-2xl">
+                  <img
+                    src={previewUrl}
+                    alt={`${name} preview`}
+                    style={{
+                      display: "block",
+                      width: 320,
+                      height: 200,
+                      objectFit: "cover",
+                    }}
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )
+      : null;
 
   return (
     <Tag
-      ref={ref}
+      ref={ref as React.Ref<HTMLAnchorElement>}
       href={href}
       target={href ? "_blank" : undefined}
       rel={href ? "noopener" : undefined}
-      className="relative cursor-pointer inline-flex"
+      className="relative inline-flex font-medium min-w-0 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className="font-medium truncate underline-offset-2 decoration-1 decoration-neutral-400/30 dark:decoration-neutral-600/30"
+      <span
+        className="truncate underline-offset-2 decoration-1 decoration-neutral-400/30 dark:decoration-neutral-600/30"
         style={{ textDecoration: isHovered ? "underline" : "none" }}
       >
         {name}
       </span>
-
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            className="fixed pointer-events-none"
-            style={{ zIndex: 9999, left: pos.left, bottom: pos.bottom }}
-            initial={{ opacity: 0, scale: 0.6, y: 4 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: 0,
-            }}
-            exit={{ opacity: 0, scale: 0.6, y: 4 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 25,
-            }}
-          >
-            <div style={{ transform: "translateX(-50%)" }}>
-              <div className="rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-xl overflow-hidden">
-                <img
-                  src={previewUrl}
-                  alt={`${name} preview`}
-                  className="w-auto"
-                  style={{ maxWidth: "240px", maxHeight: "160px", objectFit: "cover" }}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {badge}
     </Tag>
   );
 }
