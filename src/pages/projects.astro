@@ -203,6 +203,10 @@ const projects = [...staticProjects, ...ghProjects].filter(
 
 </BaseLayout>
 
+<style is:global>
+  .hidden-card { display: none !important; }
+</style>
+
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".card").forEach((card) => {
@@ -227,8 +231,12 @@ const projects = [...staticProjects, ...ghProjects].filter(
         const desc = card.getAttribute("data-search-desc") || "";
         const tags = card.getAttribute("data-search-tags") || "";
         const match = !q || name.includes(q) || desc.includes(q) || tags.includes(q);
-        card.style.display = match ? "" : "none";
-        if (match) visible++;
+        if (match) {
+          card.classList.remove("hidden-card");
+          visible++;
+        } else {
+          card.classList.add("hidden-card");
+        }
       });
       if (count) {
         count.textContent = q
