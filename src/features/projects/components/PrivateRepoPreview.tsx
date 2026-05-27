@@ -86,15 +86,13 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
       href={href}
       target={href ? "_blank" : undefined}
       rel={href ? "noopener" : undefined}
-      className="relative inline-flex font-medium min-w-0 cursor-pointer"
+      className="group/l relative inline-flex font-medium min-w-0 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span
-        className="truncate underline-offset-2 decoration-1 decoration-neutral-400/30 dark:decoration-neutral-600/30"
-        style={{ textDecoration: isHovered ? "underline" : "none" }}
-      >
+      <span className="relative truncate">
         {name}
+        <span className="absolute left-0 bottom-0 h-px w-0 bg-current opacity-30 transition-all duration-200 group-hover/l:w-full"></span>
       </span>
       {badge}
     </Tag>
