@@ -94,8 +94,8 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 // Tiene prioridad sobre los archivos en public/logos/.
 const REPO_LOGOS: Record<string, string> = {
   origin: "https://invault.vercel.app/uploads/2026/05/27/VyTgkyii.jpg",
-  relay: "https://invault.vercel.app/uploads/2026/05/27/X5SkYRDI.jpg",
-  chrono: "https://invault.vercel.app/uploads/2026/05/27/LqZnEGLH.jpg",
+  relay: "https://invault.vercel.app/uploads/2026/05/28/Y2CeUQ7B.png",
+  chrono: "https://invault.vercel.app/uploads/2026/05/28/BNfJOUoz.png",
   "nora-core": "https://invault.vercel.app/uploads/2026/05/27/6obODEeU.jpg",
   ignite: "https://invault.vercel.app/uploads/2026/05/27/7Xk7EGzo.png",
   diagnost: "https://invault.vercel.app/uploads/2026/05/27/QKmFqRBh.jpg",
