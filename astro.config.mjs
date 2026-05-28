@@ -8,27 +8,16 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: "https://www.cristhobal.cl",
 
-  // SSR: cada request resuelve el idioma del usuario en el servidor
-  // (cookie `portfolio-lang` → `Accept-Language` → fallback "en") vía
-  // `detectServerLang` en `src/i18n/server-lang.ts`. Esto elimina el flash
-  // de inglés en la primera visita.
-  // Páginas estáticas que no necesitan i18n (ej. /og.png) pueden opt-in al
-  // prerender con `export const prerender = true;` en su frontmatter.
-  output: "server",
+  // Site mayoritariamente estático (rápido y barato). El idioma se detecta
+  // client-side en `src/i18n/translate.astro` vía `navigator.languages` →
+  // localStorage → fallback "en". El body queda invisible hasta que el swap
+  // termina (atributo `data-i18n-loading`), así que no hay flash de inglés.
+  // Páginas que necesiten datos en vivo (ej. /og.png) opt-out con
+  // `export const prerender = false;`.
+  output: "static",
   adapter: vercel(),
 
-  integrations: [
-    react(),
-    sitemap({
-      // En `output: "server"` el sitemap no descubre rutas automáticamente
-      // (no hay prerender que enumerar). Las listamos explícitamente aquí.
-      customPages: [
-        "https://www.cristhobal.cl/",
-        "https://www.cristhobal.cl/experience",
-        "https://www.cristhobal.cl/projects",
-      ],
-    }),
-  ],
+  integrations: [react(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],
