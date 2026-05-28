@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import { Meteors } from "@/shared/ui/meteors";
-import { BlurFade } from "@/shared/ui/blur-fade";
 import { Marquee } from "@/shared/ui/marquee";
 import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
@@ -189,27 +188,25 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
 
       <main class="flex flex-col gap-10 sm:gap-12 md:gap-14 flex-1">
         <!-- About -->
-        <BlurFade client:load>
-          <section id="section-about" aria-label="About me">
-            <p
-              class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
-            >
-              <span data-i18n="about.prefix">I'm </span>
-              <span class="font-bold tracking-tight">Cristhobal</span><span data-i18n="about.suffix" data-i18n-vars={JSON.stringify({ years: anios })}>. Fullstack developer based in Chile. Over {anios}+ years of experience
-              turning complex challenges into clean, functional systems — from
-              web platforms and administrative tools to custom FiveM scripts.</span>
-            </p>
-            <slot />
-          </section>
-        </BlurFade>
+        <section id="section-about" aria-label="About me" class="fade-up-section" style="--delay: 0ms">
+          <p
+            class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+          >
+            <span data-i18n="about.prefix">I'm </span>
+            <span class="font-bold tracking-tight">Cristhobal</span><span data-i18n="about.suffix" data-i18n-vars={JSON.stringify({ years: anios })}>. Fullstack developer based in Chile. Over {anios}+ years of experience
+            turning complex challenges into clean, functional systems — from
+            web platforms and administrative tools to custom FiveM scripts.</span>
+          </p>
+          <slot />
+        </section>
 
         <!-- Projects -->
-        <BlurFade client:load delay={0.1}>
-          <section
-            id="section-projects"
-            aria-label="Featured projects"
-            class="flex flex-col space-y-4 sm:space-y-5"
-          >
+        <section
+          id="section-projects"
+          aria-label="Featured projects"
+          class="flex flex-col space-y-4 sm:space-y-5 fade-up-section"
+          style="--delay: 100ms"
+        >
             <div class="flex w-full items-center justify-between">
               <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="projects.title">Projects</h2>
               {hasMoreProjects && (
@@ -362,15 +359,14 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               }
             </div>
           </section>
-        </BlurFade>
 
         <!-- Experience -->
-        <BlurFade client:load delay={0.1}>
-          <section
-            id="section-experience"
-            aria-label="Work experience"
-            class="flex flex-col space-y-4 sm:space-y-5"
-          >
+        <section
+          id="section-experience"
+          aria-label="Work experience"
+          class="flex flex-col space-y-4 sm:space-y-5 fade-up-section"
+          style="--delay: 100ms"
+        >
             <div class="flex w-full items-center justify-between">
               <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="experience.title">Experience</h2>
               <a
@@ -454,22 +450,21 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               }
             </ol>
           </section>
-        </BlurFade>
 
         <!-- Technologies / Skills -->
-        <BlurFade client:load delay={0.2}>
-          <section
-            id="section-skills"
-            aria-label="Technologies and skills"
-            class="flex flex-col space-y-4 sm:space-y-5"
-          >
+        <section
+          id="section-skills"
+          aria-label="Technologies and skills"
+          class="flex flex-col space-y-4 sm:space-y-5 fade-up-section"
+          style="--delay: 200ms"
+        >
             <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="skills.title">Skills</h2>
             <!--
             Magic UI Marquee — dos filas opuestas con ralentización en hover.
             Sin `client:load`: el componente es 100% SSR. La animación de scroll
             es CSS (animate-marquee) y el slow-on-hover lo maneja un script inline
             al final del archivo (vía Web Animations API). Esto evita anidar
-            islands React dentro de <BlurFade client:load>, lo que rompía la
+            islands React, lo que rompía la
             animación de entrada del padre.
             Las gradientes laterales (from-background → transparente) crean el
             típico fade en los bordes para que las cards "aparezcan" suavemente.
@@ -530,7 +525,6 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               </div>
             </div>
           </section>
-        </BlurFade>
       </main>
     </div>
 

@@ -1,8 +1,6 @@
 ---
 import "../styles/global.css";
 import { Meteors } from "@/shared/ui/meteors";
-import { METEORS_ENABLED } from "@/shared/config/site";
-import { BlurFade } from "@/shared/ui/blur-fade";
 import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
 import Translate from "@/i18n/translate.astro";
@@ -116,13 +114,9 @@ const fullTitle =
     >
       <Header />
       <main class="flex-1 pb-4">
-        <BlurFade
-          client:load
-          inView
-          className="flex flex-col gap-6 sm:gap-8 md:gap-10"
-        >
+        <div class="flex flex-col gap-6 sm:gap-8 md:gap-10">
           <slot />
-        </BlurFade>
+        </div>
       </main>
     </div>
 

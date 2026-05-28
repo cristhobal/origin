@@ -354,6 +354,33 @@
 }
 
 /* -------------------- */
+/* FADE UP SECTION      */
+/* -------------------- */
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-section {
+  opacity: 0;
+  animation: fade-up-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up-section {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* -------------------- */
 /* BLUR FADE IN         */
 /* -------------------- */
 /* Entrada elegante: la sección parte con blur + opacidad 0 + leve desplazamiento

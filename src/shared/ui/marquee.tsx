@@ -23,8 +23,8 @@ interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
    *     (cambiar `animation-duration` en CSS produce saltos al recalcular el
    *     progreso contra la nueva duración).
    *  2) Mantener la lógica fuera del componente React permite que el Marquee
-   *     no necesite `client:load`. Esto evita anidar islands React dentro de
-   *     <BlurFade client:load>, lo que rompía la animación de entrada del padre.
+   *     no necesite `client:load`. Esto evita anidar islands React,
+   *     lo que rompía la animación de entrada del padre.
    */
   pauseOnHover?: boolean
   /**
