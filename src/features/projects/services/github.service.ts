@@ -105,7 +105,7 @@ const REPO_LOGOS: Record<string, string> = {
 
 // Preview images for private repos (screenshot/preview of the site)
 const REPO_PREVIEWS: Record<string, string> = {
-  vault: "https://invault.vercel.app/OM6DBx0P.png",
+  vault: "https://invault.vercel.app/IdcC7sAA.png",
   chrono: "https://invault.vercel.app/b86pFC3k.png",
   ignite: "https://invault.vercel.app/1Z2v0WVp.jpg",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
