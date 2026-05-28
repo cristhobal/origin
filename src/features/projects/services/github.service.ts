@@ -96,7 +96,7 @@ const REPO_LOGOS: Record<string, string> = {
   origin: "https://invault.vercel.app/uploads/2026/05/27/VyTgkyii.jpg",
   relay: "https://invault.vercel.app/uploads/2026/05/27/X5SkYRDI.jpg",
   chrono: "https://invault.vercel.app/uploads/2026/05/27/LqZnEGLH.jpg",
-  "nora-core": "https://invault.vercel.app/uploads/2026/05/27/pgZXx2Vg.jpg",
+  "nora-core": "https://invault.vercel.app/uploads/2026/05/27/6obODEeU.jpg",
   ignite: "https://invault.vercel.app/uploads/2026/05/27/7Xk7EGzo.png",
   diagnost: "https://invault.vercel.app/uploads/2026/05/27/QKmFqRBh.jpg",
   vault: "https://invault.vercel.app/uploads/2026/05/27/xGMbw6Y3.jpg",
