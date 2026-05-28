@@ -93,21 +93,21 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 // Útil si quieres usar una URL externa en vez de un archivo local.
 // Tiene prioridad sobre los archivos en public/logos/.
 const REPO_LOGOS: Record<string, string> = {
-  origin: "https://invault.vercel.app/uploads/UcYjOmWu.jpg",
-  relay: "https://invault.vercel.app/uploads/OD5ZCSBX.png",
-  chrono: "https://invault.vercel.app/uploads/aDzXT4UM.png",
-  "nora-core": "https://invault.vercel.app/uploads/HbrYquvB.jpg",
-  ignite: "https://invault.vercel.app/uploads/LjEb82Rf.png",
-  diagnost: "https://invault.vercel.app/uploads/UMYgf9dm.jpg",
-  vault: "https://invault.vercel.app/uploads/rRdishgY.jpg",
+  origin: "https://invault.vercel.app/oiF5nnp0.jpg",
+  relay: "https://invault.vercel.app/rUZx5bsI.png",
+  chrono: "https://invault.vercel.app/w0hdgLbA.png",
+  "nora-core": "https://invault.vercel.app/Kuj5vYtV.jpg",
+  ignite: "https://invault.vercel.app/DYJdhoHx.png",
+  diagnost: "https://invault.vercel.app/bhvr8giT.jpg",
+  vault: "https://invault.vercel.app/R0JspyrE.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
 // Preview images for private repos (screenshot/preview of the site)
 const REPO_PREVIEWS: Record<string, string> = {
-  vault: "https://invault.vercel.app/uploads/UQTr6s1Y.png",
-  chrono: "https://invault.vercel.app/uploads/EogAKRVz.png",
-  ignite: "https://invault.vercel.app/uploads/3o3jGKFI.jpg",
+  vault: "https://invault.vercel.app/OM6DBx0P.png",
+  chrono: "https://invault.vercel.app/b86pFC3k.png",
+  ignite: "https://invault.vercel.app/1Z2v0WVp.jpg",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
 };
 
