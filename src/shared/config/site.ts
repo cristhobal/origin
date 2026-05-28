@@ -1,3 +1,3 @@
 export const GITHUB_USERNAME = "cristhobal";
 export const SITE_URL = "https://www.cristhobal.cl";
-export const METEORS_ENABLED = true;
+export const METEORS_ENABLED = false;
