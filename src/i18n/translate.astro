@@ -349,27 +349,22 @@
           "\u0905\u0928\u0941\u092a\u0932\u092c\u094d\u0927",
       },
     };
-    // Detection order:
-    //   1. `portfolio-lang` localStorage  → user's explicit pick (sticky).
-    //   2. `navigator.languages` / `language` → browser preference on first visit.
-    //      (The site is `output: "static"`, so <html lang> is hardcoded "en"
-    //       at build time and can't reflect the visitor — we resolve it here.)
-    //   3. `<html lang>` if it happens to be a supported lang.
-    //   4. "en" fallback.
+    // The server (`detectServerLang` in BaseLayout.astro) already resolved
+    // the user's language from the cookie + Accept-Language header and
+    // emitted it on <html lang>. We trust that as the source of truth.
+    //
+    // The only exception is when the user has an explicit manual pick in
+    // localStorage that differs from what the server picked — that can
+    // happen if the cookie expired or was cleared while localStorage
+    // persisted. In that case honour the user's pick.
     const SUPPORTED = ["en", "zh", "hi", "es", "fr"];
     const htmlLang = document.documentElement.lang;
     const saved = localStorage.getItem("portfolio-lang");
-    let lang = saved && SUPPORTED.includes(saved) ? saved : null;
-    if (!lang) {
-      const prefs = (navigator.languages && navigator.languages.length
-        ? navigator.languages
-        : [navigator.language || ""]);
-      for (const pref of prefs) {
-        const code = (pref || "").split("-")[0].toLowerCase();
-        if (SUPPORTED.includes(code)) { lang = code; break; }
-      }
+    let lang = SUPPORTED.includes(htmlLang) ? htmlLang : "en";
+    if (saved && SUPPORTED.includes(saved) && saved !== lang) {
+      lang = saved;
+      if (document.documentElement.lang !== lang) document.documentElement.lang = lang;
     }
-    if (!lang) lang = SUPPORTED.includes(htmlLang) ? htmlLang : "en";
     localStorage.setItem("portfolio-lang", lang);
     // Sync the cookie so the next SSR request uses the right language.
     document.cookie = "portfolio-lang=" + lang + "; path=/; max-age=31536000; samesite=lax";

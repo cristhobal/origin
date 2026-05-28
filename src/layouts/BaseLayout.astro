@@ -5,12 +5,25 @@ import { BlurFade } from "@/shared/ui/blur-fade";
 import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
 import Translate from "@/i18n/translate.astro";
+import { detectServerLang } from "@/i18n/server-lang";
 
-// Note: this site is `output: "static"` so we can't resolve the user's
-// language at build time. The `<html lang>` defaults to "en" and is
-// updated client-side by translate.astro (which also keeps the
-// `portfolio-lang` cookie in sync, ready for a future SSR migration via
-// `detectServerLang` from @/i18n/server-lang).
+// SSR-resolved language. Source order:
+//   1. `portfolio-lang` cookie (the language switcher writes both cookie +
+//      localStorage so the user's pick survives reloads).
+//   2. `Accept-Language` request header (browser preference on first visit).
+//   3. "en" fallback.
+// The resolved value lands in `<html lang>` directly so the page renders
+// with the right `lang` attribute before any JS runs — no flash, correct SEO.
+const serverLang = detectServerLang(Astro.request);
+
+// Locale tag for OG (`og:locale` expects underscored regional codes).
+const ogLocale = {
+  en: "en_US",
+  es: "es_ES",
+  fr: "fr_FR",
+  zh: "zh_CN",
+  hi: "hi_IN",
+}[serverLang];
 
 export interface Props {
   title?: string;
@@ -33,7 +46,7 @@ const fullTitle =
 ---
 
 <!doctype html>
-<html lang="en" data-i18n-loading>
+<html lang={serverLang} data-i18n-loading>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -82,7 +95,7 @@ const fullTitle =
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Cristhobal Canales" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:image" content="https://www.cristhobal.cl/og.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
