@@ -95,7 +95,7 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 const REPO_LOGOS: Record<string, string> = {
   origin: "https://invault.vercel.app/uploads/2026/05/27/VyTgkyii.jpg",
   relay: "https://invault.vercel.app/uploads/2026/05/28/U5YkcU8V.png",
-  chrono: "https://invault.vercel.app/uploads/2026/05/28/BNfJOUoz.png",
+  chrono: "https://invault.vercel.app/uploads/2026/05/28/5WYBLeNo.png",
   "nora-core": "https://invault.vercel.app/uploads/2026/05/27/6obODEeU.jpg",
   ignite: "https://invault.vercel.app/uploads/2026/05/27/7Xk7EGzo.png",
   diagnost: "https://invault.vercel.app/uploads/2026/05/27/QKmFqRBh.jpg",
