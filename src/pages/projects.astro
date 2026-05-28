@@ -109,8 +109,8 @@ const projects = [...staticProjects, ...ghProjects]
               <!-- Header -->
               <div class="flex w-full items-center justify-between">
                 <div class="flex items-center space-x-2.5 min-w-0">
-                  {project.logo && (
-                    <img src={project.logo} alt={project.name} class="h-4 w-auto flex-shrink-0" />
+                    {project.logo && (
+                      <img src={project.logo} alt={project.name} class="size-6 flex-shrink-0 object-contain" />
                   )}
                   {project.isPrivate && project.preview ? (
                     <PrivateRepoPreview
