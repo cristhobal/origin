@@ -354,65 +354,84 @@
 }
 
 /* -------------------- */
-/* FADE UP SECTION — animación de entrada */
+/* SECTION ENTRANCE ANIMATIONS — fade-up & fade-down                  */
+/* Estilo "premium": opacity + translate3d + scale sutil + blur.       */
+/* Se dispara DESPUÉS del swap de i18n (cuando se quita               */
+/* `data-i18n-loading` del <html>), así nunca se pierden frames       */
+/* detrás del visibility:hidden del body durante la traducción.       */
 /* -------------------- */
+
 @keyframes fade-up-in {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translate3d(0, 14px, 0) scale(0.985);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
   }
 }
 
-.fade-up-section {
-  opacity: 0;
-  animation: fade-up-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: var(--delay, 0ms);
-}
-
-/* Force animation replay on load (no caching de frames) */
-.fade-up-section {
-  animation-composition: separate;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-up-section {
-    opacity: 1;
-    animation: none;
-  }
-}
-
-/* -------------------- */
-/* FADE DOWN SECTION — animación de entrada desde arriba */
-/* -------------------- */
 @keyframes fade-down-in {
   from {
     opacity: 0;
-    transform: translateY(-24px);
+    transform: translate3d(0, -14px, 0) scale(0.985);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
   }
 }
 
+.fade-up-section,
 .fade-down-section {
+  /* Estado inicial congelado: ocultos hasta que i18n haya terminado.
+     Sin esto, el body aparece a mitad de la animación y se ve un salto. */
   opacity: 0;
-  animation: fade-down-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: var(--delay, 0ms);
+  filter: blur(8px);
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.fade-up-section {
+  transform: translate3d(0, 14px, 0) scale(0.985);
 }
 
 .fade-down-section {
-  animation-composition: separate;
+  transform: translate3d(0, -14px, 0) scale(0.985);
+}
+
+/* Arranca SOLO cuando el i18n terminó (translate.astro removió
+   `data-i18n-loading` del <html>). Garantiza que el usuario ve la
+   animación completa desde el frame 0. */
+html:not([data-i18n-loading]) .fade-up-section {
+  animation: fade-up-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+html:not([data-i18n-loading]) .fade-down-section {
+  animation: fade-down-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+/* Limpia `will-change` después de que termina la animación para
+   liberar recursos del compositor. */
+.fade-up-section,
+.fade-down-section {
+  animation-fill-mode: both;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .fade-up-section,
   .fade-down-section {
     opacity: 1;
-    animation: none;
+    transform: none;
+    filter: none;
+    will-change: auto;
+    animation: none !important;
   }
 }
 

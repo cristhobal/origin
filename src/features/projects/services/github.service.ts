@@ -93,7 +93,7 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 // Útil si quieres usar una URL externa en vez de un archivo local.
 // Tiene prioridad sobre los archivos en public/logos/.
 const REPO_LOGOS: Record<string, string> = {
-  origin: "https://invault.vercel.app/uploads/2026/05/27/VyTgkyii.jpg",
+  origin: "https://invault.vercel.app/uiziRIhz.jpg",
   relay: "https://invault.vercel.app/uploads/2026/05/28/U5YkcU8V.png",
   chrono: "https://invault.vercel.app/uploads/2026/05/28/5WYBLeNo.png",
   "nora-core": "https://invault.vercel.app/uploads/2026/05/27/6obODEeU.jpg",
