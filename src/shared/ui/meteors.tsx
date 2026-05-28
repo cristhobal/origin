@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { cn } from "@/shared/utils/cn"
 
 interface MeteorsProps {
+  enabled?: boolean
   number?: number
   minDelay?: number
   maxDelay?: number
@@ -13,6 +14,7 @@ interface MeteorsProps {
 }
 
 export const Meteors = ({
+  enabled = true,
   number = 20,
   minDelay = 0.2,
   maxDelay = 1.2,
@@ -26,6 +28,11 @@ export const Meteors = ({
   )
 
   useEffect(() => {
+    if (!enabled) {
+      setMeteorStyles([])
+      return
+    }
+
     const styles = [...new Array(number)].map(() => ({
       "--angle": -angle + "deg",
       top: "-5%",
@@ -36,7 +43,9 @@ export const Meteors = ({
         "s",
     }))
     setMeteorStyles(styles)
-  }, [number, minDelay, maxDelay, minDuration, maxDuration, angle])
+  }, [number, minDelay, maxDelay, minDuration, maxDuration, angle, enabled])
+
+  if (!enabled) return null
 
   return (
     <>

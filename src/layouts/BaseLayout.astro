@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { Meteors } from "@/shared/ui/meteors";
+import { METEORS_ENABLED } from "@/shared/config/site";
 import { BlurFade } from "@/shared/ui/blur-fade";
 import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
@@ -104,9 +105,9 @@ const fullTitle =
   </head>
 
   <body class="bg-background text-foreground min-h-screen flex flex-col">
-    <div class="fixed inset-0 -z-10 pointer-events-none flex justify-center">
+    <div class="fixed inset-0 z-60 pointer-events-none flex justify-center">
       <div class="relative w-full max-w-4xl overflow-hidden">
-        <Meteors client:load />
+        <Meteors client:load enabled={METEORS_ENABLED} />
       </div>
     </div>
 
