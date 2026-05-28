@@ -10,7 +10,7 @@ import { experiences } from "@/features/experience/data";
 >
 
   <!-- Page header -->
-  <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800">
+  <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800 fade-down-section" style="--delay: 0ms">
     <nav class="flex items-center gap-1.5 text-xs text-neutral-400 dark:text-neutral-600 mb-3 sm:mb-4 font-mono" aria-label="Breadcrumb">
       <a href="/" class="hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors duration-150" aria-label="Home">~</a>
       <span aria-hidden="true">/</span>
@@ -23,7 +23,7 @@ import { experiences } from "@/features/experience/data";
   </div>
 
   <!-- Timeline -->
-  <ol>
+  <ol class="fade-down-section" style="--delay: 100ms">
     {
       experiences.map((exp, index) => {
         const isLast = index === experiences.length - 1;
@@ -96,7 +96,7 @@ import { experiences } from "@/features/experience/data";
   </ol>
 
   <!-- Footer note -->
-  <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right" data-i18n="experience.count" data-i18n-vars={JSON.stringify({ count: experiences.length })}>
+  <p class="text-xs text-neutral-400 dark:text-neutral-600 text-right fade-down-section" data-i18n="experience.count" data-i18n-vars={JSON.stringify({ count: experiences.length })} style="--delay: 200ms">
     {experiences.length} positions in total
   </p>
 
