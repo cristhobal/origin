@@ -93,21 +93,21 @@ const PRIVATE_REPO_TOPIC_FILTER = "";
 // Útil si quieres usar una URL externa en vez de un archivo local.
 // Tiene prioridad sobre los archivos en public/logos/.
 const REPO_LOGOS: Record<string, string> = {
-  origin: "https://i.ibb.co/PGnJXjsj/origin.png",
-  relay: "https://i.ibb.co/3mjbVK8B/relay.jpg",
-  chrono: "https://i.ibb.co/Gf6gsmLP/chrono.jpg",
-  "nora-core": "https://i.ibb.co/dwvZfL2c/nora-core.png",
-  ignite: "https://i.ibb.co/1t9x0qpH/ignite.jpg",
-  diagnost: "https://i.ibb.co/0RzmNbJp/diagnost.jpg",
-  vault: "https://i.ibb.co/gbdm1Dc5/vault.jpg",
+  origin: "https://invault.vercel.app/uploads/2026/05/27/N3jkH29p.png",
+  relay: "https://invault.vercel.app/uploads/2026/05/27/X5SkYRDI.jpg",
+  chrono: "https://invault.vercel.app/uploads/2026/05/27/LqZnEGLH.jpg",
+  "nora-core": "https://invault.vercel.app/uploads/2026/05/27/pgZXx2Vg.jpg",
+  ignite: "https://invault.vercel.app/uploads/2026/05/27/7Xk7EGzo.png",
+  diagnost: "https://invault.vercel.app/uploads/2026/05/27/QKmFqRBh.jpg",
+  vault: "https://invault.vercel.app/uploads/2026/05/27/xGMbw6Y3.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
 // Preview images for private repos (screenshot/preview of the site)
 const REPO_PREVIEWS: Record<string, string> = {
-  vault: "https://i.ibb.co/BFxJHhH/vault.png",
-  chrono: "https://i.ibb.co/TMSjJbp7/chrono.png",
-  ignite: "https://i.ibb.co/TqtTPmjY/ignite-2.jpg",
+  vault: "https://invault.vercel.app/uploads/2026/05/27/Y4A6HWIe.png",
+  chrono: "https://invault.vercel.app/uploads/2026/05/27/ArgrRzL7.png",
+  ignite: "https://invault.vercel.app/uploads/2026/05/27/reheFnPb.jpg",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
 };
 
