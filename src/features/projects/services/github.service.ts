@@ -101,6 +101,7 @@ const REPO_LOGOS: Record<string, string> = {
   diagnost: "https://invault.vercel.app/bhvr8giT.jpg",
   vault: "https://invault.vercel.app/R0JspyrE.jpg",
   spacer: "https://invault.vercel.app/U19H1vbb.jpg",
+  flux: "https://invault.vercel.app/pr1FtCIa.png",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
