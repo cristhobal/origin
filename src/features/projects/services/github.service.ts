@@ -100,6 +100,7 @@ const REPO_LOGOS: Record<string, string> = {
   ignite: "https://invault.vercel.app/DYJdhoHx.png",
   diagnost: "https://invault.vercel.app/bhvr8giT.jpg",
   vault: "https://invault.vercel.app/R0JspyrE.jpg",
+  spacer: "https://invault.vercel.app/U19H1vbb.jpg",
   // "mi-repo": "https://cdn.example.com/logo.png",
 };
 
