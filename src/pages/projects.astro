@@ -6,6 +6,7 @@ import { fetchGitHubProjects, HIDDEN_REPOS } from "@/features/projects/services/
 import { getTagIcon, scopeSvg } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
+import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 
 // 👇 Cache en el CDN de Vercel: la respuesta se sirve desde edge cache
 //    durante 5 min (s-maxage=300). Despues de ese rato, el primer visitante
@@ -37,6 +38,8 @@ const projects = [...staticProjects, ...ghProjects]
       new Date(b.createdAt ?? 0).getTime() -
       new Date(a.createdAt ?? 0).getTime(),
   );
+
+const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
 
 ---
 
@@ -111,9 +114,11 @@ const projects = [...staticProjects, ...ghProjects]
               <!-- Header -->
               <div class="flex w-full items-center justify-between">
                 <div class="flex items-center space-x-2.5 min-w-0">
-                    {project.logo && (
-                      <img src={project.logo} alt={project.name} class="size-6 flex-shrink-0 object-contain" />
-                  )}
+                  {project.logo && isInlineSvgLogo(project.logo) ? (
+                    <ProjectLogo logo={project.logo} name={project.name} />
+                  ) : project.logo ? (
+                    <img src={project.logo} alt={project.name} class="h-[14px] w-auto flex-shrink-0 object-contain" />
+                  ) : null}
                   {project.isPrivate && project.preview ? (
                     <PrivateRepoPreview
                       client:load

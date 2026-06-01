@@ -1,5 +1,6 @@
 ---
 import { getTagIcon } from "@/shared/icons";
+import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 
 export interface Tag {
   name: string;
@@ -25,6 +26,7 @@ const {
   isPrivate = false,
   tags = [],
 } = Astro.props;
+const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
 ---
 
 <div
@@ -39,11 +41,11 @@ const {
       <!-- HEADER -->
       <div class="flex w-full items-center justify-between">
         <div class="flex items-center space-x-2.5">
-          {
-            logo && (
-              <img src={logo} alt={name} class="h-4 w-auto" />
-            )
-          }
+          {logo && isInlineSvgLogo(logo) ? (
+            <ProjectLogo logo={logo} name={name} />
+          ) : logo ? (
+            <img src={logo} alt={name} class="h-[14px] w-auto" />
+          ) : null}
           {
             href ? (
               <a

@@ -1,0 +1,44 @@
+---
+export interface Props {
+  logo?: string;
+  name: string;
+  class?: string;
+}
+
+const { logo, name, class: className = "" } = Astro.props;
+const logoMarkup = logo?.trim();
+const isInlineSvg = logoMarkup?.startsWith("<svg");
+const inlineSvg = isInlineSvg
+  ? logoMarkup.replace(/<svg\b([^>]*)>/i, (_, attrs: string) => {
+      const normalizedAttrs = attrs
+        .replace(/\sstyle="[^"]*"/i, "")
+        .trim();
+      const fillAttr = /\sfill=/i.test(normalizedAttrs)
+        ? ""
+        : ' fill="currentColor"';
+
+      return `<svg ${normalizedAttrs}${fillAttr} style="background: transparent; color: inherit;">`;
+    })
+  : undefined;
+---
+
+{
+  logoMarkup &&
+    (isInlineSvg ? (
+      <span
+        role="img"
+        aria-label={`${name} logo`}
+        class:list={[
+          "inline-flex shrink-0 items-center justify-center bg-transparent text-inherit [&>svg]:block [&>svg]:shrink-0 [&>svg]:bg-transparent",
+          className,
+        ]}
+        set:html={inlineSvg}
+      />
+    ) : (
+      <img
+        src={logoMarkup}
+        alt={name}
+        class:list={["size-6 shrink-0 object-contain", className]}
+      />
+    ))
+}
