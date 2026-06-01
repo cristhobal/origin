@@ -1,4 +1,8 @@
 ---
+// SSR: mantiene /projects sincronizado con GitHub igual que la home.
+// Si se elimina un repositorio, desaparece sin esperar un nuevo build.
+export const prerender = false;
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { projects as staticProjects } from "@/features/projects/data";
 import { GITHUB_USERNAME } from "@/shared/config/site";
@@ -8,18 +12,8 @@ import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 
-// 👇 Cache en el CDN de Vercel: la respuesta se sirve desde edge cache
-//    durante 5 min (s-maxage=300). Despues de ese rato, el primer visitante
-//    ve la version "stale" al instante mientras Vercel revalida en background
-//    (stale-while-revalidate=86400 = hasta 24h).
-//
-//    Resultado: cambios en GitHub aparecen en <= ~5 min, sin que NADIE
-//    espere por la API de GitHub. Ajusta s-maxage si quieres mas frescura
-//    (ojo con el rate limit de GitHub: 5000 req/h con token).
-Astro.response.headers.set(
-  "Cache-Control",
-  "public, s-maxage=300, stale-while-revalidate=86400",
-);
+// Evita que Vercel sirva HTML viejo cuando cambia la lista de repos.
+Astro.response.headers.set("Cache-Control", "no-store");
 
 // Trae repos de GitHub y combina con los proyectos estáticos
 let ghProjects = [];
