@@ -169,7 +169,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
               </div>
 
               <!-- Description -->
-              <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400" data-i18n={`repo.${project.name}.desc`}>
+              <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400" data-i18n={`repo.${project.name}.desc`} data-i18n-title title={project.description}>
                 {project.description}
               </p>
 

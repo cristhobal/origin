@@ -438,8 +438,16 @@
           vars = JSON.parse(varsAttr);
         } catch {}
       }
-      let text = t[lang]?.[key] || t["en"]?.[key] || key;
+      let text =
+        t[lang]?.[key] ||
+        t["en"]?.[key] ||
+        el.getAttribute("title") ||
+        el.textContent ||
+        key;
       text = text.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? `{${k}}`);
+      if (el.hasAttribute("data-i18n-title")) {
+        el.setAttribute("title", text);
+      }
       if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
         el.setAttribute("placeholder", text);
       } else {
