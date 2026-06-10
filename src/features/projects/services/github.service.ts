@@ -594,6 +594,7 @@ const REPO_PREVIEWS: Record<string, string> = {
   vault: "https://invault.vercel.app/IdcC7sAA.png",
   chrono: "https://invault.vercel.app/b86pFC3k.png",
   ignite: "https://invault.vercel.app/1Z2v0WVp.jpg",
+  hush: "https://invault.vercel.app/Ol2slahd.jpg",
   // "mi-repo-privado": "https://cdn.example.com/preview.jpg",
 };
 
