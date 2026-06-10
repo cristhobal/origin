@@ -223,6 +223,29 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
+    const countMessages = {
+      en: {
+        total: "{count} projects in total",
+        filtered: "{visible} of {total} projects",
+      },
+      es: {
+        total: "{count} proyectos en total",
+        filtered: "{visible} de {total} proyectos",
+      },
+      fr: {
+        total: "{count} projets au total",
+        filtered: "{visible} sur {total} projets",
+      },
+      zh: {
+        total: "共 {count} 个项目",
+        filtered: "{visible} / {total} 个项目",
+      },
+      hi: {
+        total: "कुल {count} परियोजनाएं",
+        filtered: "{total} में से {visible} परियोजनाएं",
+      },
+    };
+
     document.querySelectorAll(".card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const rect = card.getBoundingClientRect();
@@ -234,6 +257,18 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
     const search = document.getElementById("project-search");
     const cards = document.querySelectorAll("[data-search-name]");
     const count = document.getElementById("project-count");
+    const getLang = () => {
+      const lang = (document.documentElement.lang || "en").split("-")[0];
+      return countMessages[lang] ? lang : "en";
+    };
+    const renderCount = (visible, total, hasQuery) => {
+      const messages = countMessages[getLang()];
+      const template = hasQuery ? messages.filtered : messages.total;
+      return template
+        .replace("{visible}", String(visible))
+        .replace("{total}", String(total))
+        .replace("{count}", String(total));
+    };
 
     if (!search || !cards.length) return;
 
@@ -253,9 +288,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
         }
       });
       if (count) {
-        count.textContent = q
-          ? `${visible} of ${cards.length} projects`
-          : `${cards.length} projects in total`;
+        count.textContent = renderCount(visible, cards.length, Boolean(q));
       }
     }
 
