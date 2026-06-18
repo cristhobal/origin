@@ -396,7 +396,9 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             </div>
             <ol>
               {
-                featuredExperience.map((exp, expIdx) => (
+                featuredExperience.map((exp, expIdx) => {
+                  const translationKey = exp.translationKey ?? `exp.${expIdx}`;
+                  return (
                   <li
                     class="grid gap-x-3"
                     style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
@@ -404,7 +406,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                     <div class="flex items-center justify-center">
                       <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800" />
                     </div>
-                    <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center" data-i18n={`exp.${expIdx}.period`}>
+                    <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center" data-i18n={`${translationKey}.period`}>
                       {exp.period}
                     </time>
                     <div class="flex justify-center">
@@ -412,7 +414,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                     </div>
                     <div class="mt-2 pb-2">
                       <div class="flex flex-col space-y-1">
-                        <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`exp.${expIdx}.role`}>
+                        <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`${translationKey}.role`}>
                           {exp.role}
                         </h3>
                         {exp.companyUrl ? (
@@ -422,7 +424,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             rel="noopener"
                             class="group/c flex w-max items-center text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
                           >
-                            <span data-i18n={`exp.${expIdx}.company`}>{exp.company}</span>
+                            <span data-i18n={`${translationKey}.company`}>{exp.company}</span>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="12"
@@ -440,17 +442,18 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             </svg>
                           </a>
                         ) : (
-                          <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400" data-i18n={`exp.${expIdx}.company`}>
+                          <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400" data-i18n={`${translationKey}.company`}>
                             {exp.company}
                           </p>
                         )}
                       </div>
-                      <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed" data-i18n={`exp.${expIdx}.desc`}>
+                      <p class="mt-2 sm:mt-3 text-pretty text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed" data-i18n={`${translationKey}.desc`}>
                         {exp.description}
                       </p>
                     </div>
                   </li>
-                ))
+                  );
+                })
               }
             </ol>
           </section>
