@@ -2,7 +2,7 @@
 
 <br />
 
-<img src="https://i.postimg.cc/gc7c8fqM/preview.png" alt="origin preview" width="100%" />
+<img src="https://i.postimg.cc/C1X2FVFN/origin.png" alt="origin preview" width="100%" />
 
 <br />
 <br />
