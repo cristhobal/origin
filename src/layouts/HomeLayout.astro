@@ -6,6 +6,7 @@ import Header from "@/shared/components/Header.astro";
 import Footer from "@/shared/components/Footer.astro";
 import { projects as staticProjects } from "@/features/projects/data";
 import { experiences } from "@/features/experience/data";
+import { education } from "@/features/education/data";
 import { technologies } from "@/features/technologies/data";
 import { GITHUB_USERNAME, METEORS_ENABLED } from "@/shared/config/site";
 import {
@@ -457,6 +458,66 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               }
             </ol>
           </section>
+
+        <!-- Education -->
+        <section
+          id="section-education"
+          aria-label="Education"
+          class="flex flex-col space-y-4 sm:space-y-5 fade-down-section"
+          style="--delay: 200ms"
+        >
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="education.title">Education</h2>
+            <ol>
+              {
+                education.map((edu) => (
+                  <li
+                    class="grid gap-x-3"
+                    style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
+                  >
+                    <div class="flex items-center justify-center">
+                      <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800" />
+                    </div>
+                    <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center" data-i18n={`${edu.translationKey}.period`}>
+                      {edu.period}
+                    </time>
+                    <div class="flex justify-center">
+                      <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800" />
+                    </div>
+                    <div class="mt-2 pb-2">
+                      <div class="flex flex-col min-w-0">
+                        <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`${edu.translationKey}.degree`}>
+                          {edu.degree}
+                        </h3>
+                        <a
+                          href="https://portal.inacap.cl/"
+                          target="_blank"
+                          rel="noopener"
+                          class="group/c flex w-max items-center gap-1 text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                        >
+                          <span class="truncate" data-i18n={`${edu.translationKey}.institution`}>{edu.institution}</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="shrink-0 duration-150 group-hover/c:translate-x-[1.5px]"
+                          >
+                            <path d="M7 7h10v10" />
+                            <path d="M7 17 17 7" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              }
+            </ol>
+        </section>
 
         <!-- Technologies / Skills -->
         <section
