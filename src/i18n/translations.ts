@@ -37,7 +37,7 @@ const en: Translations = {
   "edu.1.institution": "Universidad Tecnológica de Chile, INACAP",
   "edu.1.period": "2019 – 2021",
   "skills.title": "Skills & Technologies",
-  "footer.tagline": "Build. Break. Improve. Create.",
+  "footer.tagline": "Work smart, not hard.",
   "footer.inspired": "Inspired by",
   "header.discord_unavailable": "Unavailable",
 };
@@ -69,7 +69,7 @@ const zh: Translations = {
   "edu.1.institution": "智利科技大学, INACAP",
   "edu.1.period": "2019 – 2021",
   "skills.title": "技能与技术",
-  "footer.tagline": "构建。突破。改进。创造。",
+  "footer.tagline": "聪明工作，而非苦干。",
   "footer.inspired": "灵感来自",
   "header.discord_unavailable": "不可用",
 };
@@ -101,7 +101,7 @@ const hi: Translations = {
   "edu.1.institution": "Universidad Tecnológica de Chile, INACAP",
   "edu.1.period": "2019 – 2021",
   "skills.title": "कौशल और प्रौद्योगिकी",
-  "footer.tagline": "बनाएं। तोड़ें। सुधारें। रचना करें।",
+  "footer.tagline": "समझदारी से काम करें, कठोर नहीं।",
   "footer.inspired": "से प्रेरित",
   "header.discord_unavailable": "अनुपलब्ध",
 };
@@ -135,7 +135,7 @@ const es: Translations = {
   "edu.1.institution": "Universidad Tecnológica de Chile, INACAP",
   "edu.1.period": "2019 – 2021",
   "skills.title": "Habilidades",
-  "footer.tagline": "Construir. Romper. Mejorar. Crear.",
+  "footer.tagline": "Trabaja inteligente, no duro.",
   "footer.inspired": "Basado en",
   "header.discord_unavailable": "No disponible",
 };
@@ -169,7 +169,7 @@ const fr: Translations = {
   "edu.1.institution": "Universidad Tecnológica de Chile, INACAP",
   "edu.1.period": "2019 – 2021",
   "skills.title": "Compétences et Technologies",
-  "footer.tagline": "Construire. Casser. Améliorer. Créer.",
+  "footer.tagline": "Travaille malin, pas dur.",
   "footer.inspired": "Inspiré par",
   "header.discord_unavailable": "Indisponible",
 };
