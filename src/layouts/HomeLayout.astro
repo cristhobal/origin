@@ -98,6 +98,22 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <script is:inline>
+      // Aplica el tema ANTES del primer paint para evitar el flash de modo
+      // claro al entrar. Debe correr síncrono en <head>, antes de renderizar.
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme");
+          const isDark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", isDark);
+        } catch (e) {
+          /* localStorage no disponible → se mantiene el tema claro por defecto */
+        }
+      })();
+    </script>
+
     <style is:global>
       /* Keeps body invisible until translate.astro has run, so the user
        * never sees the SSR'd English text before it's swapped to their
@@ -601,16 +617,8 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
   </body>
 
   <script is:inline>
-    (function () {
-      const saved = localStorage.getItem("theme");
-      const isDark = saved
-        ? saved === "dark"
-        : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", isDark);
-    })();
-
-    // Reacciona en tiempo real si el usuario cambia el tema del SO
-    // (solo si no eligió manualmente con el botón)
+    // La inicialización del tema ahora vive en <head> (antes del primer paint).
+    // Aquí solo reaccionamos a cambios en tiempo real.
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", (e) => {
