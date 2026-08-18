@@ -1,8 +1,8 @@
 ---
-// 👇 SSR: el fetch de GitHub se ejecuta en cada request (igual que projects.astro)
-//    Así el home siempre refleja los repos actuales sin necesitar un redeploy.
-export const prerender = false;
-
+// SSG: el fetch de GitHub se ejecuta en build time (igual que projects.astro).
+// El workflow de redeploy (ver README) dispara un rebuild cada hora o cuando
+// cambias un repo, así la home se mantiene fresca sin renderizar SSR en cada
+// request — HTML estático servido desde el CDN con TTFB mínimo.
 import Layout from "../layouts/HomeLayout.astro";
 ---
 

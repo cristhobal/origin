@@ -180,7 +180,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
   <body class="bg-background text-foreground min-h-screen flex flex-col">
     <div class="fixed inset-0 z-60 pointer-events-none flex justify-center">
       <div class="relative w-full max-w-4xl overflow-hidden">
-        <Meteors client:load enabled={METEORS_ENABLED} />
+        {METEORS_ENABLED && <Meteors client:load enabled={METEORS_ENABLED} />}
       </div>
     </div>
 
@@ -257,7 +257,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             ) : null}
                             {project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:load
+                                client:idle
                                 name={project.name}
                                 previewUrl={project.preview}
                                 href={project.href}
@@ -291,7 +291,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                               </a>
                             ) : project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:load
+                                client:idle
                                 name={project.name}
                                 previewUrl={project.preview}
                               />

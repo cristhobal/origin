@@ -1,7 +1,8 @@
 ---
-// SSR: mantiene /projects sincronizado con GitHub igual que la home.
-// Si se elimina un repositorio, desaparece sin esperar un nuevo build.
-export const prerender = false;
+// SSG: el fetch de GitHub se ejecuta en build time (igual que la home).
+// El workflow de redeploy (ver README) dispara un rebuild cada hora o cuando
+// cambias un repo, así /projects se mantiene sincronizado sin renderizar SSR
+// en cada request — HTML estático servido desde el CDN.
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { projects as staticProjects } from "@/features/projects/data";
@@ -11,9 +12,6 @@ import { getTagIcon, scopeSvg } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
-
-// Evita que Vercel sirva HTML viejo cuando cambia la lista de repos.
-Astro.response.headers.set("Cache-Control", "no-store");
 
 // Trae repos de GitHub y combina con los proyectos estáticos
 let ghProjects = [];
@@ -115,7 +113,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
                   ) : null}
                   {project.isPrivate && project.preview ? (
                     <PrivateRepoPreview
-                      client:load
+                      client:idle
                       name={project.name}
                       previewUrl={project.preview}
                       href={project.href}

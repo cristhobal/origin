@@ -106,7 +106,7 @@ const fullTitle =
   <body class="bg-background text-foreground min-h-screen flex flex-col">
     <div class="fixed inset-0 z-60 pointer-events-none flex justify-center">
       <div class="relative w-full max-w-4xl overflow-hidden">
-        <Meteors client:load enabled={METEORS_ENABLED} />
+        {METEORS_ENABLED && <Meteors client:load enabled={METEORS_ENABLED} />}
       </div>
     </div>
 
