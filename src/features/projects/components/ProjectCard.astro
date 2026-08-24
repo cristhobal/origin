@@ -30,13 +30,13 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
 ---
 
 <div
-  class="card group relative rounded-[6px] p-px overflow-hidden border border-neutral-300 dark:border-neutral-800"
+  class="card group relative rounded-[6px] p-px overflow-hidden border border-border"
 >
   <!-- Glow background -->
   <div class="glow absolute inset-0 pointer-events-none"></div>
 
   <!-- Contenido -->
-  <div class="relative flex flex-col rounded-[5px] bg-white dark:bg-neutral-950 p-4">
+  <div class="relative flex flex-col rounded-[5px] bg-card p-4">
     <div class="flex flex-col space-y-3">
       <!-- HEADER -->
       <div class="flex w-full items-center justify-between">
@@ -83,7 +83,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
         <div class="flex items-center gap-2">
           {
             isPrivate && (
-              <span class="cursor-default badge relative overflow-hidden text-[10px] px-2 py-0.5 rounded border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+              <span class="cursor-default badge relative overflow-hidden text-[10px] px-2 py-0.5 rounded border border-border text-muted-foreground">
                 Private
               </span>
             )
@@ -106,7 +106,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
       </div>
 
       <!-- DESCRIPTION -->
-      <p class="truncate text-sm text-neutral-600 dark:text-neutral-400" title={description}>
+      <p class="truncate text-sm text-muted-foreground" title={description}>
         {description}
       </p>
 
@@ -115,7 +115,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
         tags.length > 0 && (
           <div class="flex items-center flex-wrap gap-2">
             {tags.slice(0, 4).map((tag) => (
-              <span class="inline-flex items-center gap-2 rounded-[2.5px] border border-neutral-300 bg-neutral-200/50 px-2 py-1 text-xs font-medium dark:border-neutral-800 dark:bg-neutral-800/60 dark:text-neutral-300">
+              <span class="inline-flex items-center gap-2 rounded-[2.5px] border border-border bg-muted px-2 py-1 text-xs font-medium">
                 {(tag.icon || getTagIcon(tag.name)) && (
                   <Fragment set:html={tag.icon || getTagIcon(tag.name)} />
                 )}
