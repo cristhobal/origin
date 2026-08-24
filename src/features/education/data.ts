@@ -3,6 +3,7 @@ export interface Education {
   degree: string;
   institution: string;
   period: string;
+  certificateUrl: string;
 }
 
 export const education: Education[] = [
@@ -11,11 +12,13 @@ export const education: Education[] = [
     degree: "Ingeniero en Informática",
     institution: "Universidad Tecnológica de Chile, INACAP",
     period: "2023 – 2024",
+    certificateUrl: "/certificado_ingenieria.pdf",
   },
   {
     translationKey: "edu.1",
     degree: "Técnico de Nivel Superior Analista Programador",
     institution: "Universidad Tecnológica de Chile, INACAP",
     period: "2019 – 2021",
+    certificateUrl: "/certificado_analista.pdf",
   },
 ];
