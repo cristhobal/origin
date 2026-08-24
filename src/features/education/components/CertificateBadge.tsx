@@ -26,18 +26,25 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
     };
     document.addEventListener("keydown", onKeyDown);
 
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    const previousOverflow = document.body.style.overflow;
-    const previousPaddingRight = document.body.style.paddingRight;
-    document.body.style.overflow = "hidden";
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
+    // No usamos `overflow: hidden` en el body: `scrollbar-gutter: stable`
+    // (global.css) solo reserva el espacio del scrollbar mientras
+    // overflow-y es auto/scroll, así que forzar "hidden" liberaba ese
+    // espacio y producía el salto de layout al abrir el modal. En vez de
+    // eso "congelamos" el scroll fijando la posición del body, sin tocar
+    // overflow.
+    const scrollY = window.scrollY;
+    const { position, top, width } = document.body.style;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-      document.body.style.paddingRight = previousPaddingRight;
+      document.body.style.position = position;
+      document.body.style.top = top;
+      document.body.style.width = width;
+      window.scrollTo(0, scrollY);
     };
   }, [open]);
 
