@@ -26,25 +26,19 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
     };
     document.addEventListener("keydown", onKeyDown);
 
-    // No usamos `overflow: hidden` en el body: `scrollbar-gutter: stable`
-    // (global.css) solo reserva el espacio del scrollbar mientras
-    // overflow-y es auto/scroll, así que forzar "hidden" liberaba ese
-    // espacio y producía el salto de layout al abrir el modal. En vez de
-    // eso "congelamos" el scroll fijando la posición del body, sin tocar
-    // overflow.
-    const scrollY = window.scrollY;
-    const { position, top, width } = document.body.style;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = "100%";
+    // El scroll de la página ya no es nativo del documento: vive dentro del
+    // viewport de Radix ScrollArea (ver PageScrollArea). Lo bloqueamos ahí
+    // directamente; como su scrollbar es un overlay que no reserva espacio
+    // de layout, no hay salto al bloquear/desbloquear.
+    const viewport = document.querySelector<HTMLElement>(
+      '[data-slot="scroll-area-viewport"]',
+    );
+    const previousOverflow = viewport?.style.overflow;
+    if (viewport) viewport.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.position = position;
-      document.body.style.top = top;
-      document.body.style.width = width;
-      window.scrollTo(0, scrollY);
+      if (viewport) viewport.style.overflow = previousOverflow ?? "";
     };
   }, [open]);
 

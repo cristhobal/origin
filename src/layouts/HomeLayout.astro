@@ -15,6 +15,7 @@ import {
 } from "@/features/projects/services/github.service";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import { CertificateBadge } from "@/features/education/components/CertificateBadge";
+import { PageScrollArea } from "@/shared/components/PageScrollArea";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 import { getTagIcon } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
@@ -194,13 +195,14 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
     />
   </head>
 
-  <body class="bg-background text-foreground min-h-screen flex flex-col">
+  <body class="bg-background text-foreground h-dvh overflow-hidden flex flex-col">
     <div class="fixed inset-0 z-60 pointer-events-none flex justify-center">
       <div class="relative w-full max-w-4xl overflow-hidden">
         {METEORS_ENABLED && <Meteors client:load enabled={METEORS_ENABLED} />}
       </div>
     </div>
 
+    <PageScrollArea client:load>
     <div
       class="max-w-4xl mx-auto w-full flex flex-col gap-10 sm:gap-12 md:gap-14 flex-1 px-4 sm:px-6 lg:px-4"
     >
@@ -621,6 +623,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
     </div>
 
     <Footer />
+    </PageScrollArea>
   <Translate />
   </body>
 
