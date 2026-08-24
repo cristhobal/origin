@@ -57,7 +57,7 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
                   exit={{ opacity: 0 }}
                 />
                 <motion.div
-                  className="relative z-10 h-[95vh] w-full max-w-4xl overflow-hidden rounded-xl bg-neutral-100 shadow-2xl dark:bg-neutral-950"
+                  className="relative z-10 max-h-[95vh] max-w-[95vw] overflow-hidden rounded-xl bg-neutral-100 shadow-2xl dark:bg-neutral-950"
                   initial={{ opacity: 0, scale: 0.95, y: 8 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -72,10 +72,11 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
                   >
                     <X size={18} />
                   </button>
-                  <iframe
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={certificateUrl}
-                    title={`Certificado: ${name}`}
-                    className="h-full w-full border-0"
+                    alt={`Certificado: ${name}`}
+                    className="block max-h-[95vh] max-w-[95vw] object-contain"
                   />
                 </motion.div>
               </motion.div>

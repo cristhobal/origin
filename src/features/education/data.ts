@@ -12,13 +12,13 @@ export const education: Education[] = [
     degree: "Ingeniero en Informática",
     institution: "Universidad Tecnológica de Chile, INACAP",
     period: "2023 – 2024",
-    certificateUrl: "/certificado_ingenieria.pdf",
+    certificateUrl: "/certificado_ingenieria.jpg",
   },
   {
     translationKey: "edu.1",
     degree: "Técnico de Nivel Superior Analista Programador",
     institution: "Universidad Tecnológica de Chile, INACAP",
     period: "2019 – 2021",
-    certificateUrl: "/certificado_analista.pdf",
+    certificateUrl: "/certificado_analista.jpg",
   },
 ];

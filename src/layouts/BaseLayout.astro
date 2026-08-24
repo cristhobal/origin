@@ -152,6 +152,16 @@ const fullTitle =
         }
       });
 
+    // Se registra en fase de captura para interceptar el evento antes que
+    // cualquier otro listener (React islands, etc.) pueda detener su propagación.
+    document.addEventListener(
+      "contextmenu",
+      (e) => {
+        e.preventDefault();
+      },
+      { capture: true },
+    );
+
     document.addEventListener("DOMContentLoaded", () => {
       const btn = document.getElementById("theme-toggle");
       if (btn) {
@@ -180,12 +190,6 @@ const fullTitle =
           card.style.setProperty("--x", `${x}px`);
           card.style.setProperty("--y", `${y}px`);
         });
-      });
-
-      document.addEventListener("contextmenu", (e) => {
-        if (e.target instanceof HTMLImageElement) {
-          e.preventDefault();
-        }
       });
     });
   </script>
