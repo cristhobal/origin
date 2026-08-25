@@ -3,6 +3,17 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+/* Radix ScrollArea envuelve el contenido del Viewport en un
+   `<div style="display:table">` interno (para medir el tamaño del thumb).
+   Ese `display:table` ajusta el ancho al contenido (shrink-to-fit) en vez
+   de respetar el ancho real del viewport, rompiendo el layout responsive
+   en móvil. Lo forzamos a `block` (el inline style de Radix no usa
+   `!important`, así que esta regla gana). */
+[data-radix-scroll-area-viewport] > div {
+  display: block !important;
+  min-width: 0 !important;
+}
+
 @keyframes meteor {
   0% {
     transform: rotate(215deg) translateX(0);
