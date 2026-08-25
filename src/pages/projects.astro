@@ -100,7 +100,7 @@ const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
           data-search-tags={((project.languages ? Object.keys(project.languages).join(" ") : "") + " " + project.tags.map(t => t.name).join(" ")).toLowerCase()}
         >
           <div class="glow absolute inset-0 pointer-events-none"></div>
-          <div class="relative flex flex-col h-full rounded-[5px] bg-card p-3 sm:p-4">
+          <div class="relative flex flex-col h-full rounded-[5px] p-3 sm:p-4">
             <div class="flex flex-col space-y-3 h-full">
 
               <!-- Header -->
