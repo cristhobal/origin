@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { BadgeCheck, X } from "lucide-react";
@@ -13,9 +13,41 @@ interface Props {
 export function CertificateBadge({ name, certificateUrl }: Props) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // El nombre de la carrera (<h3>) vive fuera de esta isla React, en el
+    // Astro que la envuelve, para que translate.astro (que traduce vía
+    // data-i18n directamente en el DOM) no choque con la hidratación de
+    // React. Lo hacemos clickeable también buscándolo como hermano
+    // anterior del custom element que hospeda esta isla.
+    const island = triggerRef.current?.parentElement;
+    const heading = island?.previousElementSibling;
+    if (!(heading instanceof HTMLElement)) return;
+
+    heading.style.cursor = "pointer";
+    heading.setAttribute("role", "button");
+    heading.setAttribute("tabindex", "0");
+    heading.title = "Ver certificado";
+
+    const onClick = () => setOpen(true);
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setOpen(true);
+      }
+    };
+
+    heading.addEventListener("click", onClick);
+    heading.addEventListener("keydown", onKeyDown);
+    return () => {
+      heading.removeEventListener("click", onClick);
+      heading.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
 
   useEffect(() => {
@@ -96,6 +128,7 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`Ver certificado de ${name}`}
