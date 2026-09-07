@@ -36,14 +36,16 @@ import { experiences } from "@/features/experience/data";
             style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
           >
             <!-- Dot -->
-            <div class="flex items-center justify-center">
+            <div class="flex h-3 items-center justify-center self-center">
               <div class="h-3 w-3 shrink-0 rounded-full border border-neutral-400 bg-neutral-200 dark:border-neutral-600 dark:bg-neutral-800"></div>
             </div>
 
             <!-- Date -->
-            <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400 self-center" data-i18n={`${translationKey}.period`}>
-              {exp.period}
-            </time>
+            <div class="flex h-3 items-center self-center">
+              <time class="font-mono text-xs font-normal leading-none text-neutral-600 dark:text-neutral-400" data-i18n={`${translationKey}.period`}>
+                {exp.period}
+              </time>
+            </div>
 
             <!-- Line -->
             <div class="flex justify-center">
