@@ -418,6 +418,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               {
                 featuredExperience.map((exp, expIdx) => {
                   const translationKey = exp.translationKey ?? `exp.${expIdx}`;
+                  const isLast = expIdx === featuredExperience.length - 1;
                   return (
                   <li
                     class="grid gap-x-3"
@@ -430,9 +431,11 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                       {exp.period}
                     </time>
                     <div class="flex justify-center">
-                      <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800" />
+                      {!isLast && (
+                        <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800" />
+                      )}
                     </div>
-                    <div class="mt-2 pb-2">
+                    <div class:list={["mt-2", isLast ? "pb-0" : "pb-2"]}>
                       <div class="flex flex-col space-y-1">
                         <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`${translationKey}.role`}>
                           {exp.role}
@@ -488,7 +491,9 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
             <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="education.title">Education</h2>
             <ol>
               {
-                education.map((edu) => (
+                education.map((edu, eduIdx) => {
+                  const isLast = eduIdx === education.length - 1;
+                  return (
                   <li
                     class="grid gap-x-3"
                     style="grid-template-columns: 12px 1fr; grid-template-rows: auto 1fr;"
@@ -500,9 +505,11 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                       {edu.period}
                     </time>
                     <div class="flex justify-center">
-                      <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800" />
+                      {!isLast && (
+                        <div class="w-0.5 h-full bg-neutral-300 dark:bg-neutral-800" />
+                      )}
                     </div>
-                    <div class="mt-2 pb-2">
+                    <div class:list={["mt-2", isLast ? "pb-0" : "pb-2"]}>
                       <div class="flex flex-col space-y-1 min-w-0">
                         <div class="flex items-center gap-1.5">
                           <h3 class="text-base sm:text-lg font-semibold tracking-tight text-gray-900 dark:text-white" data-i18n={`${edu.translationKey}.degree`}>
@@ -540,7 +547,8 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                       </div>
                     </div>
                   </li>
-                ))
+                  );
+                })
               }
             </ol>
         </section>
