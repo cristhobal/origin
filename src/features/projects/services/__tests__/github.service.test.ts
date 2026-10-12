@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchGitHubProjects } from "../github.service";
+import { fetchGitHubProjects, EXCLUDE_REPOS } from "../github.service";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -61,10 +61,18 @@ describe("fetchGitHubProjects()", () => {
   });
 
   it("excluye repos en la lista EXCLUDE_REPOS", async () => {
-    global.fetch = mockFetch([[makeRepo({ name: "cldr" })], []]);
+    // EXCLUDE_REPOS está vacía por defecto (la llena cristhobal manualmente
+    // cuando quiere ocultar un repo puntual) — este test agrega una entrada
+    // temporal para ejercitar el filtro en sí, no un nombre real de producción.
+    EXCLUDE_REPOS.push("cldr");
+    try {
+      global.fetch = mockFetch([[makeRepo({ name: "cldr" })], []]);
 
-    const result = await fetchGitHubProjects("cristhobal");
-    expect(result).toHaveLength(0);
+      const result = await fetchGitHubProjects("cristhobal");
+      expect(result).toHaveLength(0);
+    } finally {
+      EXCLUDE_REPOS.length = 0;
+    }
   });
 
   it("usa homepage como href cuando existe", async () => {
@@ -141,7 +149,12 @@ describe("fetchGitHubProjects()", () => {
   });
 
   it("retorna array vacío si la API falla (status no-ok)", async () => {
-    global.fetch = vi.fn().mockResolvedValue({ ok: false, status: 403 });
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 403,
+      statusText: "Forbidden",
+      text: async () => "",
+    });
     const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const result = await fetchGitHubProjects("cristhobal");
