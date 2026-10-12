@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { cn, calcularAniosExperiencia } from "../dates";
+import { cn } from "../cn";
+import { calcularAniosExperiencia } from "../dates";
 
 // ── cn() ─────────────────────────────────────────────────────────────────────
 
