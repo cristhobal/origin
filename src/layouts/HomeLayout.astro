@@ -241,10 +241,9 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               {hasMoreProjects && (
               <a
                 href="/projects"
-                aria-label="View all projects"
                 class="group flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-neutral-500 duration-100 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               >
-                <span data-i18n="experience.more">More</span>
+                <span data-i18n="experience.more">More</span><span class="sr-only"> projects</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -416,10 +415,9 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
               <h2 class="text-xl sm:text-2xl font-semibold tracking-tight" data-i18n="experience.title">Experience</h2>
               <a
                 href="/experience"
-                aria-label="View all experience"
                 class="group flex items-center space-x-1.5 text-xs sm:text-sm font-medium text-neutral-500 duration-100 hover:text-black dark:text-neutral-400 dark:hover:text-white"
               >
-                <span data-i18n="experience.more">More</span>
+                <span data-i18n="experience.more">More</span><span class="sr-only"> experience</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
