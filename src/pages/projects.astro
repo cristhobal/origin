@@ -120,7 +120,7 @@ const breadcrumbJsonLd = {
                   ) : null}
                   {project.isPrivate && project.preview ? (
                     <PrivateRepoPreview
-                      client:visible
+                      client:media="(hover: hover)"
                       name={project.name}
                       previewUrl={project.preview}
                       href={project.href}
