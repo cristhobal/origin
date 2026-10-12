@@ -126,7 +126,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
 
     <!-- Favicon — un conjunto sin duplicados para todos los contextos -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.png" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta
       name="theme-color"
@@ -196,6 +196,12 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
   </head>
 
   <body class="bg-background text-foreground h-dvh overflow-hidden flex flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-100 focus:rounded-md focus:border focus:border-border focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground"
+      data-i18n="a11y.skip_to_content"
+      >Skip to content</a
+    >
     <div class="fixed inset-0 z-60 pointer-events-none flex justify-center">
       <div class="relative w-full max-w-4xl overflow-hidden">
         {METEORS_ENABLED && <Meteors client:load enabled={METEORS_ENABLED} />}
@@ -208,9 +214,10 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
     >
       <Header />
 
-      <main class="flex flex-col gap-10 sm:gap-12 md:gap-14 flex-1">
+      <main id="main-content" tabindex="-1" class="flex flex-col gap-10 sm:gap-12 md:gap-14 flex-1">
         <!-- About -->
         <section id="section-about" aria-label="About me" class="fade-down-section" style="--delay: 0ms">
+          <h1 class="sr-only">Cristhobal Canales — Fullstack Web Developer from Chile</h1>
           <p
             class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
           >
