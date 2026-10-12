@@ -1,15 +1,23 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { experiences } from "@/features/experience/data";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.cristhobal.cl/" },
+    { "@type": "ListItem", position: 2, name: "Experience", item: "https://www.cristhobal.cl/experience" },
+  ],
+};
 ---
 
-<meta name="description" content="" />
-<title></title>
 <BaseLayout
   title="Experience"
   description="Career history of Cristhobal Canales — Fullstack Developer from Chile. 6 roles in public institutions and private companies, building web systems, administrative platforms and FiveM scripts."
   canonicalPath="/experience"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
 
   <!-- Page header -->
   <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800 fade-down-section" style="--delay: 0ms">
