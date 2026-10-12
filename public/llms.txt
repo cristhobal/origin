@@ -1,0 +1,33 @@
+# Cristhobal Canales
+
+> Fullstack Web Developer from Chile. Builds web systems for public
+> institutions, administrative platforms, modern UIs and custom FiveM
+> server scripts using Astro, React, TypeScript and Node.js.
+
+This file follows the llms.txt convention (https://llmstxt.org) to help
+AI agents and assistants navigate and summarize this site accurately.
+
+## Pages
+
+- [Home](https://www.cristhobal.cl/): Summary, featured projects, work
+  experience, education and tech stack.
+- [Projects](https://www.cristhobal.cl/projects): Full list of open-source
+  and private projects, searchable, with tech tags and descriptions.
+- [Experience](https://www.cristhobal.cl/experience): Full professional
+  timeline — roles, companies and responsibilities.
+
+## Profiles
+
+- GitHub: https://github.com/cristhobal
+- LinkedIn: https://linkedin.com/in/cristhobal
+
+## Notes for agents
+
+- Content is server-rendered static HTML (Astro, `output: "static"`); no
+  login or JavaScript execution is required to read page content.
+- The visible language on first load defaults to English; a client-side
+  script swaps text to the visitor's browser language (en, es, fr, zh, hi)
+  without changing the URL. All language variants describe the same
+  content — treat them as one canonical page per path.
+- Canonical URLs and per-page `<title>`/`<meta name="description">` are
+  present in the static HTML and should be treated as authoritative.
