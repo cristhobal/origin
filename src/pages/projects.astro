@@ -33,15 +33,22 @@ const projects = [...staticProjects, ...ghProjects]
 
 const isInlineSvgLogo = (logo?: string) => logo?.trim().startsWith("<svg");
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.cristhobal.cl/" },
+    { "@type": "ListItem", position: 2, name: "Projects", item: "https://www.cristhobal.cl/projects" },
+  ],
+};
 ---
 
-<meta name="description" content="" />
-<title></title>
 <BaseLayout
   title="Projects"
   description="Projects by Cristhobal Canales — open-source and private work in Astro, React, TypeScript and Node.js. Includes reservation systems, administrative platforms and custom FiveM scripts."
   canonicalPath="/projects"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
 
   <!-- Page header -->
   <div class="pb-5 sm:pb-7 border-b border-neutral-200 dark:border-neutral-800 fade-down-section" style="--delay: 0ms">
