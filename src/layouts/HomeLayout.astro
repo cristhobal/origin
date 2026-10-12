@@ -283,7 +283,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             ) : null}
                             {project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:idle
+                                client:visible
                                 name={project.name}
                                 previewUrl={project.preview}
                                 href={project.href}
@@ -317,7 +317,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                               </a>
                             ) : project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:idle
+                                client:visible
                                 name={project.name}
                                 previewUrl={project.preview}
                               />
@@ -540,7 +540,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             {edu.degree}
                           </h3>
                           <CertificateBadge
-                            client:idle
+                            client:visible
                             name={edu.degree}
                             certificateUrl={edu.certificateUrl}
                           />
