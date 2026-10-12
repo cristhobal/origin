@@ -21,5 +21,10 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // Un solo CSS en vez de un chunk extra por isla (ej. PageScrollArea):
+      // elimina una petición render-blocking separada en la carga inicial.
+      cssCodeSplit: false,
+    },
   },
 });
