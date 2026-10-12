@@ -45,7 +45,9 @@ interface GitHubRepo {
 // Repos que ya están definidos manualmente en portfolio.ts
 // Agrega aquí el nombre exacto de cada repo que quieras excluir de GitHub
 // Repos excluidos de la lista (estáticos o sin interés público)
-const EXCLUDE_REPOS: string[] = [];
+// Exportado para que el test pueda ejercitar el mecanismo de filtrado
+// directamente, sin asumir qué nombres haya configurados en producción.
+export const EXCLUDE_REPOS: string[] = [];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HIDDEN_REPOS  ←  fuente única de verdad para ocultar proyectos del portafolio
