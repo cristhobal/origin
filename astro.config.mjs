@@ -19,6 +19,16 @@ export default defineConfig({
 
   integrations: [react(), sitemap()],
 
+  build: {
+    // Consolidar el CSS en un solo chunk (ver vite.build.cssCodeSplit más
+    // abajo) no alcanzó: ese chunk seguía siendo un <link rel="stylesheet">
+    // externo, y por ende igual de render-blocking. "always" lo inyecta
+    // directo como <style> inline en cada página, eliminando la petición
+    // de red por completo (a costa de duplicar esos bytes entre páginas,
+    // aceptable para un sitio chico como este).
+    inlineStylesheets: "always",
+  },
+
   vite: {
     plugins: [tailwindcss()],
     build: {
