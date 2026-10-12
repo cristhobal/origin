@@ -23,30 +23,34 @@ export function CertificateBadge({ name, certificateUrl }: Props) {
     // El nombre de la carrera (<h3>) vive fuera de esta isla React, en el
     // Astro que la envuelve, para que translate.astro (que traduce vía
     // data-i18n directamente en el DOM) no choque con la hidratación de
-    // React. Lo hacemos clickeable también buscándolo como hermano
-    // anterior del custom element que hospeda esta isla.
+    // React. Lo hacemos clickeable también, pero SIN pisar el rol del
+    // <h3> con role="button" (eso le quita su semántica de heading y
+    // rompe la navegación por encabezados de lectores de pantalla y
+    // agentes de IA — falla el audit "ARIA role should be appropriate
+    // for the element"). En su lugar seguimos el patrón de la ARIA APG
+    // para accordion headers: un <button> real ANIDADO dentro del <h3>,
+    // que hereda el texto y queda como único elemento interactivo.
     const island = triggerRef.current?.parentElement;
     const heading = island?.previousElementSibling;
     if (!(heading instanceof HTMLElement)) return;
 
-    heading.style.cursor = "pointer";
-    heading.setAttribute("role", "button");
-    heading.setAttribute("tabindex", "0");
-    heading.title = "Ver certificado";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "cursor-pointer";
+    button.style.background = "transparent";
+    button.style.border = "0";
+    button.style.padding = "0";
+    button.style.font = "inherit";
+    button.style.color = "inherit";
+    button.style.textAlign = "inherit";
+    button.title = "Ver certificado";
+    while (heading.firstChild) button.appendChild(heading.firstChild);
+    heading.appendChild(button);
 
     const onClick = () => setOpen(true);
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        setOpen(true);
-      }
-    };
-
-    heading.addEventListener("click", onClick);
-    heading.addEventListener("keydown", onKeyDown);
+    button.addEventListener("click", onClick);
     return () => {
-      heading.removeEventListener("click", onClick);
-      heading.removeEventListener("keydown", onKeyDown);
+      button.removeEventListener("click", onClick);
     };
   }, []);
 
