@@ -31,18 +31,33 @@ export function PrivateRepoPreview({ name, previewUrl, href }: Props) {
     setMounted(true);
   }, []);
 
+  const [sizeChecked, setSizeChecked] = useState(false);
+
   useEffect(() => {
+    // Antes esto corría incondicionalmente al montar, precargando la
+    // preview de TODOS los repos privados aunque nadie hiciera hover —
+    // network desperdiciado y, si el host externo fallaba (ej. 502), un
+    // error de recurso en consola durante la carga inicial de la página
+    // (falla el audit "Browser errors were logged to console"). Ahora
+    // solo se dispara la primera vez que el usuario realmente pasa el
+    // mouse por encima.
+    if (!isHovered || sizeChecked) return;
     let cancelled = false;
     const img = new Image();
     img.onload = () => {
       if (cancelled) return;
       setSize(computeSize(img.naturalWidth, img.naturalHeight));
     };
+    img.onerror = () => {
+      if (cancelled) return;
+      setSize(LANDSCAPE);
+    };
     img.src = previewUrl;
+    setSizeChecked(true);
     return () => {
       cancelled = true;
     };
-  }, [previewUrl]);
+  }, [isHovered, sizeChecked, previewUrl]);
 
   useEffect(() => {
     if (!isHovered) return;
