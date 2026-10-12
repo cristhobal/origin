@@ -283,7 +283,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             ) : null}
                             {project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:visible
+                                client:media="(hover: hover)"
                                 name={project.name}
                                 previewUrl={project.preview}
                                 href={project.href}
@@ -317,7 +317,7 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                               </a>
                             ) : project.isPrivate && project.preview ? (
                               <PrivateRepoPreview
-                                client:visible
+                                client:media="(hover: hover)"
                                 name={project.name}
                                 previewUrl={project.preview}
                               />
