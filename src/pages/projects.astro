@@ -12,6 +12,7 @@ import { getTagIcon, scopeSvg } from "@/shared/icons";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
+import { getBadgeTags } from "@/features/projects/utils/badge-tags";
 
 // Trae repos de GitHub y combina con los proyectos estáticos
 let ghProjects = [];
@@ -188,20 +189,17 @@ const breadcrumbJsonLd = {
                 <LanguagesBar languages={project.languages} />
               )}
 
-              <!-- Tags (excluye lenguajes ya mostrados en LanguagesBar) -->
+              <!-- Tags (excluye lenguajes de LanguagesBar y tags sin icono) -->
               {(() => {
-                const langNames = new Set(Object.keys(project.languages ?? {}));
-                const filteredTags = project.tags.filter((tag) => !langNames.has(tag.name));
-                return filteredTags.length > 0 ? (
+                const badgeTags = getBadgeTags(project.tags, project.languages);
+                return badgeTags.length > 0 ? (
                   <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
-                    {filteredTags.slice(0, 4).map((tag, tagIdx) => {
-                      const iconSvg = getTagIcon(tag.name);
-                      const uniqueSvg = iconSvg ? scopeSvg(iconSvg, `c${projectIdx}-${tagIdx}`) : "";
+                    {badgeTags.map((tag, tagIdx) => {
+                      const iconSvg = getTagIcon(tag.name)!;
+                      const uniqueSvg = scopeSvg(iconSvg, `c${projectIdx}-${tagIdx}`);
                       return (
                       <span class="inline-flex items-center gap-1.5 rounded-[2.5px] border border-border bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium">
-                        {iconSvg && (
-                          <Fragment set:html={uniqueSvg} />
-                        )}
+                        <Fragment set:html={uniqueSvg} />
                         <span>{tag.name}</span>
                       </span>
                       );
