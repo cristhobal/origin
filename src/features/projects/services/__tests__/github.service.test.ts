@@ -53,6 +53,13 @@ describe("fetchGitHubProjects()", () => {
     });
   });
 
+  it("muestra el nombre del repo en minúsculas", async () => {
+    global.fetch = mockFetch([[makeRepo({ name: "DoorMan" })], []]);
+
+    const result = await fetchGitHubProjects("cristhobal");
+    expect(result[0].name).toBe("doorman");
+  });
+
   it("excluye repos fork", async () => {
     global.fetch = mockFetch([[makeRepo({ fork: true })], []]);
 
