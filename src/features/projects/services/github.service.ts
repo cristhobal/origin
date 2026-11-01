@@ -780,7 +780,10 @@ export async function fetchGitHubProjects(
     const hrefDisabled = DISABLE_HREF_REPOS.includes(repo.name);
 
     return {
-      name: repo.name,
+      // Nombre visible siempre en minúsculas para que todas las tarjetas sean
+      // consistentes (p. ej. "DoorMan" → "doorman"). Logos, previews y filtros
+      // siguen usando repo.name original.
+      name: repo.name.toLowerCase(),
       description: repo.description ?? "No description provided.",
       href: hrefDisabled ? undefined : repo.homepage || undefined,
       githubUrl: repo.private ? undefined : repo.html_url,
