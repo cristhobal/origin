@@ -18,6 +18,7 @@ import { CertificateBadge } from "@/features/education/components/CertificateBad
 import { PageScrollArea } from "@/shared/components/PageScrollArea";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 import { getTagIcon } from "@/shared/icons";
+import { getBadgeTags } from "@/features/projects/utils/badge-tags";
 import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { calcularAniosExperiencia } from "@/shared/utils/dates";
 import Translate from "@/i18n/translate.astro";
@@ -377,19 +378,15 @@ const featuredExperience = currentExperience ? [currentExperience] : [];
                             <LanguagesBar languages={project.languages} />
                           )}
                         {(() => {
-                          const langNames = new Set(
-                            Object.keys(project.languages ?? {}),
+                          const badgeTags = getBadgeTags(
+                            project.tags,
+                            project.languages,
                           );
-                          const filteredTags = project.tags.filter(
-                            (tag) => !langNames.has(tag.name),
-                          );
-                          return filteredTags.length > 0 ? (
+                          return badgeTags.length > 0 ? (
                             <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
-                              {filteredTags.slice(0, 4).map((tag) => (
+                              {badgeTags.map((tag) => (
                                 <span class="inline-flex items-center gap-1.5 rounded-[2.5px] border border-border bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium">
-                                  {getTagIcon(tag.name) && (
-                                    <Fragment set:html={getTagIcon(tag.name)} />
-                                  )}
+                                  <Fragment set:html={getTagIcon(tag.name)} />
                                   <span>{tag.name}</span>
                                 </span>
                               ))}
