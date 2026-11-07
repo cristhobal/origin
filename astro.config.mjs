@@ -4,6 +4,11 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
+import { readdirSync } from "node:fs";
+
+// Files in public/logos/, listed at build time. The home page and /projects render on the server,
+// where public/ is not available to read, so github.service.ts looks logos up in this list instead.
+const repoLogoFiles = readdirSync(new URL("./public/logos/", import.meta.url));
 
 export default defineConfig({
   site: "https://www.cristhobal.cl",
@@ -31,6 +36,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      __REPO_LOGO_FILES__: JSON.stringify(repoLogoFiles),
+    },
     build: {
       // Un solo CSS en vez de un chunk extra por isla (ej. PageScrollArea):
       // elimina una petición render-blocking separada en la carga inicial.

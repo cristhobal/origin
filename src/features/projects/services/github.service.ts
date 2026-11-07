@@ -1,7 +1,11 @@
 import type { Project } from "@/features/projects/types";
 import { normalizeTagName } from "@/shared/icons";
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+
+// File names in public/logos/, injected at build time by astro.config.mjs (vite.define). Those pages
+// render on the server, where public/ can't be read from disk. Absent in tests → no file logos.
+declare const __REPO_LOGO_FILES__: string[] | undefined;
+const REPO_LOGO_FILES: string[] =
+  typeof __REPO_LOGO_FILES__ !== "undefined" ? __REPO_LOGO_FILES__ : [];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // GitHub API  →  Project mapper
@@ -624,10 +628,9 @@ const LOGO_EXTENSIONS = ["svg", "png", "webp", "jpg", "jpeg"];
 function findRepoLogo(repoName: string): string | undefined {
   if (REPO_LOGOS[repoName]) return REPO_LOGOS[repoName];
 
-  const publicLogosDir = join(process.cwd(), "public", "logos");
   for (const ext of LOGO_EXTENSIONS) {
     const filename = `${repoName}.${ext}`;
-    if (existsSync(join(publicLogosDir, filename))) {
+    if (REPO_LOGO_FILES.includes(filename)) {
       return `/logos/${filename}`;
     }
   }

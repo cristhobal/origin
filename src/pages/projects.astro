@@ -1,8 +1,7 @@
 ---
-// SSG: el fetch de GitHub se ejecuta en build time (igual que la home).
-// El workflow de redeploy (ver README) dispara un rebuild cada hora o cuando
-// cambias un repo, así /projects se mantiene sincronizado sin renderizar SSR
-// en cada request — HTML estático servido desde el CDN.
+// SSR with a short CDN cache (same as the home page): GitHub data is fetched on the server and
+// cached by Vercel for 60 s, so changes on GitHub appear within about a minute without a redeploy.
+// See src/shared/config/cache.ts.
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { projects as staticProjects } from "@/features/projects/data";
@@ -13,6 +12,10 @@ import LanguagesBar from "@/features/projects/components/LanguagesBar.astro";
 import { PrivateRepoPreview } from "@/features/projects/components/PrivateRepoPreview";
 import ProjectLogo from "@/features/projects/components/ProjectLogo.astro";
 import { getBadgeTags } from "@/features/projects/utils/badge-tags";
+import { GITHUB_PAGES_CACHE_CONTROL } from "@/shared/config/cache";
+
+export const prerender = false;
+Astro.response.headers.set("Cache-Control", GITHUB_PAGES_CACHE_CONTROL);
 
 // Trae repos de GitHub y combina con los proyectos estáticos
 let ghProjects = [];
