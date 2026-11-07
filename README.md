@@ -34,8 +34,8 @@ Built with Astro 6, React 19, and TypeScript. Deployed on Vercel.
 
 ## Features
 
-- **Auto-synced GitHub projects** — new and updated repositories are fetched at build time and published on `/projects`
-- **Scheduled auto-redeploy** — GitHub Actions triggers Vercel every hour to keep the home page fresh
+- **Auto-synced GitHub projects** — repositories are fetched from GitHub on the server and published on the home page and `/projects`
+- **Live GitHub data** — home and `/projects` reflect repository changes within about a minute (SSR with a short CDN cache)
 - **Static-first** — most pages are prerendered at build time for instant load speeds
 - **Dark mode** — full dark/light support via CSS variables
 - **SEO ready** — sitemap, dynamically generated Open Graph image, `robots.txt`, and JSON-LD schema
@@ -143,8 +143,9 @@ The project follows a **feature-oriented architecture** (Screaming Architecture)
 
 The site uses a hybrid rendering model configured in `astro.config.mjs`:
 
-- **SSG** — home, experience and projects pages. Prerendered at build time for maximum performance. The GitHub API is queried at build time; the hourly redeploy workflow keeps repositories fresh.
-- **SSR** — only `/og.png`, the dynamic Open Graph image endpoint.
+- **SSG** — the experience page. Prerendered at build time.
+- **SSR + CDN cache** — home and `/projects`. GitHub is queried on the server and Vercel's CDN keeps each render for 60 seconds (`s-maxage=60, stale-while-revalidate=600`, see `src/shared/config/cache.ts`), so a new repository, description or website URL shows up within about a minute, without a redeploy.
+- **SSR** — `/og.png`, the dynamic Open Graph image endpoint.
 
 ---
 
